@@ -1,0 +1,8 @@
+tanulo@bash-5.0 $ yes
+y
+y
+^Z
+[1]+  Megállítva            yes
+tanulo@bash-5.0 $ fg
+y
+y

@@ -1,0 +1,2 @@
+root@bash-5.0# usermod -a -G wheel tanulo
+

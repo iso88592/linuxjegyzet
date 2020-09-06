@@ -1,0 +1,3990 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass book
+\begin_preamble
+\usepackage{wrapfig}
+\usepackage{ucs}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[magyar]{babel}
+\end_preamble
+\use_default_options true
+\begin_modules
+minimalistic
+bicaption
+pdfform
+\end_modules
+\maintain_unincluded_children false
+\language magyar
+\language_package babel
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "berasans" "Liberation Serif"
+\font_typewriter "beramono" "default"
+\font_math "newtxmath" "auto"
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 0.79in
+\topmargin 0.79in
+\rightmargin 0.79in
+\bottommargin 0.79in
+\headheight 0.6in
+\headsep 0.2in
+\footskip 0.5in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style polish
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\listings_params "keywordstyle={\color{blue}},commentstyle={\color{magenta}\itshape},emphstyle={\color{red}},breaklines=true,basicstyle={\ttfamily},stringstyle={\color{OliveGreen}},identifierstyle={\color{cyan}},numbers=left"
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Linux jegyzet
+\end_layout
+
+\begin_layout Author
+Várkonyi Tibor
+\end_layout
+
+\begin_layout Chapter
+Bevezetés
+\end_layout
+
+\begin_layout Standard
+Azoknak, akik ismerkednek a Linux-szal, meglepő lehet, hogy milyen gyakran
+ találkozunk a mindennapokban Linux-szal, vagy Linux alapú rendszerekkel.
+ A Linux rendszerek a mai napra elengedhetetlenné váltak az internet biztosításá
+ra, hiszen a szerverek túlnyomó többsége Linuxon, vagy ahhoz hasonló rendszeren
+ fut.
+ Amikor virtualizációról beszélünk, ismerős lehet a Docker nevű szolgáltatás,
+ ami apró Linux kerneleket futtat, ezzel biztosítva, hogy a programjaink
+ ugyanúgy fussanak a mi környezetünkön, mint másokén.
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename cautionary.png
+	width 80page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Forrás: https://xkcd.com/456/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Mi lehet az oka annak, hogy ha megkérdezed a környezetdben lévőket, hogy
+ milyen operációs rendszer van a gépükön, akkor az nagy valószínűséggel
+ nem Linux lesz? Sokan azt mondanák rá, hogy a Linux nem felhasználóbarát.
+ Esetleg azt, hogy azon nem futnak játékok.
+ Mindegyik részben jogos, részben alaptalan.
+ Azzal, hogy szép lassan az asztali alkalmazásokat kiváltjuk webesekkel,
+ bármilyen operációs rendszer hasonló élményt tud adni.
+ A Linux rendszer lehetőséget ad rá, hogy kísérletezzünk az eszközeinkkel,
+ esetleg saját magunk fejlesszünk olyan dolgokat, amikről mások nem is álmodtak
+ volna.
+\end_layout
+
+\begin_layout Chapter
+Linux alapok
+\end_layout
+
+\begin_layout Section
+Bevezetés
+\end_layout
+
+\begin_layout Subsection
+Unix szemlélet
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Unix szemlélet
+\end_layout
+
+\end_inset
+
+, POSIX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+POSIX
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Egy dolgot nem szabad elfelejteni akkor, ha Linuxról beszélünk.
+ A Linux rendszeren UNIX alapúak.
+ A UNIX egy ősrégi operációs rendszer, ami kiváló alapokra helyezte a számításte
+chnikát.
+ Nem véletlen, hogy a POSIX szabványt is erre építették fel.
+ A POSIX egy olyan szabvány, ami leírja, hogyan kell modern operációs rendszert
+ készíteni.
+ Ez azért nagyon fontos, mert a POSIX alapú szoftverek bármilyen más POSIX
+ alapú operációs rendszerre átvihetők (portolhatók).
+ A Unix szemlélet valójában ennek megtestesülése: 
+\begin_inset Quotes pld
+\end_inset
+
+
+\emph on
+Írd meg egyszer, használd örökké!
+\begin_inset Quotes prd
+\end_inset
+
+
+\emph default
+ 
+\end_layout
+
+\begin_layout Standard
+Ez az elv mutatja, hogy milyen a Linuxok belső szerkezete: alapvetően egyszerű
+ felhasználói programjaink vannak, amikkel gyorsan, és hatékonyan végezhetjük
+ el az egyszerű feladatokat.
+ Azonban ennél sokkal többre képes - ahogy majd látni fogjuk -, ezen egyszerű,
+ hatékony prog\SpecialChar softhyphen
+ra\SpecialChar softhyphen
+mocs\SpecialChar softhyphen
+kák összetételéből komplex szoftvereket készítünk, amelyek
+ egyszerűbbé teszik a min\SpecialChar softhyphen
+den\SpecialChar softhyphen
+nap\SpecialChar softhyphen
+ja\SpecialChar softhyphen
+in\SpecialChar softhyphen
+kat.
+ Ezeket bővebben foguk tanulmányozni a 
+\series bold
+Scriptek
+\series default
+ fejezetben.
+ 
+\end_layout
+
+\begin_layout Subsection
+Linux rendszerek architektúrája
+\end_layout
+
+\begin_layout Standard
+\begin_inset Wrap figure
+lines 0
+placement O
+overhang 0in
+width "40col%"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename linux-architecture.jpg
+	width 35page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A Linux architektúrája
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Amikor valaki a Linux kifejezést használja, a legtöbben egy operációs rendszerre
+ gondolnak.
+ Valójában a Linux kifejezés egyedül az operációs rendszer kernelét (rendszermag
+ját) jelenti, ami valójában egy elég kicsi, ám komplex program.
+ Ez a program teremt kapcsolatot a számítógép összes rendszere között.
+ A kernel valósítja meg az üzemezést, a memória kezelését, erőforrások lefoglalá
+sát és felszabadítását, még a hálózatkezelés jelentős része is itt valósul
+ meg.
+ Jellemzően minden operációs rendszer rendelkezik egy ilyen kernellel.
+ 
+\end_layout
+
+\begin_layout Standard
+Azokat az operációs rendszerek, amelyek mindent ebbe a programba akarnak
+ sűríteni, 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+monolitikus architektúra
+\end_layout
+
+\end_inset
+
+
+\emph on
+monolitikus
+\emph default
+nak nevezzük.
+ 
+\end_layout
+
+\begin_layout Standard
+Azokat az operációs rendszereket, amelyek igyekeznek kicsinek meghagyni
+ ezt a programot, 
+\emph on
+mikrokernel architektúrá
+\emph default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+mikrokernel architektúra
+\end_layout
+
+\end_inset
+
+júnak nevezzük.
+\end_layout
+
+\begin_layout Standard
+A Linux melyik csoportba tartozik? A válasz koránt sem egyértelmű, mivel
+ a Linux kernel nem egy előre összeszerkesztett program.
+ A felhasználóra van bízva, hogy mi kerül be a kernelbe, és mi nem.
+ Linuxban úgynevezett 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+kernel modul
+\end_layout
+
+\end_inset
+
+kernel modulokat készítünk, amivel kiegészítjük a Kernel feladatait.
+ Tipikusan ide kerülnek vezérlőszoftverek (driverek), és olyan alapfeladatot
+ ellátó programok, mint például a rendszerszintű védelmet nyújtó 
+\emph on
+PAM
+\emph default
+, stb.
+\end_layout
+
+\begin_layout Standard
+A kernelre és az őt körülvevő modulokra épül egy alkalmazás futtató réteg,
+ ami Linux alapú rendszer esetében a POSIX, plusz egyéb olyan szoftvercsomagok,
+ amelyek rendszer szintű szol\SpecialChar softhyphen
+gál\SpecialChar softhyphen
+ta\SpecialChar softhyphen
+tá\SpecialChar softhyphen
+so\SpecialChar softhyphen
+kat biztosítanak.
+\end_layout
+
+\begin_layout Standard
+A POSIX réteget használhatjuk akármilyen felhasználói programból, vagy akár
+ egy megfelelő parancsértelmező
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+parancsértelmező
+\end_layout
+
+\end_inset
+
+ből is.
+\end_layout
+
+\begin_layout Subsection
+Linux disztribúciók
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+disztribúciók
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Wrap figure
+lines 0
+placement O
+overhang 0in
+width "40col%"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename not_really_into_pokemon.png
+	width 35page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+forrás: https://xkcd.com/178/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Mivel a Linux egy szabad szoftver, és nagyon sokan szeretik, ezért a sokféle
+ felhasználó sokféle felhasználási módot talált rá, hogy kényelmesen használja
+ a rendszert.
+ Mivel sok megoldás létezik ugyanarra a problémára (például ablakozás, cso\SpecialChar softhyphen
+mag\SpecialChar softhyphen
+ke\SpecialChar softhyphen
+z
+e\SpecialChar softhyphen
+lés), a közös alapelvek szerint felépített Linux rendszereket úgynevezett
+ disztribúciók szerint építik fel.
+ Ezeket külön operációs rendszernek képzelhetjük el, amelyek között rengeteg
+ átfedés található (kevés Linux disztribúció nem használ pl Bash-t), viszont
+ olyan dolgokban eltérhetnek, hogy egyik technológia helyett egy másikat
+ részesítenek előnyben.
+ Egy disztribúcióhoz mindig tartozik valamilyen szabványos csomagkezelő,
+ amely segítséget nyújt egy rendszer frissítéseinek kezelésében, illetve
+ előre nem telepített csomagok hozzáadásában.
+\end_layout
+
+\begin_layout Standard
+Nem lehet a disztribúciókról időtállóan beszélni, azonban van néhány régi
+ 
+\begin_inset Quotes pld
+\end_inset
+
+nagy
+\begin_inset Quotes prd
+\end_inset
+
+ disztribúció, amelyek jelentős fejlesztő- és felhasználócsapattal rendelkeznek:
+\end_layout
+
+\begin_layout Itemize
+RedHat
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+RedHat
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Debian
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Debian
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+SUSE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+SUSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Gentoo
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Gentoo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Slackware
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Slackware
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Mivel egy nagy családhoz tartoznak ezek, és mindig születnek új disztribúciók,
+ azt szoktuk vizsgálni, hogy egy adott disztribúció milyen másik disztribúcióra
+ épül, és miben tér el tőle.
+ Ezzel nagyjából teljes képet kaphatunk arról, hogy melyik operációs rendszer
+ hogyan működik.
+\end_layout
+
+\begin_layout Standard
+Fontos, hogy nézzünk be a motorház alá, amikor Linux disztribúciót választunk!
+ A különböző disztribúciók másképp rezonálnak a különböző felhasználókkal,
+ így mindig igyekezzünk a tudásunknak és ízlésünknek megfelelő disztribúciót
+ választani!
+\end_layout
+
+\begin_layout Subsubsection
+Egyéb, nem Linux alapú Unix rendszerek
+\end_layout
+
+\begin_layout Standard
+A Linux nem az egyetlen fajtája a Unixoknak.
+ Vannak, akik a Linux kernel nézeteivel (vagy implementációjával) nem értenek
+ egyet.
+ Ilyenek például a különböző 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+BSD
+\end_layout
+
+\end_inset
+
+BSD disztribúciók, vagy egyéb, BSD-re épülő operációs rendszerek (pl OSX).
+ Ezek shell szinten nagyon hasonlítanak egy Linuxhoz, és a legtöbb Linux
+ program (mivel POSIX szabávnyúak), lefordíthatók ezekre a rendszerekre
+ is, így például könnyen megtéveszthetünk egy mezei Linux felhasználót egy
+ FreeBSD rendszerrel.
+\end_layout
+
+\begin_layout Subsection
+A Linux kernel verziója
+\end_layout
+
+\begin_layout Standard
+A Linux kernel verziója sok szempontból érdekes, hiszen ez adja meg, hogy
+ egy adott operációs rendszeren milyen műveleteket fogunk tudni elvégezni,
+ illetve azok mennyire hatékonyan és mekkora biztonsággal tudnak futni.
+ 
+\begin_inset Wrap figure
+lines 0
+placement O
+overhang 0in
+width "20col%"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename linuxkernel.png
+	width 20page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A Linux kernel verziói
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A Linux kernel jelenleg 4 számból áll, pl: 
+\begin_inset Formula $5.7.16-200$
+\end_inset
+
+, ahol az első két számjegy adja a fő verziószámot, a harmadik szám adja
+ az alverziót, az utolsó pedig a build számot.
+ Régebben az alverzió szám párosságától függött, hogy a kernel stabil, vagy
+ kísérleti verzió, azonban ez ma már nem igaz.
+ Ez a páros-páratlan módszer a következő képpen működött:
+\end_layout
+
+\begin_layout Itemize
+páros verzió esetében kísérleti verzió, vagyis aki kipróbálja, hozzájárulhat,
+ hogy a következő stabil verzióba tervezett funkciókat tesztelje
+\end_layout
+
+\begin_layout Itemize
+a páratlan verzió stabil, tehát korábban a sok ezer felhasználó által jónak
+ vélt funkciók kerülnek csak bele
+\end_layout
+
+\begin_layout Standard
+A build szám azért fontos része a kernel verziónak, mert előfordul, hogy
+ (például biztonsági) gyors hibajavítást kell egy kernelre kiadni, azonban
+ nem kerül bele új funkció.
+ Ilyenkor szokták ezt a számot léptetni.
+\end_layout
+
+\begin_layout Subsection
+Licencek
+\end_layout
+
+\begin_layout Standard
+A licenc az informatikában az engedélyeztető szerződésként használjuk.
+ Valójában egy jogi szerződés, amely kiköti, hogy egy szoftvert milyen módon
+ használhatunk fel.
+\end_layout
+
+\begin_layout Standard
+A Linux kernel a GNU licenct használja jelenleg.
+ Ez egy ingyenességről, és a szoftver szabadságáról szóló licenc, amely
+ biztosítja, hogy a szoftver szabad is maradjon.
+ Más rendszerek más licenceket használnak, pl MIT, BSD licenc.
+\end_layout
+
+\begin_layout Standard
+A Linux alapú rendszerek alapvetően csak szabad szoftvereket futtatnak.
+ Ez a mindennapi életben azonban problémákat jelenthet, például akkor, amikor
+ zenét akarunk hallgatni.
+ Egy mp3 fájl lejátszásához mindenképpen szükségünk van egy mp3 dekóderre.
+ Azonban az mp3 tömörítés szabadalmaztatott, így jogdíj fizetése ellenében
+ készíthetünk mp3 dekódoló programot.
+ Éppen ezért, egy ilyen program szembemegy a Linux (vagyis a GNU) szellemiségéve
+l, és ezért ezt a programot külön engedéllyel kell telepítenünk a legtöbb
+ disztribúcióra.
+ Ez nem jelenti, hogy ne lennének ingyenesen használható szoftverek, amelyek
+ képesek mp3-at dekódolni.
+ Itt jelenik meg a különbség az 
+\emph on
+open
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\emph off
+open software
+\end_layout
+
+\end_inset
+
+
+\emph default
+ (nyílt) és a 
+\emph on
+free
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\emph off
+free software
+\end_layout
+
+\end_inset
+
+
+\emph default
+ (szabad) szoftver között.
+\end_layout
+
+\begin_layout Chapter
+Reguláris kifejezések
+\end_layout
+
+\begin_layout Chapter
+Scriptek
+\end_layout
+
+\begin_layout Section
+Mik azok a scriptek?
+\end_layout
+
+\begin_layout Standard
+A scriptek a Unix
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Unix
+\end_layout
+
+\end_inset
+
+ világban a 
+\begin_inset Quotes pld
+\end_inset
+
+batch
+\begin_inset Quotes prd
+\end_inset
+
+ vagyis kötegelt futtatófájlok megfelelői.
+ Általános leírás nehzen adható arra, hogy mikor használjunk scripteket.
+ Azokat a feladatokat, amiket
+\end_layout
+
+\begin_layout Itemize
+gyakran
+\end_layout
+
+\begin_layout Itemize
+ritkán, de rendszeresen
+\end_layout
+
+\begin_layout Itemize
+egyszer, de sokszor
+\end_layout
+
+\begin_layout Standard
+kell végrehajtani, érdemes lescriptelni.
+ A scriptelés alapvetően arról szól, hogy a megadott feladatokat, parancsokat
+ nem a terminálba írjuk be, hanem egy szöveges fájlba.
+ Amikor ezt a fájlt végrehajtjuk, a parancsértelmező sorrol sorra elemzi
+ amit írtunk, és végrehajtja az adott feladatot.
+ 
+\end_layout
+
+\begin_layout Standard
+Ez a módszer sokban hasonlít a programozáshoz, ugyanakkor vannak különbségek
+ is.
+ A programozásból ismert vezérlő szerkezetek itt is megtalálhatóak, de eltérő
+ szintaxissal.
+ Hasz\SpecialChar softhyphen
+nál\SpecialChar softhyphen
+ha\SpecialChar softhyphen
+tunk változókat is, amelyek gyengén típusosak, vagyis a legtöbb
+ értéket szövegként fogjuk használni.
+\end_layout
+
+\begin_layout Standard
+Többféle parancsértelmező létezik, ez a jegyzet alapvetően a bash
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+bash
+\end_layout
+
+\end_inset
+
+ parancsértelmező
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+parancsértelmező
+\end_layout
+
+\end_inset
+
+t fogja alapul venni, de betekintünk egy kicsit az awk
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+awk
+\end_layout
+
+\end_inset
+
+ nyelvezetébe is a fejezet végén.
+\end_layout
+
+\begin_layout Section
+Hogyan kell scriptet írni?
+\end_layout
+
+\begin_layout Subsection
+Parancsértelmező választása
+\end_layout
+
+\begin_layout Standard
+Ahogy már szó volt róla, a parancsértelmező fogja futtatni a scriptet.
+ Egy scriptben meg kell adnunk, hogy melyik parancsértelmezőt szeretnénk
+ használni.
+ Ezt néhány speciális karakterrel fogjuk megoldani.
+ Ehhez először is ismernünk kell, hogy hogyan készítünk egy scriptbe komment
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+komment
+\end_layout
+
+\end_inset
+
+et.
+ A kommentek a parancsértelmező által figyelmen kívül hagyott területek,
+ alapvetően do\SpecialChar softhyphen
+ku\SpecialChar softhyphen
+men\SpecialChar softhyphen
+tá\SpecialChar softhyphen
+ci\SpecialChar softhyphen
+ós célt szolgálnak egy scriptben.
+ Ezt a 
+\begin_inset Formula $\#$
+\end_inset
+
+ karakterrel fogjuk tudni megoldani.
+ Minden, ami ez után szerepel a sor végéig, a parancsértelmező számára láthatatl
+an lesz.
+ Ahhoz, hogy a bash-t válasszuk a scriptünk végrehajtójának, a 
+\begin_inset Formula $\#$
+\end_inset
+
+ után egy 
+\begin_inset Formula $!$
+\end_inset
+
+-lel jelezzük, hogy a parancsértelmezőt akarjuk megadni.
+ Ezután jön maga a parancsértelmező teljes elérési útvonallal.
+\end_layout
+
+\begin_layout Standard
+Készítsük el az első scriptünket! A script ne csináljon semmit!
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "ures.sh"
+lstparams "language=bash"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ures.sh: A script, ami semmit sem csinál
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Parancsok végrehajtása
+\end_layout
+
+\begin_layout Standard
+Ha már üres scriptet viszonylag magabiztosan tudunk létrehozni, akkor jó
+ lenne valami hasznosat is készíteni scriptekkel!
+\end_layout
+
+\begin_layout Standard
+A scriptekben egyszerű parancsokat tudunk kiadni, pont úgy, ahogy azt a
+ parancsértelmezőbe közvetlenül beírjuk.
+ Készítsünk egy listázó scriptet, ami kiírja az összes fájlt, ami az aktuális
+ könyvtárban van!
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "listaz.sh"
+lstparams "language=bash"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+listaz.sh: A listázó script
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Természetesen egymás után több parancsot is kiadhatunk, ezek egymás után
+ fognak lefutni.
+\end_layout
+
+\begin_layout Subsection
+Visszatérési értékek, hibakódok
+\end_layout
+
+\begin_layout Standard
+Minden egyes programsor futásának van egy numerikus kódja, a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+hibakód
+\end_layout
+
+\end_inset
+
+hibakód.
+ Ez jelezhet hibát és sikeres végrehajtást.
+ A sikeres végrehajtást tipikusan a 
+\begin_inset Formula $0$
+\end_inset
+
+ értékkel jelezzük, amíg hibánál hibakódokkal dolgozunk.
+ Ez minden program esetében eltérő, és ezt az értéket legtöbbször megnézhetjük
+ a manuálban.
+ Egy futás visszatérési értékét a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $\$?$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\$?$
+\end_inset
+
+ változóban fogjuk megtalálni.
+\end_layout
+
+\begin_layout Standard
+Amikor egy programot futtatunk, annak 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+standard output
+\end_layout
+
+\end_inset
+
+standard outputját tekintjük a program kimenetének, elvégre ez jelenik meg
+ elsődlegesen a kijelzőn, illetve nem véletlenül ezt adjuk tovább a többi
+ programnak, amikor 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+átirányítás
+\end_layout
+
+\end_inset
+
+átirányítunk.
+ Egy program kimenetét elkérhetjük a bashtől, ha azt a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $\$()$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\$()$
+\end_inset
+
+ közé írjuk, ilyenkor a program kimenete behelyettesítődik arra a helyre,
+ ahol a kifejezés található.
+\end_layout
+
+\begin_layout Subsection
+Kiíratás, beolvasás
+\end_layout
+
+\begin_layout Standard
+Egy script gyakran kommunikál a külvilággal.
+ Van, hogy hiba történik, ilyenkor ezt megfelelően kell jeleznünk a felhasználón
+ak, illetve néha a felhasználótól várunk bemenetet.
+\end_layout
+
+\begin_layout Standard
+Kiíratni a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+standard output
+\end_layout
+
+\end_inset
+
+standard outputra az 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $echo$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $echo$
+\end_inset
+
+ paranccsal tudunk.
+ Az 
+\begin_inset Formula $echo$
+\end_inset
+
+ is ugyanolyan parancs, mint az eddigiek, vagyis a paramétereit szóközzel
+ elválasztva fogjuk megadni.
+\end_layout
+
+\begin_layout Standard
+A 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $read$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $read$
+\end_inset
+
+ parancs egy változóba fogja elmenteni azt a sort, amit a felhasználó a
+ standard input
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+standard input
+\end_layout
+
+\end_inset
+
+ra ad.
+ Készítsünk egy olyan scriptet, ami megkérdezi a nevünket, és a megfelelő
+ néven köszönti a felhasználót!
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "hello.sh"
+lstparams "language=bash"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+hello.sh: Kimenet/bemenet
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Változók, típusok
+\end_layout
+
+\begin_layout Standard
+Az előző példában láthattuk, hogy a 
+\begin_inset Formula $nev$
+\end_inset
+
+ változóba kerül, amit a standard inputon megad a fel\SpecialChar softhyphen
+hasz\SpecialChar softhyphen
+ná\SpecialChar softhyphen
+ló.
+ Ennek a változónak a tartalmát a 
+\begin_inset Formula $\$nev$
+\end_inset
+
+ kifejezéssel tudjuk lekérni.
+ Tehát a 
+\begin_inset Formula $\$$
+\end_inset
+
+ karakter valójában egy bash által használt változó értékének lekérését
+ fogja jelenteni.
+ Ha változóról van szó, akkor a változó nevét fogjuk használni, ha az értékükről
+, akkor elétesszük a 
+\begin_inset Formula $\$$
+\end_inset
+
+ karaktert.
+\end_layout
+
+\begin_layout Standard
+Bash a változó
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+változó
+\end_layout
+
+\end_inset
+
+kat együtt kezeli a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+környezeti változó
+\end_layout
+
+\end_inset
+
+környezeti változókkal.
+ A környezeti változókat tipkusan nagybetűsen írjuk, a változókat pedig
+ kisbetűkkel.
+\end_layout
+
+\begin_layout Standard
+Változó értékadás az 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $=$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $=$
+\end_inset
+
+ karakterrel történik.
+ Nagyon fontos, hogy az egyenlőségjel két oldalán ne legyen szóköz! 
+\end_layout
+
+\begin_layout Standard
+Változókhoz speciális típusokat adhatunk a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $declare$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $declare$
+\end_inset
+
+ parancs segítségével.
+ A 
+\begin_inset Formula $declare$
+\end_inset
+
+ parancs változókat hoz létre, és a következő típusokat adhatjuk változóknak:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+kapcsoló
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+jelentés
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+egyszerű szöveg
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-r
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+csak olvasható (hibát ad, ha írni akarjuk)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-i
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+egész szám (0 értéket vesz fel különben)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-a
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+tömb
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-A
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+asszociatív tömb
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A declare parancs kapcsolói
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ezeket kombinálhatjuk is természetesen.
+\end_layout
+
+\begin_layout Subsubsection
+Speciális változók
+\end_layout
+
+\begin_layout Standard
+Felfoghatjuk változókként a scritpünk 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+paraméter
+\end_layout
+
+\end_inset
+
+paramétereit.
+ Az első paraméter a 
+\begin_inset Formula $\$1$
+\end_inset
+
+ változóban van, a második változó a 
+\begin_inset Formula $\$2$
+\end_inset
+
+-ben.
+ Ezek a script számára csak bemenő paraméterek, konkrét értkeket tartalmaznak.
+ 
+\end_layout
+
+\begin_layout Standard
+A paraméterek számát a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $\$\#$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\$\#$
+\end_inset
+
+ változóval tudjuk lekérni, a 
+\begin_inset Formula $\$0$
+\end_inset
+
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $\$0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ pedig a script nevét tartalmazza.
+ 
+\end_layout
+
+\begin_layout Standard
+A paraméterek feldolgozásához hasznos parancs lesz a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $shift$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $shift$
+\end_inset
+
+ parancs, ami eggyel lépteti a paraméterlistát.
+ Ilyenkor a 
+\begin_inset Formula $\$\#$
+\end_inset
+
+ értéke eggyel csökken, a 
+\begin_inset Formula $\$1$
+\end_inset
+
+-ben az az érték lesz, ami korábban a 
+\begin_inset Formula $\$2$
+\end_inset
+
+-ben szerepelt.
+\end_layout
+
+\begin_layout Subsubsection
+Változók műveletei
+\end_layout
+
+\begin_layout Standard
+A változókkal gyakran végzünk műveleteket.
+ Szerencsére a bash gondoskodik nekünk jónéhány gyakran használt művelet
+ könnyű megvalósításáról.
+ Valójában a változó értékének helyes ki\SpecialChar softhyphen
+í\SpecialChar softhyphen
+ra\SpecialChar softhyphen
+tá\SpecialChar softhyphen
+sa nem önmagában a 
+\begin_inset Formula $\$$
+\end_inset
+
+ szimbólummal történik, hanem a 
+\begin_inset Formula $\$\{\}$
+\end_inset
+
+ szimbólummal, ahol a kapcsos zárójelek között adjuk meg a változó nevét.
+ 
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "hello2.sh"
+lstparams "language=bash"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+hello2.sh: Változó máshogy
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Az utóbbi szintaxis segít nekünk abban, hogy a változón stringműveleteket
+ tudjunk végezni.
+ A következő táblázat összefoglalja, hogy melyik műveletet hogyan kell elvégezni
+ a 
+\begin_inset Formula $v$
+\end_inset
+
+ változón:
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+kapcsoló
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+jelentés
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+példa
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\$\{v\}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A változó tartalma
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Quotes pld
+\end_inset
+
+Hello, Világ!
+\begin_inset Quotes prd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\$\{v\mathcircumflex\mathcircumflex\}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A változó nagybetűsítése
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Quotes pld
+\end_inset
+
+HELLO, VILÁG!
+\begin_inset Quotes prd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\$\{v,,\}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A változó kisbetűsítése
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Quotes pld
+\end_inset
+
+hello, világ!
+\begin_inset Quotes prd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\$\{\#v\}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A karakterek hossza
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\$\{v:7\}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rész-szöveg (honnantól)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Quotes pld
+\end_inset
+
+világ!
+\begin_inset Quotes prd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\$\{v:7:2\}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rész-szöveg(honna, mennyit)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Quotes pld
+\end_inset
+
+vi
+\begin_inset Quotes prd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\$\{v/l/b\}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Egyszeri helyettesítés
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Quotes pld
+\end_inset
+
+Heblo, világ!
+\begin_inset Quotes prd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\$\{v//l/b\}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Többszöri helyettesítés
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Quotes pld
+\end_inset
+
+Hebbo, vibág!
+\begin_inset Quotes prd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Változók műveletei
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Parancsok kimenete
+\end_layout
+
+\begin_layout Standard
+Parancs kimenetet logikusan értékadással fogunk változóhoz hozzárendelni.
+ Ha a 
+\begin_inset Formula $\$()$
+\end_inset
+
+ között megadott utasítást értékül adjuk a változónak, a változó értéke
+ felveszi az utasítás standard outputját.
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "nagybetu.sh"
+lstparams "language=bash"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+nagybetu.sh: Nagybetűsítsük fájlok tartalmát!
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Egész műveletek
+\end_layout
+
+\begin_layout Standard
+A bash lehetőséget ad a változóiban egész értékekkel műveletek elvégzésére.
+ Ahogy láttuk, a 
+\begin_inset Formula $\$()$
+\end_inset
+
+ egy kifejezést kiértékel, egész műveleteket pedig a dupla zárójelek közé
+ írjuk.
+ Lebegőpontos műveleteket így nem tudok végezni bashben, erre egy későbbi
+ fejezetben lesz lehetőség az 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $awk$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $awk$
+\end_inset
+
+ nevű programmal, illetve a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $bc$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $bc$
+\end_inset
+
+ nevű programmal.
+ A lehetséges műveletek:
+\end_layout
+
+\begin_layout Itemize
+zárójelezés (
+\begin_inset Formula $()$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+szorzás (
+\begin_inset Formula $*$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+egész osztás, alsó egész résszel (
+\begin_inset Formula $/$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+maradékos osztás maradéka (
+\begin_inset Formula $\%$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+összeads (
+\begin_inset Formula $+$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+kivonás (
+\begin_inset Formula $-$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "szamol.sh"
+lstparams "language=bash"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+szamol.sh: Ismerős dallam
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Vezérlő szerkezetek
+\end_layout
+
+\begin_layout Standard
+A vezérlő szerkezetek olyan unvierzális építőkövek, amelyek a legtöbb programozá
+si nyelvre jellemzőek.
+ Bashben az összes létező vezérlő szerkezet beágyazható egy másik szerkezetbe
+ (például egy ifen belül tehetünk tetszőleges ciklust, azon belül ifet,
+ case-t, és így tovább.)
+\end_layout
+
+\begin_layout Subsection
+Blokkok
+\end_layout
+
+\begin_layout Standard
+Bashben nincsenek külön blokkok.
+\end_layout
+
+\begin_layout Subsection
+Szekvencia
+\end_layout
+
+\begin_layout Standard
+A bash scriptjeiben nincs szükség a 
+\begin_inset Formula $;$
+\end_inset
+
+ használatára parancsok lezárására, mint sok nyelvben.
+ A 
+\begin_inset Formula $;$
+\end_inset
+
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $;$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ ezzel szemben azokat a sorokat tudjuk összevonni, amiket külön sorba kellene
+ tenni, ilyenkor a sorok elválasztását jelenti ez.
+ Szekvenciát egyszerűen az utasítások egymás alá írásával tudunk létrehozni.
+\end_layout
+
+\begin_layout Subsection
+Elágazás (if)
+\end_layout
+
+\begin_layout Standard
+Bashben az egyszerű elágazás az 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $if$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $if$
+\end_inset
+
+ paranccsal működik.
+ Az 
+\begin_inset Formula $if$
+\end_inset
+
+ parancsot a 
+\begin_inset Formula $fi$
+\end_inset
+
+ kulcsszóval tudjuk lezárni.
+ Az 
+\begin_inset Formula $if$
+\end_inset
+
+ kulcsszó után meg kell adni egy parancsot, aminek a visszatérési értékétől
+ függően fog lefutni az igaz ág, vagy a hamis ág.
+ Mivel a 
+\begin_inset Formula $0$
+\end_inset
+
+ hibakód jelenti azt, hogy egy program helyesen lefutott, ezért ez jelenti
+ az 
+\begin_inset Formula $igaz$
+\end_inset
+
+at.
+ Minden más érték 
+\begin_inset Formula $hamis$
+\end_inset
+
+nak minősül.
+\end_layout
+
+\begin_layout Subsubsection
+test parancs
+\end_layout
+
+\begin_layout Standard
+A 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $test$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $test$
+\end_inset
+
+ parancs segítségével ki tudunk értékelni feltételeket.
+ A 
+\begin_inset Formula $test$
+\end_inset
+
+ parancs helyett a 
+\begin_inset Formula $[$
+\end_inset
+
+ 
+\begin_inset Formula $]$
+\end_inset
+
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $[$
+\end_inset
+
+ 
+\begin_inset Formula $]$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ párossal is dolgozhatunk, a kettő ugyanazt jelenti.
+ A két szögletes zárójel között megadott szövegek a 
+\begin_inset Formula $test$
+\end_inset
+
+ parancs paramétereivé válnak.
+ Ugyanezt a parancsot fogjuk majd használni, amikor ciklusokhoz készítünk
+ kilépési és belépési feltételeket.
+ 
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "if.sh"
+lstparams "language=bash"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+if.sh: Ellenőrzések
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Feladat
+\series default
+: gyűjtsük ki a 
+\begin_inset Formula $test$
+\end_inset
+
+ parancs paramétereit!
+\end_layout
+
+\begin_layout Standard
+Ne feledjük, hogy a 
+\begin_inset Formula $test$
+\end_inset
+
+ parancsnál a 
+\begin_inset Formula $<$
+\end_inset
+
+ és 
+\begin_inset Formula $>$
+\end_inset
+
+ relációjelek szövegek közötti összehasonlítást jelentenek, amikkel ábécébeli
+ helyüket tudjuk összehasonlítani szövegeknek.
+ Vagyis 
+\begin_inset Formula $2>18$
+\end_inset
+
+ igaz lesz (ábécében a 2-es később szerepel, mint az 1-es), de tudjuk, hogy
+ ez aritmetikailag nem igaz.
+ Ezért egész számok összehasonlítására mindig használjuk a megfelelő összehasonl
+ító kapcsolókat! 
+\end_layout
+
+\begin_layout Subsection
+Elágazás (case)
+\end_layout
+
+\begin_layout Standard
+Abban az esetben, amikor egy adott változó bash helyettesítésekkel elkülöníthető
+ ágakra bontható, azt esetszétválasztással oldjuk meg.
+ Az esetszétválasztás kulcsszava a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $case$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $case$
+\end_inset
+
+, amit az 
+\begin_inset Formula $esac$
+\end_inset
+
+ kulcsszóval zárunk le.
+ Az egyes eseteket új sorba kezdjük, és a helyettesítéseket a 
+\begin_inset Formula $)$
+\end_inset
+
+ jellel zárjuk.
+ Ez után következik az elvégzendő kódrészlet, amit végrehajtunk, ha a helyettesí
+tés illeszkedett a változóra.
+ Végül a 
+\begin_inset Formula $;;$
+\end_inset
+
+ jellel zárjuk az esetet.
+\end_layout
+
+\begin_layout Standard
+Fontos, hogy az eseteket a bash fentről lefelé fogja vizsgálni, és csak
+ az első illeszkedő he\SpecialChar softhyphen
+lyet\SpecialChar softhyphen
+te\SpecialChar softhyphen
+sí\SpecialChar softhyphen
+tés\SpecialChar softhyphen
+nél lévő esetet fogja végrehajtani.
+ Így bashben nincs 
+\begin_inset Formula $default$
+\end_inset
+
+ ág, helyette a 
+\begin_inset Formula $*)$
+\end_inset
+
+ mintát használhatjuk.
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "case.sh"
+lstparams "language=bash"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+case.sh: Egy nagyon kezdetleges mesterséges intelligencia
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Ciklusok
+\end_layout
+
+\begin_layout Standard
+A ciklusok script részletek többszöri végrehajtására jók.
+ A ciklusmagot egységesen a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $do$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $do$
+\end_inset
+
+ kulcsszóval nyitjuk meg, és a 
+\begin_inset Formula $done$
+\end_inset
+
+ kulcssszóval zárjuk.
+ Azt, hogy a ciklus hogyan működik, a ciklus típusa dönti el.
+ A ciklus típusának jelzőit nem zárjuk le, a ciklus a 
+\begin_inset Formula $done$
+\end_inset
+
+ kulcsszóval ér véget mindig.
+\end_layout
+
+\begin_layout Subsubsection
+For ciklus
+\end_layout
+
+\begin_layout Standard
+A 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $for$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $for$
+\end_inset
+
+ ciklust alapvetően arra használjuk, hogy tagolt adatok sorozatát soroljuk
+ fel.
+ Ezek lehetnek számok, változóban levő elemek, program kimenetének sorai,
+ program kimenetének szavai, stb.
+\end_layout
+
+\begin_layout Standard
+Gyakran használjuk a ciklus számlálós megadását, ami azt jelenti, hogy a
+ változónk felveszi az összes egész értéket egy adott intervallumon.
+ Ezt a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $\{\}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\{\}$
+\end_inset
+
+ közé írt, két ponttal elválasztott számokkal jelezhetjük.
+ Ha három számot írunk, akkor az utolsó szám azt fogja mondani, hogy mennyivel
+ változzon minden alkalommal a számlálónk.
+\end_layout
+
+\begin_layout Standard
+Használhatjuk a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $seq$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $seq$
+\end_inset
+
+ parancsot is, ami hasonlóképp működik.
+ 
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "for.sh"
+lstparams "language=bash"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+for.sh: Számoljunk párosával 10-től 16-ig!
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+While ciklus
+\end_layout
+
+\begin_layout Standard
+A 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $while$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $while$
+\end_inset
+
+ ciklus elöltesztelős ciklus, aminek 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+belépési feltétel
+\end_layout
+
+\end_inset
+
+belépési feltételt adunk.
+ Ez azt jelenti, hogy a ciklusmagot csak akkor hajtjuk végre, ha a feltétel
+ igaz volt.
+ Ehhez ugyanúgy a 
+\begin_inset Formula $test$
+\end_inset
+
+ parancsot fogjuk használni, mint ahogy azt az 
+\begin_inset Formula $if$
+\end_inset
+
+-nél tettük.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "while.sh"
+lstparams "language=bash"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+while.sh: Számoljunk párosával 10-től 16-ig!
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Látszik, hogy ugyanazt megcsinálhatjuk 
+\begin_inset Formula $while$
+\end_inset
+
+ segítségével, mint amit 
+\begin_inset Formula $for$
+\end_inset
+
+-ral végeznénk.
+ A különbség, hogy tetszőleges feltételt adhatunk, nem csak számokkal dolgozhatu
+nk.
+ Például készíthetünk egy ciklust, ami akkor lép ki, amíg nem létezik egy
+ adott fájl, vagy a felhasználó nem adott nekünk olyan értéket, ami megfelelne.
+\end_layout
+
+\begin_layout Paragraph
+Feladat:
+\end_layout
+
+\begin_layout Standard
+Készíts scriptet, ami egy e-mail címet kér a felhasználótól! Ha nem megfelelő
+ az e-mail cím (
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+reguláris kifejezés
+\end_layout
+
+\end_inset
+
+reguláris kifejezéssel ellenőrizd), ne lépjen ki a ciklusból! Egészítsd
+ ki a scriptet, hogy ha a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $read$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $read$
+\end_inset
+
+ parancs hibát adott, akkor legyen a script 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+hibakód
+\end_layout
+
+\end_inset
+
+hibakódja 
+\begin_inset Formula $1$
+\end_inset
+
+!
+\end_layout
+
+\begin_layout Subsubsection
+Until ciklus
+\end_layout
+
+\begin_layout Standard
+Az 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $until$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $until$
+\end_inset
+
+ ciklus szintén elöltesztelős, viszont ennek kilépési feltétel
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+kilépési feltétel
+\end_layout
+
+\end_inset
+
+t adunk a belépési helyett.
+ A 
+\begin_inset Formula $while$
+\end_inset
+
+ ciklustól csak logikailag tér el, ugyanis itt akkor nem lépünk be a ciklusba,
+ ha a feltétel igaz volt.
+\end_layout
+
+\begin_layout Chapter
+Linux adminisztráció
+\end_layout
+
+\begin_layout Section
+Felhasználói fiókok, csoportok
+\end_layout
+
+\begin_layout Standard
+A Unix rendszerek kezdetektől fogva többfelhasználós (multiuser) és többfeladato
+s (multitask) operációs rendszerek.
+ Ez azt jelenti, hogy a rendszert egyidejűleg több felhasználó egyszerre
+ használhatja, és azok az erőforrásokat közösen használhatják a számítógépen.
+ A Linux a POSIX szabványban rögzített felhasználókezelést használja.
+\end_layout
+
+\begin_layout Subsection
+Felhasználói fiókok
+\end_layout
+
+\begin_layout Standard
+Egy felhasználói fiók többnyire saját tárterülettel rendelkezik.
+ A Unix rendszerek a felhasználókhoz társítják a rendelkezésre álló erőforrásoka
+t (memória, CPU, stb), ami lehetővé teszi a közös munkát.
+ A közös munka velejárója, hogy vannak részletek, amiket privátként szeretnénk
+ feltűntetni.
+ Ezt a POSIX jogokkal megtehetjük, a 
+\begin_inset Formula $chmod$
+\end_inset
+
+ paranccsal.
+ 
+\end_layout
+
+\begin_layout Standard
+A felhasználói fiókokhoz a 
+\begin_inset Formula $/etc/passwd$
+\end_inset
+
+ fájl tartalmazza a megfelelő adatokat.
+ Ebben a fájlban tároljuk, hogy az adott felhasználónak mi a neve, hogy
+ beléphet-e jelszóval, mi a számmal jelölt (numerikus) azonosítója, mi az
+ alapértelmezett csoportja, mi a neve, hogy mi a munkakönyvtára (home könyvtár),
+ és azt, hogy mi az alapértelmezett 
+\begin_inset Formula $shell$
+\end_inset
+
+je.
+ Ezek az adatok mind megváltoztathatóak, azonban nem szerencsés kézzel módosítan
+i ezt a fájlt.
+\end_layout
+
+\begin_layout Subparagraph
+Feladat: 
+\end_layout
+
+\begin_layout Standard
+vizsgáljuk meg egy Linux rendszeren a 
+\begin_inset Formula $/etc/passwd$
+\end_inset
+
+ fájl tartalmát! Értelmezzük a 
+\begin_inset Formula $passwd$
+\end_inset
+
+ manuáljában leírtakat!
+\end_layout
+
+\begin_layout Standard
+Ha csak egy felhasználó adataira vagyunk kíváncsiak, akkor használhatjuk
+ a 
+\begin_inset Formula $getent$
+\end_inset
+
+ parancsot.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "getent.script"
+lstparams "language=make"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $getent$
+\end_inset
+
+ használata
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Fiók típusok
+\end_layout
+
+\begin_layout Standard
+Alapvetően két féle felhasználói fiók létezik: 
+\begin_inset Formula $root$
+\end_inset
+
+ és minden más.
+ A minden más egy elég nagy kategória, ide kerülnek bele azok a felhasználók,
+ akiknek a hozzáférését valamilyen módon korlátozni szeretnénk.
+ A 
+\begin_inset Formula $root$
+\end_inset
+
+ fiók ezzel szemben (nagyjából) teljhatalmat biztosít.
+ Természetesen, ha levesszük egy fájlról az összes olvasás jogot, 
+\begin_inset Formula $root$
+\end_inset
+
+ként sem fogjuk tudni olvasni.
+ Más kérdés, hogy a 
+\begin_inset Formula $root$
+\end_inset
+
+ felhasználó ezt a jogot bármikor ráteheti az adott fájlra, és bármikor
+ le is veheti róla azt.
+\end_layout
+
+\begin_layout Standard
+A 
+\begin_inset Formula $root$
+\end_inset
+
+ felhasználó egyéb jogosultságokkal is rendelkezik.
+ A 
+\begin_inset Formula $/usr/sbin$
+\end_inset
+
+, 
+\begin_inset Formula $/sbin$
+\end_inset
+
+, 
+\begin_inset Formula $/usr/local/sbin$
+\end_inset
+
+, stb könyvtárakban levő scripteket és parancsokat csak 
+\begin_inset Formula $root$
+\end_inset
+
+ként tudjuk futtatni.
+ Ide fognak tartozni a felhasználókezelő parancsok is.
+\end_layout
+
+\begin_layout Subsubsection
+Numerikus azonosítók
+\end_layout
+
+\begin_layout Standard
+Minden felhasználónak van egy egyedi számmal jelölt azonosítója (
+\begin_inset Formula $userid$
+\end_inset
+
+, 
+\begin_inset Formula $UID$
+\end_inset
+
+), ami a legtöbbször 1000 fölötti érték.
+ Ez azért fontos, mert a fájlok jogosultságainál nem a felhasználónevet
+ menti el a rendszer (elég sok helyet foglalna, ha sok fájlt tárolunk),
+ hanem ezt a 2 byte-on tárolt számazonosítót.
+ Ez egy limitációt ad, hogy hány felhasználót tud kezelni a Linux rendszer
+ (az elméleti maximum 65535).
+ 
+\end_layout
+
+\begin_layout Standard
+Figyeljük meg, hogy minden létrehozott felhasználónak van egy (többnyire
+ a userid-val azonos, vagy nagyon közeli) csoportazonosítója is (
+\begin_inset Formula $groupid$
+\end_inset
+
+, vagy 
+\begin_inset Formula $GID$
+\end_inset
+
+), ami hasonló szerepet lát el.
+ Egy Linux rendszeren tipikusan több olyan felhasználó létrejön telepítéskor,
+ amik driverek és démonok felhasználói fiókjait jelentik.
+ Tipikusan ezeket a felhasználókat 1000 alatti userid és groupid illeti
+ meg.
+\end_layout
+
+\begin_layout Subsubsection
+Felhasználóváltás
+\end_layout
+
+\begin_layout Standard
+Egy Linux rendszerbe általában valamilyen nem 
+\begin_inset Formula $root$
+\end_inset
+
+ felhasználóval lépünk be, a megnövelt biztonság érdekében.
+ Ebből rögtön szemet szúrhat egy probléma: hogyan válhatunk rendszergazdává
+ a Linux rendszerünkön? Erre a feladatra való a 
+\begin_inset Formula $su$
+\end_inset
+
+ parancs, ami paraméterben kap egy felhasználónevet (ha nem kap felhasználónevet
+, ez alapértelmezetten a 
+\begin_inset Formula $root$
+\end_inset
+
+), és megpróbál ezzel a felhasználóval azonosítani minket (pl.
+ jelszót kér).
+ Amennyiben ez sikeres, a promptunkon megjelenik a változás, a kívánt felhasznál
+ónak elindul egy 
+\begin_inset Formula $login\ shell$
+\end_inset
+
+je, amiben kedvünkre doglozhatunk.
+ Tehát ahhoz, hogy 
+\begin_inset Formula $root$
+\end_inset
+
+tá váljunk, ismernünk kell a 
+\begin_inset Formula $root$
+\end_inset
+
+ jelszót.
+ Egy apró trükk, ha már 
+\begin_inset Formula $root$
+\end_inset
+
+ felhasználónk van egy rendszeren, onnan tovább a 
+\begin_inset Formula $su$
+\end_inset
+
+ parancs nem fog jelszót kérni (mivel a 
+\begin_inset Formula $root$
+\end_inset
+
+ tetszőleges felhasználót megszemélyesíthet).
+\end_layout
+
+\begin_layout Standard
+Az előző megoldás felhasználóváltásra meglehetősen erős problémát vet fel,
+ főleg biztonságosság szempontjából.
+ Egy sok felhasználó által igénybe vett rendszeren esetlegesen több felhasználón
+ak akarunk lehetőséget biztosítani adminisztrációra, viszont ehhez ki kell
+ adnunk minden egyes adminisztrátornak a közös 
+\begin_inset Formula $root$
+\end_inset
+
+ jelszót.
+\end_layout
+
+\begin_layout Standard
+A másik lehetőségünk felhasználóváltásra a 
+\begin_inset Formula $sudo$
+\end_inset
+
+ parancs lesz, ami sokféleképp testreszabható (a beállítása a 
+\begin_inset Formula $/etc/sudoers$
+\end_inset
+
+ fájlban található), de számunkra csak az a fontos, hogy 
+\begin_inset Formula $root$
+\end_inset
+
+tá tudjunk válni.
+ Ezt megtehetjük a 
+\begin_inset Formula $sudo\ -i$
+\end_inset
+
+ paranccsal, ami ilyenkor a saját jelszavunkat fogja kérni, nem a 
+\begin_inset Formula $root$
+\end_inset
+
+ jelszavát! Amennyiben van jogosultságunk (hozzáadtak minket a 
+\begin_inset Formula $sudoers$
+\end_inset
+
+-hez), kapunk egy 
+\begin_inset Formula $shell$
+\end_inset
+
+t, amiben máris dolgozhatunk 
+\begin_inset Formula $root$
+\end_inset
+
+ként.
+ A 
+\begin_inset Formula $sudo$
+\end_inset
+
+ beállításairól itt nem beszélünk részletesebben, a legtöbbször elég, ha
+ a felhasználónk benne van a 
+\begin_inset Formula $wheel$
+\end_inset
+
+ csoportban, amiről később lesz szó.
+ A 
+\begin_inset Formula $sudo$
+\end_inset
+
+ paraméterének nem felhasználónevet adunk meg, hanem egy parancsot (amennyiben
+ nem a 
+\begin_inset Formula $shell$
+\end_inset
+
+t szeretnénk elindítani.)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Wrap figure
+lines 0
+placement o
+overhang 0col%
+width "50col%"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sandwich.png
+	width 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $sudo$
+\end_inset
+
+ használata forrás: https://www.xkcd.com/149/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ha nem vagyunk biztosak benne, hogy épp melyik felhasználóval, melyik számítógép
+en dolgozunk, használjuk a 
+\begin_inset Formula $hostname$
+\end_inset
+
+ és 
+\begin_inset Formula $id$
+\end_inset
+
+ parancsokat! 
+\end_layout
+
+\begin_layout Subsubsection
+Felhasználó hozzáadása
+\end_layout
+
+\begin_layout Standard
+Felhasználót a 
+\begin_inset Formula $useradd$
+\end_inset
+
+ paranccsal tudunk létrehozni.
+ Ennek a parancsnak paraméternek adhatjuk gyakorlatilag az összes fontos
+ adatot, ami a 
+\begin_inset Formula $passwd$
+\end_inset
+
+ fájlba kerül, az egyetlen közelető adat az a felhasználónév.
+ Fontos, hogy minden felhasználónévnek egyedinek és kisbetűsnek kell lennie
+ (és érdemes elkerülni az ékezetes betűket, szóközöket, speciális karaktereket
+ bennük).
+\end_layout
+
+\begin_layout Subsubsection
+Felhasználó módosítása
+\end_layout
+
+\begin_layout Standard
+A 
+\begin_inset Formula $useradd$
+\end_inset
+
+ parancshoz nagyon hasonlatos lesz a 
+\begin_inset Formula $usermod$
+\end_inset
+
+ parancs, amivel a felhasználó adatait tudjuk módosítani.
+ A szintaxisa ennek a két parancsnak majdnemhogy megyezik.
+ Figyeljünk oda, hogy ha a felhasználó numerikus azonosítóját akarjuk megváltozt
+atni, az jelentős változást idéz elő a lemezen, ugyanis ilyenkor a felhasználóho
+z tartozó összes fájlt frissíti a rendszer, hogy ne veszítse el a felhasználó
+ a saját fájljait.
+\end_layout
+
+\begin_layout Subsubsection
+Felhasználó törlése
+\end_layout
+
+\begin_layout Standard
+\begin_inset Wrap figure
+lines 0
+placement R
+overhang 0in
+width "50col%"
+status open
+
+\begin_layout Plain Layout
+\align right
+\begin_inset Graphics
+	filename letting_go.png
+	width 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+forrás: https://www.xkcd.com/215/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A 
+\begin_inset Formula $userdel$
+\end_inset
+
+ parancs törli a megadott nevű felhasználót.
+\end_layout
+
+\begin_layout Subsubsection
+Jelszavak
+\end_layout
+
+\begin_layout Standard
+A Linux rendszereken többféle démon gondoskodhat arról, hogy biztonságos
+ környezetben dolgozzunk, illetéktelenek ne férjenek hozzá fájljainkhoz,
+ erőforrásainkhoz (pl 
+\begin_inset Formula $PAM$
+\end_inset
+
+).
+ Ezeknek a démonoknak a beállításait 
+\begin_inset Formula $root$
+\end_inset
+
+ként elvégezhetjük, például megadhatunk minimális jelszó bonyolultságot,
+ jelszóhosszt, automatikusan lejáró jelszavakat, egyszer használatos jelszavakat.
+ Ezekhez a funkciókhoz segít minket a 
+\begin_inset Formula $chage$
+\end_inset
+
+ parancs, amivel egyedileg tudunk jelszócserét kérni felhasználóknak, illetve
+ beállítani jelszavak lejáratát.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Wrap figure
+lines 0
+placement L
+overhang 0in
+width "50col%"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename password_strength.png
+	width 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+https://xkcd.com/936/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A Linux jelszavakat a 
+\begin_inset Formula $passwd$
+\end_inset
+
+ paranccsal tudjuk beállítani, amit normál felhasználóként is futtathatunk.
+\end_layout
+
+\begin_layout Standard
+A Linux rendszerek a jelszavakat nem a 
+\begin_inset Formula $/etc/passwd$
+\end_inset
+
+ fájlban tárolják, hiszen ezek mindenki számára hozzáférhetőek.
+ A jelszavakat igazából sehol sem tárolják egyszerű szöveg formában, hanem
+ a jelszó úgynevezet hasított változatát (
+\begin_inset Formula $hash$
+\end_inset
+
+elt) tárolják, a jelenleg elérhető legjobb biztonsági formában.
+ A 
+\begin_inset Formula $hash$
+\end_inset
+
+t ezen kívül úgynevezett sózással (
+\begin_inset Formula $salt$
+\end_inset
+
+) még biz\SpecialChar softhyphen
+ton\SpecialChar softhyphen
+sá\SpecialChar softhyphen
+go\SpecialChar softhyphen
+sab\SpecialChar softhyphen
+bá teszik, hogy a kiszivárgott 
+\begin_inset Formula $hash$
+\end_inset
+
+eket ne lehessen egyszerű szótáras próbálkozással visszafejteni.
+ Mindezek ellenére nagyon fontos, hogy megfelelő erősségű jelszavakat használjun
+k mindenhol, ne csak Linux rendszereken, illetve ahol lehetséges, használjunk
+ azonosításhoz privát/publikus kulcsokat (legalább 4096 bit hosszút).
+\end_layout
+
+\begin_layout Standard
+A 
+\begin_inset Formula $hash$
+\end_inset
+
+elt jelszavakat a Linux rendszerek az 
+\begin_inset Formula $/etc/shadow$
+\end_inset
+
+ fájlban tárolják, ami kifejezetten rejtett fájl a Linux rendszereken, hogy
+ véletlenül se lásson bele a 
+\begin_inset Formula $root$
+\end_inset
+
+on kívül senki, de ha lehet, akkor még a 
+\begin_inset Formula $root$
+\end_inset
+
+ sem.
+\end_layout
+
+\begin_layout Subsection
+Csoportok
+\end_layout
+
+\begin_layout Standard
+Csoportokkal jelöljük azokat a felhasználókat, akik valamilyen közös tevékenység
+gel rendelkeznek.
+ Ezt a POSIX jogoknak megfelelően állítjuk be mindig, vagyis egy fájl csoporthoz
+ rendelését mindig úgy végezzük, hogy megkeressük, melyik az a legszűkebb
+ csoport, amelyik hozzá kell férjen az adott fájlhoz.
+ Természetesen ezt finomhangolhatjuk 
+\begin_inset Formula $ACL$
+\end_inset
+
+-ekkel, de ezekkel itt most nem foglalkozunk.
+\end_layout
+
+\begin_layout Standard
+A csoportok adatai a 
+\begin_inset Formula $/etc/group$
+\end_inset
+
+ fájlban találhatóak, hasonlóképpen, mint az 
+\begin_inset Formula $/etc/passwd$
+\end_inset
+
+ fájlnál.
+ A 
+\begin_inset Formula $getent$
+\end_inset
+
+ parancs itt is működik, viszont itt nem a 
+\begin_inset Formula $passwd$
+\end_inset
+
+ paramétert adjuk meg, hanem a 
+\begin_inset Formula $group$
+\end_inset
+
+ paramétert.
+\end_layout
+
+\begin_layout Subsubsection
+Csoport típusok
+\end_layout
+
+\begin_layout Standard
+Ahogy a felhasználóknál, úgy itt is létezik egy rendszergazda csoport.
+ Ez hagyományosan a 
+\begin_inset Formula $wheel$
+\end_inset
+
+ nevű csoport, ami a rendszergazdákat tartalmazza.
+ Ez nem azt jelenti, hogy aki a 
+\begin_inset Formula $wheel$
+\end_inset
+
+ csoportban van, az automatikusan részesül minden földi jóban, ezzel csak
+ azt jelezzük, hogy kik azok, akik rendszergazdává válhatnak.
+ Ez a különböző Linux rendszereken eltérhet, sok disztribúcióban például
+ nincs külön 
+\begin_inset Formula $wheel$
+\end_inset
+
+ csoport, egyszerűen a 
+\begin_inset Formula $root$
+\end_inset
+
+ csoportot adják a rendszergazdáknak.
+\end_layout
+
+\begin_layout Subsubsection
+Felhasználók és csoportok kapcsolata
+\end_layout
+
+\begin_layout Standard
+Minden létrejövő új felhasználóhoz a Unix rendszerek készítenek egy ugyanolyan
+ nevű, és lehetőleg ugyanolyan numerikus azonosítójú csoportot is.
+ Ez valójában annak felel meg, hogy egy fájlt nem akarunk semmilyen csoporttal
+ megosztani.
+ Ezt természetesen a tanult 
+\begin_inset Formula $chmod$
+\end_inset
+
+ és 
+\begin_inset Formula $chgrp$
+\end_inset
+
+ parancsokkal bármikor felülbírálhatjuk azzal, hogy megadhatunk egy eltérő
+ csoportot, vagy épp a csoport jogát vehetjük el a fájltól.
+ A csoportok numerikus azonosítóira ugyanúgy igaz, hogy legfeljebb 65535
+ létezhet belőlük.
+ 
+\end_layout
+
+\begin_layout Standard
+Önmagában az, hogy egy felhasználó a saját csoportjában benne van, nem túl
+ izgalmas.
+ Azonban tetszőleges felhasználót hozzáadhatunk egy csoporthoz.
+ Ez már lényegesen több lehetőséget ad a kezünkbe.
+ Ezt a következő részlettel állíthatjuk be:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "groups.script"
+lstparams "language=make"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+a 
+\begin_inset Formula $wheel$
+\end_inset
+
+be tesszük a 
+\begin_inset Formula $tanulo$
+\end_inset
+
+t
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Természetesen a felhasználó alapértelmezett csoportját is megváltoztathatjuk,
+ anélkül, hogy az egyéb csoportokhoz hozzányúlnánk.
+\end_layout
+
+\begin_layout Subsubsection
+Csoportok létrehozása, módosítása, törlése
+\end_layout
+
+\begin_layout Standard
+Hasonlóképpen, ahogy a felhasználóknál, a 
+\begin_inset Formula $groupadd$
+\end_inset
+
+, 
+\begin_inset Formula $groupmod$
+\end_inset
+
+, 
+\begin_inset Formula $groupdel$
+\end_inset
+
+ parancsokkal tehetjük meg.
+\end_layout
+
+\begin_layout Section
+Linux folyamatok
+\end_layout
+
+\begin_layout Standard
+Ahogy azt láttuk, a Unix (és így a Linux is) rendszerek többfelhasználósak
+ és többfeladatosak.
+ A feladatok azok a programegységek lesznek, amiket az operációs rendszer
+ végre tud hajtani.
+\end_layout
+
+\begin_layout Subsection
+Processzek
+\end_layout
+
+\begin_layout Standard
+A Linux (és más operációs rendszerek is) processzeket használnak a programok
+ számára történő erőforrások számontartására.
+ Egy processznek van egy numerikus azonosítója (
+\begin_inset Formula $PID$
+\end_inset
+
+), ami alapján egyértelműen lekérhetők a folyamat adatai: ki indította,
+ melyik másik processz volt a szülője, mennyi memóriát foglal el a rendszerben,
+ mennyi CPU időt kapott eddig, stb.
+ Fontos, hogy minden processzhez minden esetben tartozik legalább egy végrehajtá
+si szál.
+ Azokat a programokat, amelyek több szálon hajtanak végre műveleteket, többszálú
+ processzeknek hívjuk.
+ Mi szálakkal nem fogunk dolgozni.
+\end_layout
+
+\begin_layout Subsubsection
+Gyermekprocesszek, jobok
+\end_layout
+
+\begin_layout Standard
+Ahogy azt láthattuk, lehet úgynevezett subshellt indítani egy shellből,
+ ilyenkor gyakorlatilag egy gyermek folyamatot hozunk létre.
+ Valójában minden egyes, shellből kiadott parancs egy új processz létrehozását
+ fogja végrehajtani (a pipe művelet pedig két processz között fog kapcsolatot
+ létrehozni ilyenkor).
+ Egyszerre több gyermekfolyamat futhat egyidőben, akár több CPU magon is,
+ a Linux rendszer gondoskodik arról, hogy ezek megfelelő mennyiségű erőforrást
+ kapjanak.
+\end_layout
+
+\begin_layout Standard
+Egy processz három módja lehetséges:
+\end_layout
+
+\begin_layout Itemize
+előtérben fut: az inputot és outputot is kezeli, a benne levő utasítások
+ végrehajtódnak
+\end_layout
+
+\begin_layout Itemize
+háttérben fut: az inputot puffereli, outputot kezel, a benne levő utasítások
+ végrehajtódnak
+\end_layout
+
+\begin_layout Itemize
+megállítva: az inputot puffereli, outputot nem kezel, a benne levő utasítások
+ várakoznak, amíg előtérbe vagy háttérbe nem kerül (ide tartozik az is,
+ amikor megszakításra vagy szignálra vár a folyamat)
+\end_layout
+
+\begin_layout Standard
+Ezek között mi magunk is válthatunk, egy tetszőleges folyamatot háttérbe
+ tehetünk, megállíthatunk, vagy akár előtérbe hozhatunk.
+ Ezt a 
+\begin_inset Formula $bash$
+\end_inset
+
+ az 
+\begin_inset Formula $fg$
+\end_inset
+
+ (előtérbe), 
+\begin_inset Formula $bg$
+\end_inset
+
+ (háttérbe) parancsokkal éri el, illetve az aktuálisan előtérben levő folyamatot
+ megállíthatjuk a 
+\begin_inset Formula $ctrl+z$
+\end_inset
+
+ kombinációval.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "job.script"
+lstparams "language=make"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+megállítás és előtérbe helyezés
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Eleve indíthatunk bármilyen parancsot háttérben, ha a parancs végére a 
+\begin_inset Formula $\&$
+\end_inset
+
+ karaktert tesszük.
+ Ilyenkor a 
+\begin_inset Formula $bash$
+\end_inset
+
+ automatikusan kiírja a háttérfolyamat azonosítóját.
+\end_layout
+
+\begin_layout Standard
+Ezt a folyamatazonosítót a 
+\begin_inset Formula $\$!$
+\end_inset
+
+ változóba teszi a 
+\series bold
+
+\begin_inset Formula $bash$
+\end_inset
+
+
+\series default
+, amit később felhasználhatunk a programok során.
+\end_layout
+
+\begin_layout Subsubsection
+Várakozás, jobok megölése
+\end_layout
+
+\begin_layout Standard
+A 
+\series bold
+
+\begin_inset Formula $bash$
+\end_inset
+
+
+\series default
+ lehetőséget ad nekünk arra, hogy várakozzunk.
+ Ezt a 
+\begin_inset Formula $sleep$
+\end_inset
+
+ paranccsal tehetjük meg, ami a megadott másodpercig fog várakozni, majd
+ visszatér.
+\end_layout
+
+\begin_layout Standard
+Ha nekünk meg kell várni, amíg egy adott (vagy akár több) alfolyamat végez,
+ akkor azt a 
+\begin_inset Formula $wait$
+\end_inset
+
+ paranccsal oldjuk meg.
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "megol.sh"
+lstparams "language=bash"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+megol.sh: Hogyan ne várakozzunk a végtelenségig
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Az előző példában láthattunk még egy parancsot, amivel eddig nem találkoztunk,
+ ez pedig a 
+\begin_inset Formula $kill$
+\end_inset
+
+, ami sokkal kevésbé veszélyes, mint amilyennek hangzik.
+\end_layout
+
+\begin_layout Subsubsection
+Szignálok
+\end_layout
+
+\begin_layout Standard
+A Unix alapú rendszerek alapja az, hogy a folyamatok egymás között kommunikálnak.
+ Ez a kommunikáció úgynevezett szignálokkal (
+\begin_inset Formula $signal$
+\end_inset
+
+) történik.
+ 
+\begin_inset Formula $X11$
+\end_inset
+
+ felületen az összes kattintás, billentyű leütés, egérmozdulat egy szignált
+ generál, amit az 
+\begin_inset Formula $X11$
+\end_inset
+
+ démonja értelmez, és a megfelelő szignált továbbítja a felhasználói programok
+ felé.
+ Ezek a programok szintén elkapják ezeket a szignálokat, aztán vagy lekezelik
+ azokat, vagy újabb szignálokat indítanak útnak.
+ A szigálokról részletes leírás a 
+\begin_inset Formula $signal(7)$
+\end_inset
+
+ manuál oldalon található.
+\end_layout
+
+\begin_layout Standard
+A szignál valójában nem más, mint egy egész szám, ami kontextustól függően
+ más jelentéssel bír.
+ Azonban vannak olyan speciális szignálok, amelyeket minden program ismer.
+ A leggyakrabban használt szignálok: 
+\begin_inset Formula $SIGINT(2)$
+\end_inset
+
+, 
+\begin_inset Formula $SIGKILL(9)$
+\end_inset
+
+.
+ Az első valójában arra kéri a processzt, hogy álljon le, amíg a második
+ közvetlenül az operációs rendszernek szól, hogy a jelzett parancsot azonnal
+ törölni kell.
+\end_layout
+
+\begin_layout Standard
+Ilyen szignálokat mi is tudunk küldeni: a 
+\begin_inset Formula $kill$
+\end_inset
+
+ paranccsal.
+ A 
+\begin_inset Formula $kill$
+\end_inset
+
+ tehát valóban használható arra, hogy folyamatokat leállítsunk, de ezen
+ kívül sok másra is.
+\end_layout
+
+\begin_layout Subsubsection
+Csapdák
+\end_layout
+
+\begin_layout Standard
+A csapdák (
+\begin_inset Formula $trap$
+\end_inset
+
+ek) leginkább hibakezelő részei scripteknek, de ugyanígy lehetnek kommunikációs
+ eszközök is.
+ A Unix által biztosított szignálok mechanizmusát ki tudjuk használni ezzel
+ a speciális paranccsal.
+ 
+\begin_inset Formula $trap$
+\end_inset
+
+et mindig adott szignálhoz készítünk.
+ Amikor a folyamatunk érzékeli az adott szignál jelenlétét (csak azt, amit
+ a mi folyamatunk kapott), végrehajtja azokat az utasításokat, amik a trapben
+ meg vannak adva.
+ Így például készíthetünk scriptet, ami ellenáll a 
+\begin_inset Formula $SIGINT$
+\end_inset
+
+-nek.
+ Néhány szignált azonban nem tolmácsol felénk az operációs rendszer, hogy
+ ne lehesen leállíthatatlan programot írni.
+\end_layout
+
+\begin_layout Subsection
+Ütemezés
+\end_layout
+
+\begin_layout Standard
+Azok az operációs rendszerek, amelyek többfeladatosak, tipikusan több feladatot
+ engednek egyszerre kezelni, mint amennyi fizikai mag van a számítógépben,
+ amin futnak.
+ A Unix rendszereket is úgy tervezték, hogy azok a különböző végrehajtási
+ egységeket váltogatva futattják le.
+ Ezek a váltások olyan gyorsan történnek, hogy a felhasználó ne értesüljön
+ erről.
+ Ezt a módszert multitaskingnak nevezzük.
+ Valódi multitasking az x86 architektúra 386-os processzorától kezdve elérhető.
+ Valójában nagyon kevés olyan operációs rendszer van, amely ezt a technikát
+ nem használja.
+ 
+\end_layout
+
+\begin_layout Standard
+Linuxon kernel szinten a végrehajtandó programok szálait úgynevezett jobokra
+ bontja (nem összekverendő az ugyanilyen nevű folyamatokkal), amelyek a
+ programok kódjának lefuttatható részletei.
+ Ezeket az úgynevezett ütemező kezeli.
+ Az ütemező (scheduler) tisztában van vele, hogy melyik program egészen
+ eddig mennyi erőforrást kapott, és igyekszik úgy a processzormagokhoz rendelni
+ a jobokat, hogy minél inkább igazságos ütemezés működhessen.
+ Ezek a szálak rendelkeznek egy prioritás nevű beállítással, ami egy egész
+ szám.
+ Minél alacsonyabb ez a szám, annál nagyobb valószínűséggel választja ki
+ az ütemező az aktuális folyamatot.
+ Szabvány szerint 20 körüli értéket kapnak a felhasználók által indított
+ folyamatok.
+ A POSIX szabvány definiálja programok számára a setpriority és getpriority
+ parancsokat, ám ezek a legtöbb shellből nem elérhetőek.
+\end_layout
+
+\begin_layout Standard
+Általában a prio értéket nem tudjuk megváltoztatni parancsértelmezőből,
+ ezt a kernel osztja ki a programok számára.
+ A Linux rendszerek lehetőséget biztosítanak arra, hogy az adott prioritáson
+ belül sorrendiséget adjunk programoknak.
+ Ezt a nice paranccsal tudjuk elérni, ami az úgynevezett nice értékét állítja
+ be a folyamatunknak (+19 és -20 között).
+ Ez ugyanúgy működik, mint a prioritás, csak az adott prioritáson belüli
+ csoportosítást fog jelenteni.
+ Így érhetjük el, hogy bizonyos programok több processzoridőt kapjanak,
+ mint mások.
+\end_layout
+
+\begin_layout Standard
+Windows rendszereken explicit prioritási szintek vannak, és a felhasználói
+ programok közül az a program kapja a legnagyobb prioritást, amelyiknek
+ aktív az ablaka.
+\end_layout
+
+\begin_layout Standard
+A Linux kernelben elérhető a RT szolgáltatás, vagyis valósidejű (realtime)
+ ütemezést tud adni programok számára.
+ Az a program, ami RT prioritást kap, kaphat egy dedikált processzormagot,
+ hogy azon végezzen utasításokat, az ütemező közbeszúrása nélkül.
+ Ez tipikusan olyan felhasználásokhoz segít, mint például hálózati streamelő
+ szolgáltatások, audio/video kódolás.
+ Ezeken a területeken kiemelten fontos, hogy alacsony legyen az adatfeldolgozás
+ késleltetése.
+ További részletek a sched manuál oldalon találhatók.
+\end_layout
+
+\begin_layout Standard
+\start_of_appendix
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset index_print
+LatexCommand printindex
+type "idx"
+name "Index"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

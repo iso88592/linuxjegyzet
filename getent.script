@@ -1,0 +1,3 @@
+tanulo@bash-5.0$ getent passwd tanulo
+tanulo:x:1005:1005:Tanulo:/home/tanulo:/bin/bash
+
