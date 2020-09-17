@@ -707,6 +707,310 @@ free software
  (szabad) szoftver között.
 \end_layout
 
+\begin_layout Section
+A Linux felhasználói felületei
+\end_layout
+
+\begin_layout Subsection
+Karakteres felületek
+\end_layout
+
+\begin_layout Standard
+A Linux a Unix érából örökölte a karakteres felületét.
+ Akinek még ismerős a DOS, az sok hasonló fogalommal találkozhat, mint amiket
+ itt fogunk tárgyalni.
+ A Unix alapvetően karakteres vezérlésre lett kitalálva, viszont - mivel
+ többfelhasználós és többfolyamatos rendszer - valahogy szét kell választani
+ a vezérlési feladatokat.
+ Annak idején, még a nagygépes időkben, az az elképzelés járta, hogy nem
+ fog senki az otthonában drága számítógépeket tartani, helyette nagy mainframe-e
+k fognak zúgni a számító központokban.
+ Ezekhez a számítógépekhez végpontokon, 
+\emph on
+terminál
+\emph default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+terminál
+\end_layout
+
+\end_inset
+
+okon keresztül kapcsolódhattunk.
+ Valójában a terminál nem jelent mást, mint egy számítógépes rendszer végpontjai
+t, vagyis a bemenetet és a kimenetet.
+ Ez a hétköznapokban monitorok (és/vagy nyomtatók) és billentyűzetek formájában
+ valósul meg.
+ A Unix - és így a Linux is - rendelkezik ilyen terminál csatlakozási pontokkal.
+ Ezeket a terminál pontokat 
+\emph on
+TTY
+\emph default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+TTY
+\end_layout
+
+\end_inset
+
+-nek nevezzük, ami a TeleTYpewriter szóból ered (távgépíró).
+ Ilyen TTY-ből egy általános Linux rendszeren néhány beépített található,
+ ezeken kívül a Linux létre tud hozni ilyen virtuális terminálból gyakorlatilag
+ akármennyit.
+ Az alapvető Linuxos terminálok elérhetők egy általános Desktop Linux esetében
+ a CTRL+ALT+F1, CTRL+ALT+F2, stb.
+ billentyűkombinációkkal.
+ Ezek közül a grafikus felületet általában a CTRL+ALT+F7 helyen fogjuk megtaláln
+i, azonban ez testre szabható.
+ Egy valódi vagy virtuális terminált karakteres felületnek fogunk nevezni.
+\end_layout
+
+\begin_layout Standard
+Egy karakteres felülethez három dolog tartozik alapesetben.
+ Ezek a Standard Input
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Standard Input
+\end_layout
+
+\end_inset
+
+, a Standard Output
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Standard Output
+\end_layout
+
+\end_inset
+
+ és a Standard Error
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Standard Error
+\end_layout
+
+\end_inset
+
+.
+ Alapvetően ezek fogják a Linux programok működését befolyásolni.
+ A Turing gépek is ezekkel működtehetőek, amikor bekérünk adatot, minden
+ esetben a Standard Inputról vesszük az adatot, amikor kiírunk, akkor azt
+ a Standard Outputra tesszük.
+ Annak érdekében, hogy a felhasználót értesíteni tudjuk hibás működésről,
+ használjuk ezen kettő mellett a Standard Errort is.
+ A szabávnyos hibakimenet általában ugyanúgy a monitoron jelenik meg, célja
+ viszont az, hogy elkülöníthető legyen a hibás kimenet a programok rendes
+ kimenetétől.
+ Erről részletesen az átirányítás fejezetben olvashatsz.
+\end_layout
+
+\begin_layout Standard
+A legtöbb Linux parancsot karakteres felületen tudjuk használni.
+ Mivel karakteres felület (majdnem) minden Unix alapú rendszernél létezik,
+ és ezek nagyjából szabályosak, ezért a könyv további fejezeteiben ezekkel
+ fogunk dolgozni.
+ Ez nem jelenti azt, hogy az itt szereplő gyakorlatok csak és kizárólag
+ karakteres felületen végezhetők el.
+\end_layout
+
+\begin_layout Subsection
+Grafikus felületek
+\end_layout
+
+\begin_layout Subsubsection
+X Window System
+\end_layout
+
+\begin_layout Standard
+Az X Window System
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+X Window System
+\end_layout
+
+\end_inset
+
+, másképp 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Xorg
+\end_layout
+
+\end_inset
+
+Xorg, vagy X11
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+X11
+\end_layout
+
+\end_inset
+
+ a lelke a Linux (és sok más Unix alapú rendszer) grafikus felületének.
+ Mindenképp érdemes tudni, hogy ez a program (ellentétben mondjuk a Windows
+ ablakozójával) egy kliens-szerver jellegű program.
+ Amikor egy Linuxos grafikus felületet látunk, valójában egy IP alapú, hálózati
+ kommunikáció eredményét láthatjuk.
+ Ez azt jelenti, hogy egy Linuxos gép, ami egy X szervert futtat, képes
+ rá, hogy tetszőleges távoli kliensnek grafikus felületet biztosítson.
+ Ez a gyakorlatban azt jelenti, hogy egy Linuxos gép tud ablakokat létrehozni
+ egy másik (akár például Windowsos) gépen megfelelő programok telepítése
+ esetén.
+ Ez könnyedén kipróbálható, ha egy virtuális gépre telepített Linuxon engedélyez
+zük az X forwardingot, és SSH kapcsolattal (PuTTY-rel és X forwardinggal)
+ belépünk, majd elindítunk egy ablakos programot (legyen például az xterm,
+ vagy akár egy Firefox), akkor az a gazda gépen fog megjelenni, ám az összes
+ erőforrást a távoli gép fogja biztosítani a számunkra.
+\end_layout
+
+\begin_layout Standard
+Az X Window System onnan kapta a nevét, hogy korábban volt egy W Window
+ System nevezetű (a W nem az ablakokra utal ebben az esetben, hanem a készítő
+ Wayland nevét hordozza) program, ami hasonlóan működött, ám sokmindenkinek
+ fejfájást okozott a használata, és az X lényegesen leegyszerűsítette a
+ grafikus alkalmazások létrehozását és szabványos működtetését.
+ A legtöbb asztali Linux disztribúció rendelkezik ilyen grafikus felülettel.
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename window.png
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Különböző ablakkezelők X alá.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Forrás: https://commons.wikimedia.org/wiki/Category:Desktop_screenshots
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Egy ilyen grafikus felület tulajdonképpen nem csinál semmi mást, mint a
+ felhasználó kéréseit (kattintás, billentyű lenyomás) eljuttatja a szerverhez,
+ ami frissítéseket küld a kliens számára, értesítve őt arról, hogy mi történt.
+ Ezek a kérések valójában szignálok segítségével történnek, amikről a későbbi
+ fejezetekben lesz még szó.
+ Valójában az X szabványa azt határozza meg, hogy milyen eseményeket hogyan
+ kell megjeleníteni egy adott megjelenítőn, és hogy milyen kérésekre milyen
+ válaszok adhatóak.
+ Most is, amíg ezeket a sorokat írom, egy ilyen X szerver szolgálja ki azokat
+ az ablakokat, amikbe a gombnyomásaim által generált szignálok végső soron
+ befutnak, és számomra értelmes szavakká alakulnak a képernyőmön.
+\end_layout
+
+\begin_layout Subsubsection
+Ablakkezelők
+\end_layout
+
+\begin_layout Standard
+Aki látott már csupasz 
+\emph on
+ablakozó
+\emph default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ablakozó
+\end_layout
+
+\end_inset
+
+t (X, mindenféle csicsa nélkül), az tudhatja, hogy mennyire borzasztóan
+ néz ki egy alapértelmezett X megjelenés.
+ Egy ablakhoz alapvetően nem tartozik hozzá keret, sem vezérlőgombok, amikkel
+ irányíthatjuk ezeket.
+ Szerencsére az X szabvány lehetőséget ad arra, hogy kis mértékben megváltoztass
+uk a képernyőn megjelenő ablakok kinézetét.
+ Ezeket fogjuk 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ablakkezelő
+\end_layout
+
+\end_inset
+
+
+\emph on
+ablakkezelő
+\emph default
+knek nevezni.
+ Sokféle ablakkezelő létezik, köztük olyanok, amik megpróbálják más operációs
+ rendszerek kinézetét utánozni (különféle Windows és Mac verziókét), és
+ olyanok is, akik igyekeznek egyediek lenni pehelykönnyűségükkel, villámgyors
+ kezelésükkel, 3D megjelenéssel, stb.
+ A legtöbb ablakkezelő képes témákat is kezelni, amiktől méginkább egyedivé
+ tehetjük a rendszerünket.
+ Feltűnhet, hogy ez a hozzáállás sokszor előfordul egy Linux rendszer esetében,
+ ugyanis a Linux felhasználók nem szeretik a kompromisszumokat a számítógépük
+ beállításait illetően.
+\end_layout
+
+\begin_layout Standard
+Néhány fontos, és néhány extremális ablakkezelőt felsorolnék, a teljesség
+ igénye nélkül.
+ Egy modern Linux rendszer tipikusan valami régóta fejlesztett, jól kiforrott
+ ablakkezelőt fog ajánlani (kezdőknek amúgy sem árt), ezek a KDE, Gnome.
+ Könnyen érezhetjük otthon magunkat ezekben az ablakozókban, elvégre hasonlítana
+k a megszokott (bár egy-két generációval korábbi) Windows ablakozókra, letisztul
+tak, és rengeteg témát és stílust alkalmazhatunk ezekre.
+ Ha valaki úgy érzi, hogy a számítógépe GPU-ját az ablakok 3D megjelenítésére
+ szeretné használni, esetleg speciális effektusokat szeretne az asztalára
+ tenni (3D kocka nézet, ablakok rugalmas mozgatása, stb) a Compiz-Fusion
+ lesz az ő ablakozója.
+ Ha minimalista, könnyen kezelhető felületre vágyunk, Fluxbox, XFCE tud
+ egy egységes hatást biztosítani a számunkra.
+\end_layout
+
 \begin_layout Chapter
 Reguláris kifejezések
 \end_layout
