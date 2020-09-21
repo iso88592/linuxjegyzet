@@ -932,8 +932,21 @@ Forrás: https://commons.wikimedia.org/wiki/Category:Desktop_screenshots
 Egy ilyen grafikus felület tulajdonképpen nem csinál semmi mást, mint a
  felhasználó kéréseit (kattintás, billentyű lenyomás) eljuttatja a szerverhez,
  ami frissítéseket küld a kliens számára, értesítve őt arról, hogy mi történt.
- Ezek a kérések valójában szignálok segítségével történnek, amikről a későbbi
- fejezetekben lesz még szó.
+ Ezek a kérések valójában 
+\emph on
+szignál
+\emph default
+ok segítségével történnek, amikről a 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Szignálok"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ fejezetben lesz még szó.
  Valójában az X szabványa azt határozza meg, hogy milyen eseményeket hogyan
  kell megjeleníteni egy adott megjelenítőn, és hogy milyen kérésekre milyen
  válaszok adhatóak.
@@ -1758,6 +1771,12 @@ bash
 
 \end_layout
 
+\begin_layout Standard
+Azért, hogy ne legyen olyan egyszerű az életünk, lehetnek paraméteres kapcsolóin
+k is.
+ Ezeket együtt kell értelmeznünk az őket követő paraméterekkel.
+\end_layout
+
 \begin_layout Subsubsection
 Alapvető parancsok
 \end_layout
@@ -1943,7 +1962,423 @@ ot.
  inputot adni, és könnyen rájöhetünk, hogy mi volt a hiba oka! 
 \end_layout
 
+\begin_layout Section
+Segítség
+\end_layout
+
+\begin_layout Standard
+Amikor életünkben először használunk parancssort, egy kicsit ijesztő lehet.
+ Megszoktuk, hogy egérrel oda kattintunk, ahol dolgunk van, ehhez képest
+ most egy nagy kurzort kell figyelni.
+ Úgy érezhetjük, hogy nincs ráhatásunk arra, ami a monitoron megjelenik.
+ Valójában bizonyos feladatoknál sokkal nagyobb kontrollt ad a parancssor,
+ mint a grafikus felület.
+ Nyilván a parancssor nem arra való, hogy grafikai munkákat végezzünk! (Ez
+ sem lehetetlen, például SVG fájlokat készíthetünk, lejátszhatunk videókat,
+ stb.) Meg fogjuk vizsgálni, hogy hogyan épül fel a Unix rendszerek súgója,
+ milyen lehetőségeink vannak információ szerzésére!
+\end_layout
+
+\begin_layout Subsection
+Ne ess pánikba!
+\end_layout
+
+\begin_layout Standard
+Szerencsére az 
+\lang english
+Open Source
+\lang magyar
+ fejlesztőcsapatok többnyire jó minőségű dokumentációt hagynak maguk után.
+ A legtöbb parancs készségesen ad magáról valamiféle információt.
+ Ehhez tipikusan a 
+\begin_inset Formula $\text{‐}\text{‐}help$
+\end_inset
+
+ kapcsolót fogjuk használni.
+ Ezzel felfrissíthetjük a tudásunkat, tipikusan, ha egy adott kapcsolót
+ keresünk.
+ Nem kell félni, a 
+\begin_inset Formula $\text{‐}\text{‐}help$
+\end_inset
+
+ nem fogja végrehajtani az adott parancsot! Amint kiírta a súgóüzenetet,
+ kilép!
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Nem minden parancs rendelkezik súgóval.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Néhány, tipikusan újabb parancsnál nem a 
+\begin_inset Formula $\text{‐}\text{‐}help$
+\end_inset
+
+ kapcsoló fogja a súgót kiírni, hanem maga a 
+\begin_inset Formula $help$
+\end_inset
+
+ paraméter.
+ Tipikusan olyan parancsok fognak így dolgozni, ahol alparancsokat adhatunk
+ meg.
+ Ilyen esetekben az alparancsokhoz is tartozhatnak súgók.
+ Például: 
+\begin_inset Formula $\$\text{␣}git\text{␣}help$
+\end_inset
+
+, 
+\begin_inset Formula $\$\text{␣}git\text{␣}help\text{␣}status$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Feladat:
+\end_layout
+
+\begin_layout Standard
+Próbáld ki a 
+\begin_inset Formula $\text{‐}\text{‐}help$
+\end_inset
+
+ kapcsolót a már tanult parancsokhoz!
+\end_layout
+
+\begin_layout Subsection
+Kézikönyvek
+\end_layout
+
+\begin_layout Standard
+Egy jól dokumentált rendszernek elengedhetetlen kelléke a kézikönyv, idegen
+ szóval a manuál.
+ Ezt röviden a 
+\begin_inset Formula $man$
+\end_inset
+
+ paranccsal fogjuk használni.
+ A manuál
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+manuál
+\end_layout
+
+\end_inset
+
+ minden esetben egy interaktív felületet fog biztosítani, ami kereshető,
+ görgethető, akadálymentesített.
+ Képzeljük el úgy, mintha egy Wikipédia oldalt nézegetnénk! Mivel egy kicsit
+ régebbi dologról van szó, ezért úgy fog számunkra a manuál megjelenni,
+ ahogy annak idején nyomtatható volt egy kézikönyv: fejlécekkel, tartalomjegyzék
+kel, stb.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Nem minden parancs rendelkezik manuállal.
+\end_layout
+
+\end_inset
+
+ A manuálok a legtöbb Linux rendszeren elérhetők, és segítségükkel a legtöbb
+ parancs működését könnyen meg tudjuk fejteni.
+ A manuálokra léteznek nyelvi csomagok, így magyar nyelvű csomag is elérhető,
+ és telepíthető.
+\end_layout
+
+\begin_layout Subsubsection
+A manuál részei
+\end_layout
+
+\begin_layout Standard
+Most csak a parancsok manuál oldalaival fogunk foglalkozni.
+ A manuálok bekezdésekre osztódnak.
+ Az első bekezdés mindig a parancs 
+\series bold
+neve
+\series default
+, majd jön az 
+\series bold
+áttekintés
+\series default
+, a 
+\series bold
+leírás
+\series default
+, 
+\series bold
+opciók
+\series default
+, 
+\series bold
+egyéb információk
+\series default
+, 
+\series bold
+példák
+\series default
+, 
+\series bold
+hibák
+\series default
+, 
+\series bold
+lásd még
+\series default
+.
+ Az előzőekből egyik bekezdés sem kötelező, de tipikusan mindegyik manuál
+ oldalhoz tartozik legalább 3-4 bekezdés.
+\end_layout
+
+\begin_layout Standard
+Az áttekintés résznél megtalálhatjuk, hogy az adott parancsot milyen paraméterek
+kel, azoknak milyen kombinációival lehet elindítani.
+ 
+\end_layout
+
+\begin_layout Standard
+A leírás egy rövid, szöveges információt tartalmaz arról, hogy mire használható
+ az adott parancs.
+\end_layout
+
+\begin_layout Standard
+Az opcióknál részletesen kifejtik, hogy a különböző kapcsolókat hogyan értelmezi
+ a parancs, azok milyen módon hatnak a parancs működésére, illetve milyen
+ paraméterekkel rendelkezhetnek a kapcsolók.
+\end_layout
+
+\begin_layout Standard
+A 
+\begin_inset Quotes pld
+\end_inset
+
+lásd még
+\begin_inset Quotes prd
+\end_inset
+
+ bekezdés akkor lehet hasznos, amikor egy már ismert parancshoz hasonló
+ parancsot keresünk.
+ Ezeket a manuál alján lehet megtalálni, manuál kötettel együtt.
+\end_layout
+
+\begin_layout Subsubsection
+A manuál kötetei
+\end_layout
+
+\begin_layout Standard
+Az angol nyelvű manuálok 
+\lang english
+page
+\lang magyar
+-nek (oldalnak) nevezik, ám a 
+\emph on
+kötet
+\emph default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+kötet
+\end_layout
+
+\end_inset
+
+ jobb kifejezés arra, ami most következik.
+ A hasonló témakörbe tartozó oldalakat úgynevezett 
+\emph on
+kötet
+\emph default
+ekbe szervezzük.
+ Ezek egyszerűen 1-től kezdve számozva vannak.
+ Amikor egy manuál hivatkozik egy másik manuál oldalra, akkor a kötetet
+ zárójelben odaírják az oldal neve mellé.
+ Például: a 
+\begin_inset Formula $printf(3)$
+\end_inset
+
+ oldalt előhívhatjuk a 
+\begin_inset Formula $\$\text{␣}man\text{␣}3\text{␣}printf$
+\end_inset
+
+ paranccsal.
+ Ha minket mégis az első kötetben lévő 
+\begin_inset Formula $printf$
+\end_inset
+
+ érdekel, akkor azt a 
+\begin_inset Formula $\$\text{␣}man\text{␣}1\text{␣}printf$
+\end_inset
+
+ paranccsal tudjuk előhozni.
+\end_layout
+
+\begin_layout Subsubsection
+Navigálás a manuálokban
+\end_layout
+
+\begin_layout Standard
+A manuál az oldalak megjelenítésére a 
+\begin_inset Formula $less$
+\end_inset
+
+ parancsot fogja használni.
+ Amit itt olvasunk, az mind igaz lesz a 
+\begin_inset Formula $less$
+\end_inset
+
+ parancsra is.
+ Az oldalakat a fel-le nyilakkal lehet soronként görgetni, pageUp-pageDown
+ gombokkal lehet lapozni.
+ Kilépni a 
+\begin_inset Quotes pld
+\end_inset
+
+Q
+\begin_inset Quotes prd
+\end_inset
+
+ gombbal lehet.
+\end_layout
+
+\begin_layout Standard
+A kereséshez le kell nyomni a 
+\begin_inset Quotes pld
+\end_inset
+
+/
+\begin_inset Quotes prd
+\end_inset
+
+ gombot, amire a kurzorunk elérhetővé válik a képernyő alján.
+ Ide egyszerűen írjuk be a keresendő kifejezést, és nyomjuk meg az 
+\begin_inset Quotes pld
+\end_inset
+
+Enter
+\begin_inset Quotes prd
+\end_inset
+
+ gombot! Az első találatot automatikusan kijelöli nekünk a program.
+ Ha a következő találatra vagyunk kíváncsiak, akkor azt az 
+\begin_inset Quotes pld
+\end_inset
+
+N
+\begin_inset Quotes prd
+\end_inset
+
+ gombbal (
+\lang english
+next
+\lang magyar
+) érhetjük el, ha pedig az előző találat érdekel minket, azt a 
+\begin_inset Quotes pld
+\end_inset
+
+⇧N
+\begin_inset Quotes prd
+\end_inset
+
+ kombinációval tudjuk előhozni.
+ Ez a módszer kiválóan alkalmas egyszerű szabad szavas keresésekre, azonban
+ meg kell jegyeznünk, hogy ez a keresési módszer 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+reguláris kifejezés
+\end_layout
+
+\end_inset
+
+
+\emph on
+reguláris kifejezés
+\emph default
+eket használ, amikről bővebben a 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Reguláris-kifejezések"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ fejezetben fogunk tanulni.
+\end_layout
+
+\begin_layout Subsubsection
+Keresés manuál oldalak között
+\end_layout
+
+\begin_layout Standard
+Ha nem jut eszünkbe egy parancs, de van egy kulcsszavunk, ami a keresendő
+ parancs leírásában megtalálható, akkor erre rákereshetünk a 
+\begin_inset Formula $\$\text{␣}man\text{␣‐k␣}<kulcsszó>$
+\end_inset
+
+ módszerrel.
+ Ez ki fogja írni az összes olyan manuál oldal nevét (kötettel együtt),
+ amelyik tartalmazza az adott kulcsszót.
+\end_layout
+
+\begin_layout Standard
+Ha keresgélni akarunk egy 
+\emph on
+reguláris kifejezés
+\emph default
+ segítségével, akkor erre a 
+\begin_inset Formula $\$\text{␣}man\text{␣‐K␣}<kifejezés>$
+\end_inset
+
+ való.
+ Ez a módszer annyit csinál, hogy rákeres az összes manuál oldal között
+ a kifejezésünkre, és ha van találat, azt meg is nyitja rögtön.
+ Ha megtaláltuk a keresett oldalt, szokásos módon a 
+\begin_inset Quotes pld
+\end_inset
+
+Q
+\begin_inset Quotes prd
+\end_inset
+
+ gombbal kiléphetünk.
+ Ekkor azonban a keresés nem áll le, hanem rákérdez, hogy akarjuk-e a következő
+ találatot megnyitni? Erre három lehetőséget ad: Enter gombbal meg tudjuk
+ nyitni a következő találatot, ^D-vel ki tudjuk hagyni a következő találatot,
+ és ^C-vel ki tudunk lépni a keresésből.
+\end_layout
+
+\begin_layout Paragraph
+Feladat:
+\end_layout
+
+\begin_layout Standard
+Olvass bele a manuál manuáljába! 
+\begin_inset Formula $\$\text{␣}man\text{␣}man$
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Reguláris-kifejezések"
+
+\end_inset
+
 Reguláris kifejezések
 \end_layout
 
@@ -5096,6 +5531,12 @@ Az előző példában láthattunk még egy parancsot, amivel eddig nem találkoz
 \end_layout
 
 \begin_layout Subsubsection
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Szignálok"
+
+\end_inset
+
 Szignálok
 \end_layout
 
