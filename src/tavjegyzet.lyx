@@ -10,15 +10,12 @@
 \usepackage{ucs}
 \usepackage[dvipsnames]{xcolor}
 \PassOptionsToPackage{frenchspacing=yes}{magyar.ldf}
-%\def\magyarOptions{defaults=hu-min}
-%\def\magyarOptions{hyphenation=huhyphn}
-%\PassOptionsToPackage{magyar}{babel}
-%\usepackage[magyar]{babel}
 
-\usepackage[latin2]{inputenc}
-\usepackage[T1]{fontenc}
-\def\magyarOptions{hyphenation=huhyphn}
-\usepackage[english,magyar]{babel}
+\def\magyarOptions{defaults=hu-min}
+\usepackage[magyar]{babel}
+\usepackage{t1enc}% for automatic hyphenation of accented chars
+\usepackage[latin2]{inputenc}% for typing chars
+\usepackage{hyphsubst}
 
 \usepackage{indentfirst}
 %\usepackage{lmodern}
@@ -241,16 +238,8 @@ Ez az elv mutatja, hogy milyen a Linuxok belső szerkezete: alapvetően egyszer�
  felhasználói programjaink vannak, amikkel gyorsan, és hatékonyan végezhetjük
  el az egyszerű feladatokat.
  Azonban ennél sokkal többre képes - ahogy majd látni fogjuk -, ezen egyszerű,
- hatékony prog\SpecialChar softhyphen
-ra\SpecialChar softhyphen
-mocs\SpecialChar softhyphen
-kák összetételéből komplex szoftvereket készítünk, amelyek
- egyszerűbbé teszik a min\SpecialChar softhyphen
-den\SpecialChar softhyphen
-nap\SpecialChar softhyphen
-ja\SpecialChar softhyphen
-in\SpecialChar softhyphen
-kat.
+ hatékony programocskák összetételéből komplex szoftvereket készítünk, amelyek
+ egyszerűbbé teszik a mindennapjainkat.
  Ezeket bővebben foguk tanulmányozni a 
 \series bold
 Scriptek
@@ -376,12 +365,7 @@ PAM
 \begin_layout Standard
 A kernelre és az őt körülvevő modulokra épül egy alkalmazás futtató réteg,
  ami Linux alapú rendszer esetében a POSIX, plusz egyéb olyan szoftvercsomagok,
- amelyek rendszer szintű szol\SpecialChar softhyphen
-gál\SpecialChar softhyphen
-ta\SpecialChar softhyphen
-tá\SpecialChar softhyphen
-so\SpecialChar softhyphen
-kat biztosítanak.
+ amelyek rendszer szintű szolgáltatásokat biztosítanak.
 \end_layout
 
 \begin_layout Standard
@@ -448,12 +432,8 @@ forrás: https://xkcd.com/178/
 Mivel a Linux egy szabad szoftver, és nagyon sokan szeretik, ezért a sokféle
  felhasználó sokféle felhasználási módot talált rá, hogy kényelmesen használja
  a rendszert.
- Mivel sok megoldás létezik ugyanarra a problémára (például ablakozás, cso\SpecialChar softhyphen
-mag\SpecialChar softhyphen
-ke\SpecialChar softhyphen
-z
-e\SpecialChar softhyphen
-lés), a közös alapelvek szerint felépített Linux rendszereket úgynevezett
+ Mivel sok megoldás létezik ugyanarra a problémára (például ablakozás, csomagkez
+elés), a közös alapelvek szerint felépített Linux rendszereket úgynevezett
  disztribúciók szerint építik fel.
  Ezeket külön operációs rendszernek képzelhetjük el, amelyek között rengeteg
  átfedés található (kevés Linux disztribúció nem használ pl.
@@ -826,10 +806,7 @@ Standard Error
  A Turing gépek is ezekkel működtethetőek, amikor bekérünk adatot, minden
  esetben a Standard Inputról vesszük az adatot, amikor kiírunk, akkor azt
  a Standard Outputra tesszük.
- Annak ér\SpecialChar softhyphen
-de\SpecialChar softhyphen
-ké\SpecialChar softhyphen
-ben, hogy a felhasználót értesíteni tudjuk hibás működésről,
+ Annak érdekében, hogy a felhasználót értesíteni tudjuk hibás működésről,
  használjuk ezen kettő mellett a Standard Errort is.
  A szabványos hibakimenet általában ugyanúgy a monitoron jelenik meg, célja
  viszont az, hogy elkülöníthető legyen a hibás kimenet a programok rendes
@@ -896,10 +873,7 @@ X11
  egy másik (akár például Windowsos) gépen megfelelő programok telepítése
  esetén.
  Ez könnyedén kipróbálható, ha egy virtuális gépre telepített Linuxon engedélyez
-zük az X for\SpecialChar softhyphen
-war\SpecialChar softhyphen
-ding\SpecialChar softhyphen
-ot, és SSH kapcsolattal (PuTTY-rel és X forwardinggal)
+zük az X forwardingot, és SSH kapcsolattal (PuTTY-rel és X forwardinggal)
  belépünk, majd elindítunk egy ablakos programot (legyen például az xterm,
  vagy akár egy Firefox), akkor az a gazda gépen fog megjelenni, ám az összes
  erőforrást a távoli gép fogja biztosítani a számunkra.
@@ -987,10 +961,7 @@ ablakozó
 
 \end_inset
 
-t (X, mindenféle csicsa nélkül), az tudhatja, hogy mennyire bor\SpecialChar softhyphen
-zasz\SpecialChar softhyphen
-tó\SpecialChar softhyphen
-an
+t (X, mindenféle csicsa nélkül), az tudhatja, hogy mennyire borzasztóan
  néz ki egy alapértelmezett X megjelenés.
  Egy ablakhoz alapvetően nem tartozik hozzá keret, sem vezérlőgombok, amikkel
  irányíthatjuk ezeket.
@@ -1014,11 +985,7 @@ knek nevezni.
  Sokféle ablakkezelő létezik, köztük olyanok, amik megpróbálják más operációs
  rendszerek kinézetét utánozni (különféle Windows és Mac verziókét), és
  olyanok is, akik igyekeznek egyediek lenni pehelykönnyűségükkel, villámgyors
- kezelésükkel, 3D meg\SpecialChar softhyphen
-je\SpecialChar softhyphen
-le\SpecialChar softhyphen
-nés\SpecialChar softhyphen
-sel, stb.
+ kezelésükkel, 3D megjelenéssel, stb.
  A legtöbb ablakkezelő képes témákat is kezelni, amiktől még inkább egyedivé
  tehetjük a rendszerünket.
  Feltűnhet, hogy ez a hozzáállás sokszor előfordul egy Linux rendszer esetében,
@@ -1150,12 +1117,7 @@ bash
 
 \end_inset
 
- keretein belül fog mozogni, ami talán a legelterjedtebb Linuxos pa\SpecialChar softhyphen
-rancs\SpecialChar softhyphen
-ér\SpecialChar softhyphen
-tel\SpecialChar softhyphen
-me\SpecialChar softhyphen
-z
+ keretein belül fog mozogni, ami talán a legelterjedtebb Linuxos parancsértelmez
 ő.
  Különféle rendszerek különböző parancsértelmezőket részesítenek előnyben.
  A teljesség igénye nélkül felsorolunk néhány Unix alapú rendszeren gyakran
@@ -1761,10 +1723,7 @@ Ez a módszer sokban hasonlít a programozáshoz, ugyanakkor vannak különbség
  is.
  A programozásból ismert vezérlő szerkezetek itt is megtalálhatóak, de eltérő
  szintaxissal.
- Hasz\SpecialChar softhyphen
-nál\SpecialChar softhyphen
-ha\SpecialChar softhyphen
-tunk változókat is, amelyek gyengén típusosak, vagyis a legtöbb
+ Használhatunk változókat is, amelyek gyengén típusosak, vagyis a legtöbb
  értéket szövegként fogjuk használni.
 \end_layout
 
@@ -1827,12 +1786,7 @@ komment
 
 kommentet.
  A kommentek a parancsértelmező által figyelmen kívül hagyott területek,
- alapvetően do\SpecialChar softhyphen
-ku\SpecialChar softhyphen
-men\SpecialChar softhyphen
-tá\SpecialChar softhyphen
-ci\SpecialChar softhyphen
-ós célt szolgálnak egy scriptben.
+ alapvetően dokumentációs célt szolgálnak egy scriptben.
  Ezt a 
 \begin_inset Formula $\#$
 \end_inset
@@ -2162,10 +2116,7 @@ Az előző példában láthattuk, hogy a
 \begin_inset Formula $nev$
 \end_inset
 
- változóba kerül, amit a standard inputon megad a fel\SpecialChar softhyphen
-hasz\SpecialChar softhyphen
-ná\SpecialChar softhyphen
-ló.
+ változóba kerül, amit a standard inputon megad a felhasználó.
  Ennek a változónak a tartalmát a 
 \begin_inset Formula $\$nev$
 \end_inset
@@ -2539,11 +2490,7 @@ Változók műveletei
 A változókkal gyakran végzünk műveleteket.
  Szerencsére a bash gondoskodik nekünk jó néhány gyakran használt művelet
  könnyű megvalósításáról.
- Valójában a változó értékének helyes ki\SpecialChar softhyphen
-í\SpecialChar softhyphen
-ra\SpecialChar softhyphen
-tá\SpecialChar softhyphen
-sa nem önmagában a 
+ Valójában a változó értékének helyes kiíratása nem önmagában a 
 \begin_inset Formula $\$$
 \end_inset
 
@@ -3158,13 +3105,13 @@ if
 \lang magyar
 -en belül tehetünk tetszőleges ciklust, azon belül 
 \lang english
-if-et
+if
 \lang magyar
-, 
+-et, 
 \lang english
-case-t
+case
 \lang magyar
-, és így tovább.)
+-t, és így tovább.)
 \end_layout
 
 \begin_layout Subsection
@@ -3459,12 +3406,7 @@ tés illeszkedett a változóra.
 
 \begin_layout Standard
 Fontos, hogy az eseteket a bash fentről lefelé fogja vizsgálni, és csak
- az első illeszkedő he\SpecialChar softhyphen
-lyet\SpecialChar softhyphen
-te\SpecialChar softhyphen
-sí\SpecialChar softhyphen
-tés\SpecialChar softhyphen
-nél lévő esetet fogja végrehajtani.
+ az első illeszkedő helyettesítésnél lévő esetet fogja végrehajtani.
  Így bashben nincs 
 \begin_inset Formula $default$
 \end_inset
@@ -4447,12 +4389,7 @@ t ezen kívül úgynevezett sózással (
 \begin_inset Formula $salt$
 \end_inset
 
-) még biz\SpecialChar softhyphen
-ton\SpecialChar softhyphen
-sá\SpecialChar softhyphen
-go\SpecialChar softhyphen
-sab\SpecialChar softhyphen
-bá teszik, hogy a kiszivárgott 
+) még biztonságosabbá teszik, hogy a kiszivárgott 
 \begin_inset Formula $hash$
 \end_inset
 
