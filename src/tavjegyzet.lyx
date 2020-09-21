@@ -645,7 +645,7 @@ Licencek
 \end_layout
 
 \begin_layout Standard
-A licenc az informatikában az engedélyeztető szerződésként használjuk.
+A licenceket az informatikában engedélyeztető szerződésként használjuk.
  Valójában egy jogi szerződés, amely kiköti, hogy egy szoftvert milyen módon
  használhatunk fel.
 \end_layout
@@ -1009,6 +1009,18 @@ tak, és rengeteg témát és stílust alkalmazhatunk ezekre.
  egy egységes hatást biztosítani a számunkra.
 \end_layout
 
+\begin_layout Paragraph
+Feladat:
+\end_layout
+
+\begin_layout Standard
+Próbáljunk ki néhány 
+\lang english
+live
+\lang magyar
+ CD-t, különböző grafikus felületekkel! Hasonlítsuk őket össze!
+\end_layout
+
 \begin_layout Subsection
 Shellek
 \end_layout
@@ -1336,23 +1348,104 @@ a
 \end_layout
 
 \begin_layout Itemize
-^c: adott folyamat megszakítása (szignál küldése)
+^C: adott folyamat megszakítása (szignál küldése)
 \end_layout
 
 \begin_layout Itemize
-^d: fájl vége jel küldése (lezárja az inputot)
+^D: fájl vége jel küldése (lezárja az inputot)
 \end_layout
 
 \begin_layout Itemize
-^z: megállítás, háttérbe küldés
+^Z: megállítás, háttérbe küldés
 \end_layout
 
 \begin_layout Itemize
-^s: megállítás, 
+^S: megállítás, 
 \end_layout
 
 \begin_layout Itemize
-^h: egy karakter visszatörlése (backspace)
+^H: egy karakter visszatörlése (backspace)
+\end_layout
+
+\begin_layout Standard
+Vegyük észre, hogy a ^C nem a másolás művelete! Egy Linuxos terminálban
+ a másolást a ⇧^C-vel végezzük!
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+A 
+\begin_inset Quotes pld
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+⇧
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Quotes prd
+\end_inset
+
+ karakter a SHIFT gombot fogja jelenteni
+\end_layout
+
+\end_inset
+
+ Ugyanígy a ⇧^V lesz a beillesztés.
+ Kijelölni legtöbbször az egérrel tudunk, ám ha ez nem működik, valószínűleg
+ az előtérben futó alkalmazásunk az egér mozdulatokat használja.
+ Ilyenkor a 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+⇧
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ 
+\family default
+gombbalésaz egér húzásával tudunk kijelölni.
+ Ha PuTTY-t használunk, akkor a kijelölés azonnal a vágólapra másol, és
+ az egér jobb gombjával tudunk vágólapon lévő szöveget beilleszteni.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1405,11 +1498,11 @@ jobbra-balra gombok: a kurzor előre/hátra mozgatása az aktuális parancsban,
 \end_layout
 
 \begin_layout Itemize
-home-end (^a, ^e): a kurzor sor elejére/végére mozgatása
+home-end (^A, ^E): a kurzor sor elejére/végére mozgatása
 \end_layout
 
 \begin_layout Itemize
-^r: keresés a 
+^R: keresés a 
 \emph on
 history
 \emph default
@@ -1495,7 +1588,11 @@ A
  parancs található.
  Ez a parancs azt mutatja, hogy egy adott könyvtárban hány bájtnyi területet
  használunk, vagyis megszámolja az összes, a könyvtárban helyet foglaló
- fájl méretét.
+ fájl méretét (
+\lang english
+disk usage
+\lang magyar
+).
  
 \end_layout
 
@@ -1659,6 +1756,191 @@ bash
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsubsection
+Alapvető parancsok
+\end_layout
+
+\begin_layout Standard
+Lesznek a shellhez hozzákötött (belső
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+belső parancs
+\end_layout
+
+\end_inset
+
+) parancsaink, és lesznek apró programok, amelyek az összes shell között
+ megosztva vannak: a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+külső parancs
+\end_layout
+
+\end_inset
+
+külső parancsok.
+ A 
+\begin_inset Formula $du$
+\end_inset
+
+ külső parancs lesz.
+ Hasonlóképpen külső parancsok:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $df$
+\end_inset
+
+ (
+\lang english
+disk free
+\lang magyar
+) a lemezeken lévő szabad területek kiíratása
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $pwd$
+\end_inset
+
+ (
+\lang english
+print working directory
+\lang magyar
+) munkakönyvtár kiíratása
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $ls$
+\end_inset
+
+ (
+\lang english
+list
+\lang magyar
+) fájlok listázása
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $cat$
+\end_inset
+
+ (
+\lang english
+conCATenate
+\lang magyar
+) fájlok összefűzése és kiíratása a képernyőre
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $whoami$
+\end_inset
+
+ (
+\lang english
+who am I
+\lang magyar
+) az adott felhasználó nevének kiíratása
+\end_layout
+
+\begin_layout Standard
+Feltűnhet, hogy a parancsok többsége angol nyelvű rövidítés, hogy könnyen
+ megjegyezhetőek legyenek.
+ Nézzünk néhány szabványos, 
+\emph on
+bash
+\emph default
+ parancsot!
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $echo$
+\end_inset
+
+ adott szöveg kiíratása
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $alias$
+\end_inset
+
+ parancsnév létrehozása
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $cd$
+\end_inset
+
+ (
+\lang english
+change directory
+\lang magyar
+) könyvtárváltás
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $exit$
+\end_inset
+
+ kilépés a shellből
+\end_layout
+
+\begin_layout Paragraph
+Feladat: 
+\end_layout
+
+\begin_layout Standard
+próbáljuk ki a fenti parancsokat! Vegyük észre, hogy a 
+\begin_inset Formula $cat$
+\end_inset
+
+ parancs indítása paraméterek nélkül eléggé fura módon történik.
+ Azt gondolhatnánk, hogy 
+\begin_inset Quotes pld
+\end_inset
+
+nem történik semmi
+\begin_inset Quotes prd
+\end_inset
+
+.
+ Azonban nagyon is sok minden történik ilyenkor! Az, hogy nem kapunk 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+prompt
+\end_layout
+
+\end_inset
+
+
+\emph on
+prompt
+\emph default
+ot, azt jelenti, hogy a programunk valamire vár.
+ Valójában könnyen rájöhetünk, hogy a felhasználó inputjára vár, vagyis
+ arra, hogy sorokat írjunk be! Ahogy korábban említettük, a 
+\begin_inset Formula $cat$
+\end_inset
+
+ megjelenít fájlokat a képernyőn.
+ Mivel nem adtunk neki fájlnevet, így kénytelen a standard inputról olvasni.
+ Az input végét a ^D billentyűkombinációval jelezhetjük.
+ Ilyenkor a parancs futtatása véget ér, visszakapjuk a 
+\emph on
+prompt
+\emph default
+ot.
+ Ne feledjük, igen gyakran előfordul, hogy egy program vagy script rossz
+ paramétereznésnek köszönhetően várakozik a felhasználóra.
+ Ilyenkor nem fagyott le a rendszer, egyszerűen próbáljunk neki megfelelő
+ inputot adni, és könnyen rájöhetünk, hogy mi volt a hiba oka! 
 \end_layout
 
 \begin_layout Chapter
@@ -3320,20 +3602,16 @@ if.sh: Ellenőrzések
 
 \end_layout
 
-\begin_layout Standard
-
-\series bold
-Feladat
-\series default
-: gyűjtsük ki a 
-\begin_inset Formula $test$
-\end_inset
-
- parancs paramétereit!
+\begin_layout Paragraph
+Feladat: 
 \end_layout
 
 \begin_layout Standard
-Ne feledjük, hogy a 
+gyűjtsük ki a 
+\begin_inset Formula $test$
+\end_inset
+
+ parancs paramétereit! Ne feledjük, hogy a 
 \begin_inset Formula $test$
 \end_inset
 
@@ -3873,7 +4151,7 @@ je.
 i ezt a fájlt.
 \end_layout
 
-\begin_layout Subparagraph
+\begin_layout Paragraph
 Feladat: 
 \end_layout
 
