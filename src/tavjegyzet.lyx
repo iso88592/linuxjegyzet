@@ -19,6 +19,15 @@
 
 \usepackage{indentfirst}
 %\usepackage{lmodern}
+\pagestyle{fancy}
+\fancyfoot{}
+\fancyhead{}
+\fancyfoot[LE,RO]{\thepage}
+\fancyhead[RE]{\sffamily\nouppercase{\rightmark}}
+\fancyhead[LO]{\sffamily\nouppercase{\leftmark}}
+
+\pagestyle{fancyplain}
+\fancyfoot[LE,RO]{\thepage}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -69,7 +78,7 @@ pdfform
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
-\suppress_date false
+\suppress_date true
 \justification true
 \use_refstyle 1
 \use_minted 0
@@ -93,8 +102,8 @@ pdfform
 \quotes_style polish
 \dynamic_quotes 0
 \papercolumns 1
-\papersides 1
-\paperpagestyle default
+\papersides 2
+\paperpagestyle fancy
 \listings_params "keywordstyle={\color{blue}},commentstyle={\color{magenta}\itshape},emphstyle={\color{red}},breaklines=true,basicstyle={\ttfamily},stringstyle={\color{OliveGreen}},identifierstyle={\color{cyan}},numbers=left"
 \tracking_changes false
 \output_changes false
@@ -400,7 +409,7 @@ disztribúciók
 \begin_layout Standard
 \begin_inset Wrap figure
 lines 0
-placement O
+placement I
 overhang 0in
 width "40col%"
 status open
