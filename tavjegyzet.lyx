@@ -9,7 +9,19 @@
 \usepackage{wrapfig}
 \usepackage{ucs}
 \usepackage[dvipsnames]{xcolor}
-\usepackage[magyar]{babel}
+\PassOptionsToPackage{frenchspacing=yes}{magyar.ldf}
+%\def\magyarOptions{defaults=hu-min}
+%\def\magyarOptions{hyphenation=huhyphn}
+%\PassOptionsToPackage{magyar}{babel}
+%\usepackage[magyar]{babel}
+
+\usepackage[latin2]{inputenc}
+\usepackage[T1]{fontenc}
+\def\magyarOptions{hyphenation=huhyphn}
+\usepackage[english,magyar]{babel}
+
+\usepackage{indentfirst}
+%\usepackage{lmodern}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -155,7 +167,7 @@ Forrás: https://xkcd.com/456/
 \end_layout
 
 \begin_layout Standard
-Mi lehet az oka annak, hogy ha megkérdezed a környezetdben lévőket, hogy
+Mi lehet az oka annak, hogy ha megkérdezed a környezetedben lévőket, hogy
  milyen operációs rendszer van a gépükön, akkor az nagy valószínűséggel
  nem Linux lesz? Sokan azt mondanák rá, hogy a Linux nem felhasználóbarát.
  Esetleg azt, hogy azon nem futnak játékok.
@@ -319,7 +331,7 @@ nak nevezzük.
 Azokat az operációs rendszereket, amelyek igyekeznek kicsinek meghagyni
  ezt a programot, 
 \emph on
-mikrokernel architektúrá
+mikrokernel 
 \emph default
 
 \begin_inset Index idx
@@ -331,6 +343,10 @@ mikrokernel architektúra
 
 \end_inset
 
+
+\emph on
+architektúrá
+\emph default
 júnak nevezzük.
 \end_layout
 
@@ -370,7 +386,7 @@ kat biztosítanak.
 
 \begin_layout Standard
 A POSIX réteget használhatjuk akármilyen felhasználói programból, vagy akár
- egy megfelelő parancsértelmező
+ egy megfelelő 
 \begin_inset Index idx
 status open
 
@@ -380,7 +396,7 @@ parancsértelmező
 
 \end_inset
 
-ből is.
+parancsértelmezőből is.
 \end_layout
 
 \begin_layout Subsection
@@ -440,9 +456,9 @@ e\SpecialChar softhyphen
 lés), a közös alapelvek szerint felépített Linux rendszereket úgynevezett
  disztribúciók szerint építik fel.
  Ezeket külön operációs rendszernek képzelhetjük el, amelyek között rengeteg
- átfedés található (kevés Linux disztribúció nem használ pl Bash-t), viszont
- olyan dolgokban eltérhetnek, hogy egyik technológia helyett egy másikat
- részesítenek előnyben.
+ átfedés található (kevés Linux disztribúció nem használ pl.
+ Bash-t), viszont olyan dolgokban eltérhetnek, hogy egyik technológia helyett
+ egy másikat részesítenek előnyben.
  Egy disztribúcióhoz mindig tartozik valamilyen szabványos csomagkezelő,
  amely segítséget nyújt egy rendszer frissítéseinek kezelésében, illetve
  előre nem telepített csomagok hozzáadásában.
@@ -462,12 +478,12 @@ nagy
 \end_layout
 
 \begin_layout Itemize
-RedHat
+Red Hat
 \begin_inset Index idx
 status open
 
 \begin_layout Plain Layout
-RedHat
+Red Hat
 \end_layout
 
 \end_inset
@@ -564,9 +580,10 @@ BSD
 
 \end_inset
 
-BSD disztribúciók, vagy egyéb, BSD-re épülő operációs rendszerek (pl OSX).
+BSD disztribúciók, vagy egyéb, BSD-re épülő operációs rendszerek (pl.
+ OSX).
  Ezek shell szinten nagyon hasonlítanak egy Linuxhoz, és a legtöbb Linux
- program (mivel POSIX szabávnyúak), lefordíthatók ezekre a rendszerekre
+ program (mivel POSIX szabványúak), lefordíthatók ezekre a rendszerekre
  is, így például könnyen megtéveszthetünk egy mezei Linux felhasználót egy
  FreeBSD rendszerrel.
 \end_layout
@@ -615,7 +632,7 @@ A Linux kernel verziói
 \end_layout
 
 \begin_layout Standard
-A Linux kernel jelenleg 4 számból áll, pl: 
+A Linux kernel jelenleg 4 számból áll, pl.: 
 \begin_inset Formula $5.7.16-200$
 \end_inset
 
@@ -623,7 +640,7 @@ A Linux kernel jelenleg 4 számból áll, pl:
  az alverziót, az utolsó pedig a build számot.
  Régebben az alverzió szám párosságától függött, hogy a kernel stabil, vagy
  kísérleti verzió, azonban ez ma már nem igaz.
- Ez a páros-páratlan módszer a következő képpen működött:
+ Ez a páros-páratlan módszer a következőképpen működött:
 \end_layout
 
 \begin_layout Itemize
@@ -654,10 +671,11 @@ A licenc az informatikában az engedélyeztető szerződésként használjuk.
 \end_layout
 
 \begin_layout Standard
-A Linux kernel a GNU licenct használja jelenleg.
+A Linux kernel a GNU licencet használja jelenleg.
  Ez egy ingyenességről, és a szoftver szabadságáról szóló licenc, amely
  biztosítja, hogy a szoftver szabad is maradjon.
- Más rendszerek más licenceket használnak, pl MIT, BSD licenc.
+ Más rendszerek más licenceket használnak, pl.
+ MIT, BSD licenc.
 \end_layout
 
 \begin_layout Standard
@@ -805,12 +823,15 @@ Standard Error
 
 .
  Alapvetően ezek fogják a Linux programok működését befolyásolni.
- A Turing gépek is ezekkel működtehetőek, amikor bekérünk adatot, minden
+ A Turing gépek is ezekkel működtethetőek, amikor bekérünk adatot, minden
  esetben a Standard Inputról vesszük az adatot, amikor kiírunk, akkor azt
  a Standard Outputra tesszük.
- Annak érdekében, hogy a felhasználót értesíteni tudjuk hibás működésről,
+ Annak ér\SpecialChar softhyphen
+de\SpecialChar softhyphen
+ké\SpecialChar softhyphen
+ben, hogy a felhasználót értesíteni tudjuk hibás működésről,
  használjuk ezen kettő mellett a Standard Errort is.
- A szabávnyos hibakimenet általában ugyanúgy a monitoron jelenik meg, célja
+ A szabványos hibakimenet általában ugyanúgy a monitoron jelenik meg, célja
  viszont az, hogy elkülöníthető legyen a hibás kimenet a programok rendes
  kimenetétől.
  Erről részletesen az átirányítás fejezetben olvashatsz.
@@ -875,7 +896,10 @@ X11
  egy másik (akár például Windowsos) gépen megfelelő programok telepítése
  esetén.
  Ez könnyedén kipróbálható, ha egy virtuális gépre telepített Linuxon engedélyez
-zük az X forwardingot, és SSH kapcsolattal (PuTTY-rel és X forwardinggal)
+zük az X for\SpecialChar softhyphen
+war\SpecialChar softhyphen
+ding\SpecialChar softhyphen
+ot, és SSH kapcsolattal (PuTTY-rel és X forwardinggal)
  belépünk, majd elindítunk egy ablakos programot (legyen például az xterm,
  vagy akár egy Firefox), akkor az a gazda gépen fog megjelenni, ám az összes
  erőforrást a távoli gép fogja biztosítani a számunkra.
@@ -884,7 +908,7 @@ zük az X forwardingot, és SSH kapcsolattal (PuTTY-rel és X forwardinggal)
 \begin_layout Standard
 Az X Window System onnan kapta a nevét, hogy korábban volt egy W Window
  System nevezetű (a W nem az ablakokra utal ebben az esetben, hanem a készítő
- Wayland nevét hordozza) program, ami hasonlóan működött, ám sokmindenkinek
+ Wayland nevét hordozza) program, ami hasonlóan működött, ám sok mindenkinek
  fejfájást okozott a használata, és az X lényegesen leegyszerűsítette a
  grafikus alkalmazások létrehozását és szabványos működtetését.
  A legtöbb asztali Linux disztribúció rendelkezik ilyen grafikus felülettel.
@@ -963,7 +987,10 @@ ablakozó
 
 \end_inset
 
-t (X, mindenféle csicsa nélkül), az tudhatja, hogy mennyire borzasztóan
+t (X, mindenféle csicsa nélkül), az tudhatja, hogy mennyire bor\SpecialChar softhyphen
+zasz\SpecialChar softhyphen
+tó\SpecialChar softhyphen
+an
  néz ki egy alapértelmezett X megjelenés.
  Egy ablakhoz alapvetően nem tartozik hozzá keret, sem vezérlőgombok, amikkel
  irányíthatjuk ezeket.
@@ -987,8 +1014,12 @@ knek nevezni.
  Sokféle ablakkezelő létezik, köztük olyanok, amik megpróbálják más operációs
  rendszerek kinézetét utánozni (különféle Windows és Mac verziókét), és
  olyanok is, akik igyekeznek egyediek lenni pehelykönnyűségükkel, villámgyors
- kezelésükkel, 3D megjelenéssel, stb.
- A legtöbb ablakkezelő képes témákat is kezelni, amiktől méginkább egyedivé
+ kezelésükkel, 3D meg\SpecialChar softhyphen
+je\SpecialChar softhyphen
+le\SpecialChar softhyphen
+nés\SpecialChar softhyphen
+sel, stb.
+ A legtöbb ablakkezelő képes témákat is kezelni, amiktől még inkább egyedivé
  tehetjük a rendszerünket.
  Feltűnhet, hogy ez a hozzáállás sokszor előfordul egy Linux rendszer esetében,
  ugyanis a Linux felhasználók nem szeretik a kompromisszumokat a számítógépük
@@ -999,16 +1030,673 @@ knek nevezni.
 Néhány fontos, és néhány extremális ablakkezelőt felsorolnék, a teljesség
  igénye nélkül.
  Egy modern Linux rendszer tipikusan valami régóta fejlesztett, jól kiforrott
- ablakkezelőt fog ajánlani (kezdőknek amúgy sem árt), ezek a KDE, Gnome.
+ ablakkezelőt fog ajánlani (kezdőknek amúgy sem árt), ezek a KDE, GNOME.
  Könnyen érezhetjük otthon magunkat ezekben az ablakozókban, elvégre hasonlítana
 k a megszokott (bár egy-két generációval korábbi) Windows ablakozókra, letisztul
 tak, és rengeteg témát és stílust alkalmazhatunk ezekre.
  Ha valaki úgy érzi, hogy a számítógépe GPU-ját az ablakok 3D megjelenítésére
  szeretné használni, esetleg speciális effektusokat szeretne az asztalára
- tenni (3D kocka nézet, ablakok rugalmas mozgatása, stb) a Compiz-Fusion
+ tenni (3D kocka nézet, ablakok rugalmas mozgatása, stb.) a Compiz-Fusion
  lesz az ő ablakozója.
  Ha minimalista, könnyen kezelhető felületre vágyunk, Fluxbox, XFCE tud
  egy egységes hatást biztosítani a számunkra.
+\end_layout
+
+\begin_layout Subsection
+Shellek
+\end_layout
+
+\begin_layout Standard
+Az előző fejezetekben láthattuk, hogy mik azok a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+terminál
+\end_layout
+
+\end_inset
+
+terminálok, amik a számítógép végpontjait jelzik.
+ Attól még, hogy van egy végpontunk, nem ad az operációs rendszer a kezünkbe
+ egy olyan eszközt, amin keresztül parancsokat tudnánk bevinni.
+ Épp ezért, ha egy terminált indítunk, meg kell mondanunk, hogy milyen programma
+l akarjuk összekötni a terminált.
+ Valójában ilyenkor a számítógép elindít egy programot, aminek a bemenetét
+ hozzákötni a billentyűzetünkhöz, a kimenetét pedig a képernyőnkhöz.
+ Ide akármilyen Unix programot megadhatunk, azonban vannak olyan speciális
+ programok, amelyek a standard inputról utasításokat várnak, azok kimenetét
+ pedig a képernyőn jelenítik meg.
+ Ezeket a speciális programokat 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shell
+\end_layout
+
+\end_inset
+
+
+\emph on
+shell
+\emph default
+eknek, vagy magyar szóval élve 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+parancsértelmező
+\end_layout
+
+\end_inset
+
+
+\emph on
+parancsértelmező
+\emph default
+knek hívjuk.
+ Ez a kifejezés jól tükrözi, hogy mire való ez a program: a megadott parancsokat
+ értelmezi, és végrehajtja.
+ Látni kell, hogy a parancsértelmező nem egy Unix specifikus fogalom, mivel
+ a legtöbb modern operációs rendszernél létezik legalább egy használható
+ shell (Windows esetében a 
+\emph on
+cmd
+\emph default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+cmd
+\end_layout
+
+\end_inset
+
+ és a 
+\emph on
+PowerShell
+\emph default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+PowerShell
+\end_layout
+
+\end_inset
+
+ is ilyen).
+\end_layout
+
+\begin_layout Standard
+Mint a Linuxnál általában, itt sem beszélhetünk egységes program használatáról;
+ rengetegféle shell létezik (és a legtöbb programozási környezet rendelkezik
+ saját REPL-lel, amelyek ugyanúgy használhatók shellként), és innentől kezdve
+ ízlés (és vallás) kérdése, hogy ki melyiket használja.
+ A jegyzet kizárólag a 
+\emph on
+bash
+\emph default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+bash
+\end_layout
+
+\end_inset
+
+ keretein belül fog mozogni, ami talán a legelterjedtebb Linuxos pa\SpecialChar softhyphen
+rancs\SpecialChar softhyphen
+ér\SpecialChar softhyphen
+tel\SpecialChar softhyphen
+me\SpecialChar softhyphen
+z
+ő.
+ Különféle rendszerek különböző parancsértelmezőket részesítenek előnyben.
+ A teljesség igénye nélkül felsorolunk néhány Unix alapú rendszeren gyakran
+ használt shellt: 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+bash
+\end_layout
+
+\end_inset
+
+
+\emph on
+bash
+\emph default
+, 
+\emph on
+tcsh
+\emph default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+tcsh
+\end_layout
+
+\end_inset
+
+, 
+\emph on
+zsh
+\emph default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+zsh
+\end_layout
+
+\end_inset
+
+, 
+\emph on
+dash
+\emph default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+dash
+\end_layout
+
+\end_inset
+
+, 
+\emph on
+ksh
+\emph default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ksh
+\end_layout
+
+\end_inset
+
+, 
+\emph on
+csh
+\emph default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+csh
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Az egyik legkorábbi Unix shell a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+sh
+\end_layout
+
+\end_inset
+
+
+\emph on
+sh
+\emph default
+, amely lényegesen kevesebbet tud, mint társai.
+ Sok rendszeren a /bin/sh egy 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+szimbolikus link
+\end_layout
+
+\end_inset
+
+
+\emph on
+szimbolikus link
+\emph default
+ az alapértelmezett shellre, és valójában nem a 
+\begin_inset Quotes pld
+\end_inset
+
+sima
+\begin_inset Quotes prd
+\end_inset
+
+ shell.
+ Ez a Scriptek fejezetben fog előjönni részletesen.
+\end_layout
+
+\begin_layout Subsubsection
+Shellek tulajdonságai
+\end_layout
+
+\begin_layout Standard
+A shell célja, hogy kapcsolatot teremtsen az operációs rendszer és a felhasználó
+ között, ezért a fejlesztői igyekeznek minél inkább felhasználóbarátabbá
+ tenni ezeket a programokat.
+ Ez Linux esetén gyakran megegyezik a személyre szabhatósággal, hogy milyen
+ információkra vagyunk kíváncsiak a rendszerrel kapcsolatban.
+ Gyakran szeretnénk látni, hogy mi az aktuális munkakönyvtárunk, milyen
+ verziójú és típusú shellt használunk, mi az aktuális dátum, mi a hosztnevünk,
+ mi a felhasználónevünk, stb.
+ Ezeket tipikusan a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+prompt
+\end_layout
+
+\end_inset
+
+
+\emph on
+prompt
+\emph default
+ban fogjuk látni.
+ A 
+\emph on
+prompt
+\emph default
+ nem más, mint a shell kérdése, hogy mit szeretnénk éppen csinálni a rendszerrel.
+\end_layout
+
+\begin_layout Standard
+Alapvető shell tulajdonság, hogy szeretnénk a parancselőzményeket használni,
+ azért, hogy egyszer beírunk egy parancsot, könnyen visszakereshető legyen.
+ (A Unix szemlélet alapján, ha kiadtam egy parancsot, valószínű, hogy azt
+ a parancsot többször is ki fogom adni a jövőben).
+ Ezt a funkciót fogjuk 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+history
+\end_layout
+
+\end_inset
+
+
+\emph on
+history
+\emph default
+nak hívni.
+ Tudni kell, hogy a legtöbb shellben alapértelmezetten csak adott számú
+ bejegyzést tárol a history, így ha valami túl régen lett kiadva, akkor
+ az törlődik a historyból, hacsak be nem állítjuk, hogy szeretnénk több
+ (vagy akár végtelen) parancsot megjegyeztetni.
+\end_layout
+
+\begin_layout Standard
+Vannak alapvető billentyűkombinációk, amelyek befolyásolják minden shell
+ végrehajtását.
+ Ezek a következők
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+a 
+\begin_inset Quotes pld
+\end_inset
+
+^
+\begin_inset Quotes prd
+\end_inset
+
+ karakter a CTRL gombot fogja jelenteni
+\end_layout
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+^c: adott folyamat megszakítása (szignál küldése)
+\end_layout
+
+\begin_layout Itemize
+^d: fájl vége jel küldése (lezárja az inputot)
+\end_layout
+
+\begin_layout Itemize
+^z: megállítás, háttérbe küldés
+\end_layout
+
+\begin_layout Itemize
+^s: megállítás, 
+\end_layout
+
+\begin_layout Itemize
+^h: egy karakter visszatörlése (backspace)
+\end_layout
+
+\begin_layout Subsubsection
+A Bash tulajdonságai
+\end_layout
+
+\begin_layout Standard
+A Bash (Bourne-Again Shell) egy modern parancsértelmező, amely képes több
+ folyamatot is egyszerre kezelni, ezek között váltani (előtérben, háttérben),
+ és futtatás közben megváltoztatni azok tulajdonságait (például 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+szignál
+\end_layout
+
+\end_inset
+
+
+\emph on
+szignál
+\emph default
+ok küldésével).
+ Mindezt automatikus előzmény-kezeléssel, azok közötti könnyű navigációval.
+ A navigációra a kurzormozgató billentyűk használhatók: 
+\end_layout
+
+\begin_layout Itemize
+fel-le gombok: az előző/következő végrehajtott parancs a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+history
+\end_layout
+
+\end_inset
+
+
+\emph on
+history
+\emph default
+ban
+\end_layout
+
+\begin_layout Itemize
+jobbra-balra gombok: a kurzor előre/hátra mozgatása az aktuális parancsban,
+ hogy átírjuk a korábbi parancsot
+\end_layout
+
+\begin_layout Itemize
+home-end (^a, ^e): a kurzor sor elejére/végére mozgatása
+\end_layout
+
+\begin_layout Itemize
+^r: keresés a 
+\emph on
+history
+\emph default
+ban
+\end_layout
+
+\begin_layout Itemize
+Tab: szöveg kiegészítése (bizonyos parancsoknál kapcsolók, legtöbbször fájlnevek
+)
+\end_layout
+
+\begin_layout Subsubsection
+Bash parancsok értelmezése
+\end_layout
+
+\begin_layout Standard
+A Bash szokványos szintaxissal rendelkezik parancsok végrehajtásához, a
+ legtöbb shellhez hasonlóan.
+ Vegyük a következő sort:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $bash\text{‐}3.4\text{␣}\sim\text{␣}\$\text{␣}du\text{␣}\text{‐}h\text{␣}/etc$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ebben az esetben a 
+\begin_inset Formula $\$$
+\end_inset
+
+ karakter jelöli a 
+\emph on
+prompt
+\emph default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+prompt
+\end_layout
+
+\end_inset
+
+ végét.
+ Tipikusan kétféle prompt végződést szoktunk használni: a 
+\begin_inset Formula $\$$
+\end_inset
+
+ azt jelenti, hogy felhasználó módban vagyunk, a 
+\begin_inset Formula $\#$
+\end_inset
+
+ pedig rendszergazda módot fog mutatni.
+ A prompttal később fogunk foglalkozni.
+ A legtöbbször, amikor egy parancsot írunk, a 
+\emph on
+prompt
+\emph default
+tól eltekintünk, röviden csak így fogjuk jelölni a program hívását: 
+\begin_inset Formula $\$\text{␣}du\text{␣}\text{‐}h\text{␣}/etc$
+\end_inset
+
+; ilyenkor sem kell a 
+\begin_inset Formula $\$$
+\end_inset
+
+ jelet begépelnünk, hiszen azt a számítógép adja!
+\end_layout
+
+\begin_layout Standard
+A 
+\begin_inset Formula $\$$
+\end_inset
+
+ jel jobb oldalán található kifejezés után a 
+\begin_inset Formula $du$
+\end_inset
+
+ parancs található.
+ Ez a parancs azt mutatja, hogy egy adott könyvtárban hány bájtnyi területet
+ használunk, vagyis megszámolja az összes, a könyvtárban helyet foglaló
+ fájl méretét.
+ 
+\end_layout
+
+\begin_layout Standard
+Ezt követően 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+paraméterek
+\end_layout
+
+\end_inset
+
+
+\emph on
+paraméterek
+\emph default
+et láthatunk.
+ Ezek befolyásolják a parancs működését.
+ Jelen esetben a 
+\begin_inset Formula $\text{‐}h$
+\end_inset
+
+ kapcsoló azt fogja jelenteni, hogy ember által olvasható formátumban (
+\lang english
+human readable format
+\lang magyar
+) szeretnénk látni a helyfoglalást.
+ Ezek nem általános érvényű kapcsolók, minden parancs a saját 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+kapcsoló
+\end_layout
+
+\end_inset
+
+
+\emph on
+kapcsoló
+\emph default
+it fogja használni! Kétféle paramétert szoktunk megkülönböztetni: a 
+\emph on
+kapcsoló
+\emph default
+kat, és az egyéb argumentumokat.
+ A 
+\emph on
+kapcsoló
+\emph default
+k minden esetben névvel rendelkeznek.
+ A legtöbb parancs esetében megkülönböztetünk rövid és hosszú kapcsolóneveket.
+ A 
+\begin_inset Formula $\text{‐}h$
+\end_inset
+
+ rövid kapcsoló helyett meg lehet adni a 
+\begin_inset Formula $\text{‐}\text{‐}human\text{‐}readable$
+\end_inset
+
+ hosszú kapcsolót, ami pont ugyanazt fogja tenni.
+ Ennek az az értelme, hogy közérthetőbbé tegyük a parancsainkat.
+ Ha azonban sokszor adjuk ki ezeket a parancsokat, érdemes megjegyezni egy-egy
+ kapcsolót, és így gyorsabban tudjuk kiadni azokat.
+ A rövid kapcsolók előnye, hogy összevonhatók.
+ Tudni kell, hogy a kapcsolók sorrendje nem tetszőleges, mivel hathatnak
+ egymásra, esetleg kizárhatják egymást bizonyos kapcsolók.
+ Megadhatom például a 
+\begin_inset Formula $\$\text{␣}du\text{␣}\text{‐}v\text{␣}\text{‐}h\text{␣}/etc$
+\end_inset
+
+ sort, ami a 
+\begin_inset Formula $\text{‐}v$
+\end_inset
+
+ kapcsolót is akarja használni.
+ Ebben az esetben látjuk, hogy a külön kapcsolók szóközzel vannak elválasztva.
+ A fenti parancs összevonva a következőképpen néz ki: 
+\begin_inset Formula $\$\text{␣}du\text{␣}\text{‐}vh\text{␣}/etc$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+A maradék argumentumunk tipikusan fájlok vagy beállítások neve, amin dolgozni
+ akarunk.
+ Jelen esetben a 
+\begin_inset Formula $/etc$
+\end_inset
+
+ könyvtár.
+ Ide megadhatunk több könyvtárnevet, szóközzel elválasztva.
+ Fontos, hogy a 
+\emph on
+bash
+\emph default
+ mindig szóközönként fogja darabolni a paramétereinket.
+ Mit tehetünk akkor, ha van egy olyan könyvtárunk vagy fájlunk, aminek a
+ nevében szóköz van? Természetesen van erre megoldásunk! A dupla idézőjel
+ (
+\begin_inset Formula $"$
+\end_inset
+
+) közé tett szövegeket a 
+\emph on
+bash
+\emph default
+ nem fogja darabolni.
+ Ezenkívül a szóközt egy 
+\begin_inset Formula $\backslash$
+\end_inset
+
+ (
+\lang english
+backslash
+\lang magyar
+) karakterrel ellátva speciális karakterként fog működni a szóköz, amit
+ a 
+\emph on
+bash
+\emph default
+ nem fog kettétörni így.
+ Példák, amik működnek (szeretnénk a 
+\begin_inset Formula $/alma$
+\end_inset
+
+ és 
+\begin_inset Formula $/egy\ ketto$
+\end_inset
+
+ könyvtárakat megmérni):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\$\text{␣}du\text{␣}\text{‐}h\text{␣}/alma\text{␣}/egy\backslash\text{␣}ketto$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\$\text{␣}du\text{␣}\text{‐}h\text{␣}/alma\text{␣}"/egy\text{␣}ketto"$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\$\text{␣}du\text{␣}\text{‐}h\text{␣}/alma\text{␣}/egy"\text{␣}"ketto$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\$\text{␣}du\text{␣}\text{‐}h\text{␣}"/alma"\text{␣}"/egy\text{␣}ketto"$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
@@ -1043,7 +1731,7 @@ batch
 \end_inset
 
  vagyis kötegelt futtatófájlok megfelelői.
- Általános leírás nehzen adható arra, hogy mikor használjunk scripteket.
+ Általános leírás nehezen adható arra, hogy mikor használjunk scripteket.
  Azokat a feladatokat, amiket
 \end_layout
 
@@ -1063,7 +1751,7 @@ egyszer, de sokszor
 kell végrehajtani, érdemes lescriptelni.
  A scriptelés alapvetően arról szól, hogy a megadott feladatokat, parancsokat
  nem a terminálba írjuk be, hanem egy szöveges fájlba.
- Amikor ezt a fájlt végrehajtjuk, a parancsértelmező sorrol sorra elemzi
+ Amikor ezt a fájlt végrehajtjuk, a parancsértelmező sorról sorra elemzi
  amit írtunk, és végrehajtja az adott feladatot.
  
 \end_layout
@@ -1127,7 +1815,7 @@ Ahogy már szó volt róla, a parancsértelmező fogja futtatni a scriptet.
  Egy scriptben meg kell adnunk, hogy melyik parancsértelmezőt szeretnénk
  használni.
  Ezt néhány speciális karakterrel fogjuk megoldani.
- Ehhez először is ismernünk kell, hogy hogyan készítünk egy scriptbe komment
+ Ehhez először is ismernünk kell, hogy hogyan készítünk egy scriptbe 
 \begin_inset Index idx
 status open
 
@@ -1137,7 +1825,7 @@ komment
 
 \end_inset
 
-et.
+kommentet.
  A kommentek a parancsértelmező által figyelmen kívül hagyott területek,
  alapvetően do\SpecialChar softhyphen
 ku\SpecialChar softhyphen
@@ -1414,7 +2102,7 @@ status open
 \end_inset
 
  parancs egy változóba fogja elmenteni azt a sort, amit a felhasználó a
- standard input
+ 
 \begin_inset Index idx
 status open
 
@@ -1424,6 +2112,10 @@ standard input
 
 \end_inset
 
+
+\emph on
+standard input
+\emph default
 ra ad.
  Készítsünk egy olyan scriptet, ami megkérdezi a nevünket, és a megfelelő
  néven köszönti a felhasználót!
@@ -1486,7 +2178,7 @@ ló.
  karakter valójában egy bash által használt változó értékének lekérését
  fogja jelenteni.
  Ha változóról van szó, akkor a változó nevét fogjuk használni, ha az értékükről
-, akkor elétesszük a 
+, akkor elé tesszük a 
 \begin_inset Formula $\$$
 \end_inset
 
@@ -1494,7 +2186,7 @@ ló.
 \end_layout
 
 \begin_layout Standard
-Bash a változó
+Bash a 
 \begin_inset Index idx
 status open
 
@@ -1504,6 +2196,10 @@ változó
 
 \end_inset
 
+
+\emph on
+változó
+\emph default
 kat együtt kezeli a 
 \begin_inset Index idx
 status open
@@ -1514,8 +2210,12 @@ környezeti változó
 
 \end_inset
 
-környezeti változókkal.
- A környezeti változókat tipkusan nagybetűsen írjuk, a változókat pedig
+
+\emph on
+környezeti változók
+\emph default
+kal.
+ A környezeti változókat tipikusan nagybetűsen írjuk, a változókat pedig
  kisbetűkkel.
 \end_layout
 
@@ -1734,7 +2434,7 @@ Speciális változók
 \end_layout
 
 \begin_layout Standard
-Felfoghatjuk változókként a scritpünk 
+Felfoghatjuk változókként a scriptünk 
 \begin_inset Index idx
 status open
 
@@ -1754,7 +2454,7 @@ paramétereit.
 \end_inset
 
 -ben.
- Ezek a script számára csak bemenő paraméterek, konkrét értkeket tartalmaznak.
+ Ezek a script számára csak bemenő paraméterek, konkrét értékeket tartalmaznak.
  
 \end_layout
 
@@ -1837,7 +2537,7 @@ Változók műveletei
 
 \begin_layout Standard
 A változókkal gyakran végzünk műveleteket.
- Szerencsére a bash gondoskodik nekünk jónéhány gyakran használt művelet
+ Szerencsére a bash gondoskodik nekünk jó néhány gyakran használt művelet
  könnyű megvalósításáról.
  Valójában a változó értékének helyes ki\SpecialChar softhyphen
 í\SpecialChar softhyphen
@@ -1884,7 +2584,7 @@ hello2.sh: Változó máshogy
 
 \end_inset
 
-Az utóbbi szintaxis segít nekünk abban, hogy a változón stringműveleteket
+Az utóbbi szintaxis segít nekünk abban, hogy a változón string műveleteket
  tudjunk végezni.
  A következő táblázat összefoglalja, hogy melyik műveletet hogyan kell elvégezni
  a 
@@ -2140,7 +2840,7 @@ világ!
 \begin_inset Text
 
 \begin_layout Plain Layout
-Rész-szöveg(honna, mennyit)
+Rész-szöveg(honnan, mennyit)
 \end_layout
 
 \end_inset
@@ -2394,7 +3094,7 @@ maradékos osztás maradéka (
 \end_layout
 
 \begin_layout Itemize
-összeads (
+összeadás (
 \begin_inset Formula $+$
 \end_inset
 
@@ -2449,11 +3149,22 @@ Vezérlő szerkezetek
 \end_layout
 
 \begin_layout Standard
-A vezérlő szerkezetek olyan unvierzális építőkövek, amelyek a legtöbb programozá
+A vezérlő szerkezetek olyan univerzális építőkövek, amelyek a legtöbb programozá
 si nyelvre jellemzőek.
  Bashben az összes létező vezérlő szerkezet beágyazható egy másik szerkezetbe
- (például egy ifen belül tehetünk tetszőleges ciklust, azon belül ifet,
- case-t, és így tovább.)
+ (például egy 
+\lang english
+if
+\lang magyar
+-en belül tehetünk tetszőleges ciklust, azon belül 
+\lang english
+if-et
+\lang magyar
+, 
+\lang english
+case-t
+\lang magyar
+, és így tovább.)
 \end_layout
 
 \begin_layout Subsection
@@ -2497,7 +3208,11 @@ status open
 \end_layout
 
 \begin_layout Subsection
-Elágazás (if)
+Elágazás (
+\lang english
+if
+\lang magyar
+)
 \end_layout
 
 \begin_layout Standard
@@ -2515,23 +3230,35 @@ status open
 \end_inset
 
 
+\lang english
+
 \begin_inset Formula $if$
 \end_inset
 
+
+\lang magyar
  paranccsal működik.
  Az 
+\lang english
+
 \begin_inset Formula $if$
 \end_inset
 
+
+\lang magyar
  parancsot a 
 \begin_inset Formula $fi$
 \end_inset
 
  kulcsszóval tudjuk lezárni.
  Az 
+\lang english
+
 \begin_inset Formula $if$
 \end_inset
 
+
+\lang magyar
  kulcsszó után meg kell adni egy parancsot, aminek a visszatérési értékétől
  függően fog lefutni az igaz ág, vagy a hamis ág.
  Mivel a 
@@ -2540,14 +3267,14 @@ status open
 
  hibakód jelenti azt, hogy egy program helyesen lefutott, ezért ez jelenti
  az 
-\begin_inset Formula $igaz$
-\end_inset
-
+\emph on
+igaz
+\emph default
 at.
  Minden más érték 
-\begin_inset Formula $hamis$
-\end_inset
-
+\emph on
+hamis
+\emph default
 nak minősül.
 \end_layout
 
@@ -2684,7 +3411,11 @@ Ne feledjük, hogy a
 \end_layout
 
 \begin_layout Subsection
-Elágazás (case)
+Elágazás (
+\lang english
+case
+\lang magyar
+)
 \end_layout
 
 \begin_layout Standard
@@ -2804,17 +3535,25 @@ status open
 \begin_inset Formula $done$
 \end_inset
 
- kulcssszóval zárjuk.
+ kulcsszóval zárjuk.
  Azt, hogy a ciklus hogyan működik, a ciklus típusa dönti el.
  A ciklus típusának jelzőit nem zárjuk le, a ciklus a 
+\lang english
+
 \begin_inset Formula $done$
 \end_inset
 
+
+\lang magyar
  kulcsszóval ér véget mindig.
 \end_layout
 
 \begin_layout Subsubsection
-For ciklus
+
+\lang english
+For
+\lang magyar
+ ciklus
 \end_layout
 
 \begin_layout Standard
@@ -2832,9 +3571,13 @@ status open
 \end_inset
 
 
+\lang english
+
 \begin_inset Formula $for$
 \end_inset
 
+
+\lang magyar
  ciklust alapvetően arra használjuk, hogy tagolt adatok sorozatát soroljuk
  fel.
  Ezek lehetnek számok, változóban levő elemek, program kimenetének sorai,
@@ -2921,7 +3664,11 @@ for.sh: Számoljunk párosával 10-től 16-ig!
 \end_layout
 
 \begin_layout Subsubsection
-While ciklus
+
+\lang english
+While
+\lang magyar
+ ciklus
 \end_layout
 
 \begin_layout Standard
@@ -2939,9 +3686,13 @@ status open
 \end_inset
 
 
+\lang english
+
 \begin_inset Formula $while$
 \end_inset
 
+
+\lang magyar
  ciklus elöltesztelős ciklus, aminek 
 \begin_inset Index idx
 status open
@@ -2956,13 +3707,21 @@ belépési feltételt adunk.
  Ez azt jelenti, hogy a ciklusmagot csak akkor hajtjuk végre, ha a feltétel
  igaz volt.
  Ehhez ugyanúgy a 
+\lang english
+
 \begin_inset Formula $test$
 \end_inset
 
+
+\lang magyar
  parancsot fogjuk használni, mint ahogy azt az 
+\lang english
+
 \begin_inset Formula $if$
 \end_inset
 
+
+\lang magyar
 -nél tettük.
 \end_layout
 
@@ -3069,7 +3828,11 @@ hibakódja
 \end_layout
 
 \begin_layout Subsubsection
-Until ciklus
+
+\lang english
+Until
+\lang magyar
+ ciklus
 \end_layout
 
 \begin_layout Standard
@@ -3118,8 +3881,15 @@ Felhasználói fiókok, csoportok
 \end_layout
 
 \begin_layout Standard
-A Unix rendszerek kezdetektől fogva többfelhasználós (multiuser) és többfeladato
-s (multitask) operációs rendszerek.
+A Unix rendszerek kezdetektől fogva többfelhasználós (
+\lang english
+multiuser
+\lang magyar
+) és többfeladatos (
+\lang english
+multitask
+\lang magyar
+) operációs rendszerek.
  Ez azt jelenti, hogy a rendszert egyidejűleg több felhasználó egyszerre
  használhatja, és azok az erőforrásokat közösen használhatják a számítógépen.
  A Linux a POSIX szabványban rögzített felhasználókezelést használja.
@@ -3132,9 +3902,9 @@ Felhasználói fiókok
 \begin_layout Standard
 Egy felhasználói fiók többnyire saját tárterülettel rendelkezik.
  A Unix rendszerek a felhasználókhoz társítják a rendelkezésre álló erőforrásoka
-t (memória, CPU, stb), ami lehetővé teszi a közös munkát.
+t (memória, CPU, stb.), ami lehetővé teszi a közös munkát.
  A közös munka velejárója, hogy vannak részletek, amiket privátként szeretnénk
- feltűntetni.
+ feltüntetni.
  Ezt a POSIX jogokkal megtehetjük, a 
 \begin_inset Formula $chmod$
 \end_inset
@@ -3229,7 +3999,7 @@ Fiók típusok
 \end_layout
 
 \begin_layout Standard
-Alapvetően két féle felhasználói fiók létezik: 
+Alapvetően kétféle felhasználói fiók létezik: 
 \begin_inset Formula $root$
 \end_inset
 
@@ -3272,7 +4042,8 @@ A
 \begin_inset Formula $/usr/local/sbin$
 \end_inset
 
-, stb könyvtárakban levő scripteket és parancsokat csak 
+, stb.
+ könyvtárakban levő scripteket és parancsokat csak 
 \begin_inset Formula $root$
 \end_inset
 
@@ -3346,7 +4117,7 @@ Egy Linux rendszerbe általában valamilyen nem
 \begin_inset Formula $login\ shell$
 \end_inset
 
-je, amiben kedvünkre doglozhatunk.
+je, amiben kedvünkre dolgozhatunk.
  Tehát ahhoz, hogy 
 \begin_inset Formula $root$
 \end_inset
@@ -3388,7 +4159,7 @@ A másik lehetőségünk felhasználóváltásra a
 \begin_inset Formula $sudo$
 \end_inset
 
- parancs lesz, ami sokféleképp testreszabható (a beállítása a 
+ parancs lesz, ami sokféleképp testre szabható (a beállítása a 
 \begin_inset Formula $/etc/sudoers$
 \end_inset
 
@@ -3510,7 +4281,7 @@ Felhasználót a
 \begin_inset Formula $passwd$
 \end_inset
 
- fájlba kerül, az egyetlen közelető adat az a felhasználónév.
+ fájlba kerül, az egyetlen kötelező adat az a felhasználónév.
  Fontos, hogy minden felhasználónévnek egyedinek és kisbetűsnek kell lennie
  (és érdemes elkerülni az ékezetes betűket, szóközöket, speciális karaktereket
  bennük).
@@ -3530,7 +4301,7 @@ A
 \end_inset
 
  parancs, amivel a felhasználó adatait tudjuk módosítani.
- A szintaxisa ennek a két parancsnak majdnemhogy megyezik.
+ A szintaxisa ennek a két parancsnak majdnemhogy megegyezik.
  Figyeljünk oda, hogy ha a felhasználó numerikus azonosítóját akarjuk megváltozt
 atni, az jelentős változást idéz elő a lemezen, ugyanis ilyenkor a felhasználóho
 z tartozó összes fájlt frissíti a rendszer, hogy ne veszítse el a felhasználó
@@ -3592,7 +4363,8 @@ Jelszavak
 \begin_layout Standard
 A Linux rendszereken többféle démon gondoskodhat arról, hogy biztonságos
  környezetben dolgozzunk, illetéktelenek ne férjenek hozzá fájljainkhoz,
- erőforrásainkhoz (pl 
+ erőforrásainkhoz (pl.
+ 
 \begin_inset Formula $PAM$
 \end_inset
 
@@ -3662,7 +4434,7 @@ A Linux rendszerek a jelszavakat nem a
 
  fájlban tárolják, hiszen ezek mindenki számára hozzáférhetőek.
  A jelszavakat igazából sehol sem tárolják egyszerű szöveg formában, hanem
- a jelszó úgynevezet hasított változatát (
+ a jelszó úgynevezett hasított változatát (
 \begin_inset Formula $hash$
 \end_inset
 
@@ -4132,7 +4904,7 @@ A Unix alapú rendszerek alapja az, hogy a folyamatok egymás között kommunik�
  felé.
  Ezek a programok szintén elkapják ezeket a szignálokat, aztán vagy lekezelik
  azokat, vagy újabb szignálokat indítanak útnak.
- A szigálokról részletes leírás a 
+ A szignálokról részletes leírás a 
 \begin_inset Formula $signal(7)$
 \end_inset
 
@@ -4198,7 +4970,7 @@ et mindig adott szignálhoz készítünk.
 
 -nek.
  Néhány szignált azonban nem tolmácsol felénk az operációs rendszer, hogy
- ne lehesen leállíthatatlan programot írni.
+ ne lehessen leállíthatatlan programot írni.
 \end_layout
 
 \begin_layout Subsection
@@ -4210,7 +4982,7 @@ Azok az operációs rendszerek, amelyek többfeladatosak, tipikusan több felada
  engednek egyszerre kezelni, mint amennyi fizikai mag van a számítógépben,
  amin futnak.
  A Unix rendszereket is úgy tervezték, hogy azok a különböző végrehajtási
- egységeket váltogatva futattják le.
+ egységeket váltogatva futtatják le.
  Ezek a váltások olyan gyorsan történnek, hogy a felhasználó ne értesüljön
  erről.
  Ezt a módszert multitaskingnak nevezzük.
@@ -4222,7 +4994,7 @@ Azok az operációs rendszerek, amelyek többfeladatosak, tipikusan több felada
 
 \begin_layout Standard
 Linuxon kernel szinten a végrehajtandó programok szálait úgynevezett jobokra
- bontja (nem összekverendő az ugyanilyen nevű folyamatokkal), amelyek a
+ bontja (nem összekeverendő az ugyanilyen nevű folyamatokkal), amelyek a
  programok kódjának lefuttatható részletei.
  Ezeket az úgynevezett ütemező kezeli.
  Az ütemező (scheduler) tisztában van vele, hogy melyik program egészen
@@ -4258,15 +5030,26 @@ Windows rendszereken explicit prioritási szintek vannak, és a felhasználói
 \end_layout
 
 \begin_layout Standard
-A Linux kernelben elérhető a RT szolgáltatás, vagyis valósidejű (realtime)
- ütemezést tud adni programok számára.
+A Linux kernelben elérhető a RT szolgáltatás, vagyis valósidejű (
+\lang english
+real-time
+\lang magyar
+) ütemezést tud adni programok számára.
  Az a program, ami RT prioritást kap, kaphat egy dedikált processzormagot,
  hogy azon végezzen utasításokat, az ütemező közbeszúrása nélkül.
  Ez tipikusan olyan felhasználásokhoz segít, mint például hálózati streamelő
- szolgáltatások, audio/video kódolás.
+ szolgáltatások, 
+\lang english
+audio/video
+\lang magyar
+ kódolás.
  Ezeken a területeken kiemelten fontos, hogy alacsony legyen az adatfeldolgozás
  késleltetése.
- További részletek a sched manuál oldalon találhatók.
+ További részletek a 
+\emph on
+sched
+\emph default
+ manuál oldalon találhatók.
 \end_layout
 
 \begin_layout Standard
