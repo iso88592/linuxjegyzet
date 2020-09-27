@@ -1465,7 +1465,7 @@ A
 \color inherit
  
 \family default
-gombbalésaz egér húzásával tudunk kijelölni.
+gombbal, és az egér húzásával tudunk kijelölni.
  Ha PuTTY-t használunk, akkor a kijelölés azonnal a vágólapra másol, és
  az egér jobb gombjával tudunk vágólapon lévő szöveget beilleszteni.
 \end_layout
@@ -1966,7 +1966,7 @@ prompt
 \emph default
 ot.
  Ne feledjük, igen gyakran előfordul, hogy egy program vagy script rossz
- paramétereznésnek köszönhetően várakozik a felhasználóra.
+ paraméterezésnek köszönhetően várakozik a felhasználóra.
  Ilyenkor nem fagyott le a rendszer, egyszerűen próbáljunk neki megfelelő
  inputot adni, és könnyen rájöhetünk, hogy mi volt a hiba oka! 
 \end_layout
@@ -2379,6 +2379,500 @@ Olvass bele a manuál manuáljába!
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section
+Környezeti változók
+\end_layout
+
+\begin_layout Standard
+Minden operációs rendszerben vannak eltérő dolgok.
+ És most nem arra gondolok, hogy a Linux különbözik a WIndowstól.
+ Ha két Windows rendszert összehasonlítunk - legyenek azok azonos verziójúak
+ akár - eltérések lesznek a rendszerek között.
+ Például az egyik rendszerre feltelepítettünk egy adott programot, a másikra
+ nem.
+ Nincs két azonos rendszer.
+ Az operációs rendszer környezetét ismernünk kell ahhoz, hogy elérjünk bizonyos
+ programokat, illetve a programok helyesen működjenek.
+ Ezeket az információkat 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+környezeti változók
+\end_layout
+
+\end_inset
+
+környezeti változókban fogjuk tárolni.
+ A környezeti változók nem mások, mint szöveges kulcsokhoz rendelt szöveges
+ értékek.
+ Ha úgy tetszik, kulcs-érték párokat tartalmazó halmaz, amely a kulcsok
+ alapján könnyen kereshető.
+ Ezeknek egy részét a rendszer indulásakor kapjuk, másokat magunk állíthatunk
+ be (lásd később, az indítóscripteknél !!TODO!!).
+ A Unix alapú rendszerek erősen építenek arra, hogy ilyen környezeti változókat
+ használunk.
+ Ezekből vannak szabványosak, és természetesen sajátok is, amelyek a rendszer
+ könnyű bővítését teszik lehetővé.
+ Linux rendszerek esetén a környezeti változókat tipiukusan csupa nagybetűvel
+ szoktuk jelölni.
+\end_layout
+
+\begin_layout Subsection
+Szabványos változók 
+\end_layout
+
+\begin_layout Standard
+A Bash változóit az 
+\begin_inset Formula $\$\text{␣}env$
+\end_inset
+
+ paranccsal tudjuk kiírantni.
+ Számos szabványos változó létezik, a legfontosabbakat felsoroljuk.
+\end_layout
+
+\begin_layout Paragraph
+Feladat:
+\end_layout
+
+\begin_layout Standard
+Vizsgáljuk meg, hogy milyen környezeti változóink vannak a rendszerünkön!
+\end_layout
+
+\begin_layout Subsubsection
+Prompt
+\end_layout
+
+\begin_layout Standard
+A prompt, ahogy korábban beszéltünk róla, valójában több környezeti változóból
+ áll.
+ Linuxoknál ez a PS0, PS1, PS2, ...
+ stb.
+ névre hallgat, ebből tipikusan a PS1
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+PS1
+\end_layout
+
+\end_inset
+
+ lesz, amit használunk.
+ A Bash ezt a környezeti változót fogja figyelni minden alkalommal, amikor
+ utasítást vár tőlünk.
+ Ebben vannak speciális karakterek, amiket a Bash le fog cserélni nekünk
+ megfelelő szöveg értékekkel.
+\end_layout
+
+\begin_layout Subsubsection
+PATH
+\end_layout
+
+\begin_layout Standard
+A PATH
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+PATH
+\end_layout
+
+\end_inset
+
+ változóban tároljuk azokat az elérési útvonalakat, amelyekben futtatható
+ fájljaink vannak.
+ A Bash úgy hajtja végre a parancsokat, hogy lineáris keresést hajt végre
+ a PATH változó elemei között, amelyek a 
+\begin_inset Quotes pld
+\end_inset
+
+:
+\begin_inset Quotes prd
+\end_inset
+
+ karakterrel vannak elválasztva.
+ Ha az adott parancs megtalálható valamelyik könyvtárban, a legelső találatot
+ fogja végrehajtani.
+ Ha nem található ilyen parancs, akkor hibaüzenetet kapunk.
+ Érdemes megjegyezni, hogy a saját készítésű scriptjeink tipikusan nem a
+ PATH-on szerepelnek, így azokat csak speciálisan tudjuk elindítani.
+ Ha például van egy 
+\begin_inset Quotes pld
+\end_inset
+
+alma.sh
+\begin_inset Quotes prd
+\end_inset
+
+ scriptünk az aktuális könyvtárunkban, akkor azt a 
+\begin_inset Formula $\$\text{␣}./alma.sh$
+\end_inset
+
+ paranccsal tudjuk lefuttatni.
+\end_layout
+
+\begin_layout Subsubsection
+PWD
+\end_layout
+
+\begin_layout Standard
+A 
+\emph on
+pwd
+\emph default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+pwd
+\end_layout
+
+\end_inset
+
+ parancsot korábban láttuk, hogy kiírja az aktuális könyvtárunk helyét.
+ Valójában ez a PWD környezeti változót fogja használni, ahogy minden más
+ program is, hogy megállapítsa, hogy a relatív elérésű fájljainkat honnan
+ kiindulva kell keresni.
+\end_layout
+
+\begin_layout Subsubsection
+HOME
+\end_layout
+
+\begin_layout Standard
+Amikor a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+~
+\end_layout
+
+\end_inset
+
+~ (hullám, 
+\lang english
+tilde
+\lang magyar
+) karakteret használjuk, a Bash le fogja cserélni nekünk a HOME környezeti
+ változó értékére.
+ Amikor belépünk a rendszerbe, ez a környezeti változó kiértékelődik a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+passwd
+\end_layout
+
+\end_inset
+
+passwd fájl alapján, ahol számon tartjuk, hogy a felhasználónak mi a 
+\lang english
+home
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\lang english
+home
+\end_layout
+
+\end_inset
+
+
+\lang magyar
+ könyvtára.
+ Ezentúl így fogunk hivatkozni erre.
+ Amikor shellt indítunk, tipikusan a home könyvtárban találjuk magunkat,
+ ide van jogunk dolgozni alapvetően.
+ Ez a legtöbbször a /home/<felhasználónév> helyen található a fájlrendszeren.
+ Amikor egy felhasználó 
+\lang english
+home
+\lang magyar
+ könyvtára a kérdés, akkor sohasem a /home-ra gondolunk, hanem arra a könyvtárra
+, ami 
+\lang english
+home
+\lang magyar
+-ként van feltűntetve a felhasználó számára.
+\end_layout
+
+\begin_layout Subsubsection
+USER
+\end_layout
+
+\begin_layout Standard
+Az aktuális felhasználó neve.
+ Használhatjuk a 
+\begin_inset Formula $\$\text{␣}whoami$
+\end_inset
+
+ parancs helyett is.
+\end_layout
+
+\begin_layout Subsection
+Környezeti változók használata
+\end_layout
+
+\begin_layout Standard
+A változókat alapvetően két féle képpen használhatjuk: írhatjuk az értéküket
+ és olvashatjuk az értéküket.
+ Fontos megjegyezni, hogy a Bash vegyesen használja a környezeti változókat
+ és a változókat.
+ Egy egyszerű Bash változót környezeti változóvá léptethetünk elő, ha 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+export
+\end_layout
+
+\end_inset
+
+
+\emph on
+export
+\emph default
+áljuk.
+ Az exportált változók értéke megöröklődik a shellből indított parancsok
+ számára.
+ Azok a változók, amiket nem exportálunk, a Bash számára láthatóak csak.
+\end_layout
+
+\begin_layout Standard
+A környezeti változók két külön shell között nem frissülnek, azok különálló
+ környezeteknek minősülnek.
+ Amikor egy shellt bezárunk, annak összes változója megszűnik.
+\end_layout
+
+\begin_layout Subsubsection
+Változók beállítása
+\end_layout
+
+\begin_layout Standard
+A változó beállításának szintaxisánál két lényeges dolog van: a változó
+ neve, és értéke.
+ A kettő közé egyenlőség jelet teszünk, szóközök nélkül! Példa: 
+\begin_inset Formula $\$\text{␣}ALMA=körte$
+\end_inset
+
+.
+ Ebben az esetben az 
+\begin_inset Formula $ALMA$
+\end_inset
+
+ változó értékét beállítottuk, hogy legyen a 
+\begin_inset Formula $körte$
+\end_inset
+
+ szöveg.
+ Ha ezt környezeti változóként szeretnénk használni, akkor az 
+\begin_inset Formula $export$
+\end_inset
+
+ kulcsszóval tehetjük meg: 
+\begin_inset Formula $\$\text{␣}export\text{␣}ALMA=körte$
+\end_inset
+
+, vagy ha korábban már beállítottuk az 
+\begin_inset Formula $ALMA$
+\end_inset
+
+ értékét, akkor egyszerűen 
+\begin_inset Formula $\$\text{␣}export\text{␣}ALMA$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Változók értékének kiíratása
+\end_layout
+
+\begin_layout Standard
+A változó beállított értékére a 
+\begin_inset Quotes pld
+\end_inset
+
+$
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+$
+\end_layout
+
+\end_inset
+
+
+\begin_inset Quotes prd
+\end_inset
+
+ jellel fogunk tudni hivatkozni.
+ Példa: 
+\begin_inset Formula $\$\text{␣}echo\text{␣}\$ALMA$
+\end_inset
+
+, ami ki fogja íratni az 
+\begin_inset Formula $ALMA$
+\end_inset
+
+ környezeti változó értékét.
+ Fontos, hogy a 
+\begin_inset Quotes pld
+\end_inset
+
+$
+\begin_inset Quotes prd
+\end_inset
+
+ jel egy változó értékét fogja jelenteni.
+ Amikor a változóval akarunk dolgozni, akkor nem használjuk a 
+\begin_inset Quotes pld
+\end_inset
+
+$
+\begin_inset Quotes prd
+\end_inset
+
+-t!
+\end_layout
+
+\begin_layout Subsubsection
+Változóba beolvasás
+\end_layout
+
+\begin_layout Standard
+A 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+standard input
+\end_layout
+
+\end_inset
+
+standard input hasznos eszköz arra, hogy adatot vigyünk be a rendszer számára.
+ Ezt a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+read
+\end_layout
+
+\end_inset
+
+
+\emph on
+read
+\emph default
+ parancs teszi lehetővé számunkra.
+ Ne feledjük el, hogy a POSIX szabvány erősen ajánlja, hogy minden beolvasáshoz
+ tartozzon egy 
+\emph on
+prompt
+\emph default
+, amit a -p kapcsolóval fogunk tudni beállítani.
+ Példa: 
+\begin_inset Formula $\$\text{␣}read\text{␣}\text{‐}p\text{␣}"Hány\text{␣}éves\text{␣}vagy?\text{␣}"\text{␣}EV$
+\end_inset
+
+ az EV környezeti változóba fogja olvasni a következő sor tartalmát.
+ Szabványos módon tudnk jelszót bekérni a -s kapcsolóval, amely így az inputról
+ érkező karaktereket nem jeleníti meg.
+\end_layout
+
+\begin_layout Subsubsection
+
+\lang english
+Alias
+\lang magyar
+-ok
+\end_layout
+
+\begin_layout Standard
+Megkönnyíthetjük a saját életünket, ha a gyakran kiadott, és hosszú parancsok
+ helyett úgynevezett 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+alias
+\end_layout
+
+\end_inset
+
+
+\emph on
+aliasz
+\emph default
+okat hozunk létre.
+ Hasonló képpen működnek, mint a környezeti változók, viszont kifejezetten
+ parancsok rövidítésére szoktunk használni őket.
+ Egy ilyen rövidítést megadhatnánk környezeti változóval a következő képpen:
+ 
+\begin_inset Formula $\$\text{␣}LISTA="ls\text{␣‐}l\text{␣‐}a\text{␣‐}h$
+\end_inset
+
+, ilyenkor a 
+\begin_inset Formula $\$\text{␣}\$LISTA$
+\end_inset
+
+ parancs végrehajtja a megadott parancsot.
+ Azért, hogy rendes parancsként használhassuk az aliaszokat, ezeknél nem
+ fogjuk a 
+\begin_inset Quotes pld
+\end_inset
+
+$
+\begin_inset Quotes prd
+\end_inset
+
+ jelet használni.
+ Példa: 
+\begin_inset Formula $\$\text{␣}alias\text{␣}lista="ls\text{␣‐}l\text{␣‐}a\text{␣‐}h"$
+\end_inset
+
+, ebben az esetben a 
+\begin_inset Formula $\$\text{␣}lista$
+\end_inset
+
+ parancs is ugyanazt a kimenetet fogja eredményezni.
+ Aliasként megadhatunk alapértelmezett rövidítéseket is: például a 
+\begin_inset Quotes pld
+\end_inset
+
+lista
+\begin_inset Quotes prd
+\end_inset
+
+ helyett az 
+\begin_inset Quotes pld
+\end_inset
+
+ls
+\begin_inset Quotes prd
+\end_inset
+
+ is megadható, ilyenkor az 
+\begin_inset Formula $\$\text{␣}ls$
+\end_inset
+
+ parancs a hosszabb parancsra fog kiértékelődni.
+ Ha egy aliaszra nincs már szükségünk, az 
+\begin_inset Formula $\$\text{␣}unalias$
+\end_inset
+
+ parancsot használhatjuk, hogy megszüntessük azt.
+ 
 \end_layout
 
 \begin_layout Chapter
