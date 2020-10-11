@@ -2875,6 +2875,463 @@ ls
  
 \end_layout
 
+\begin_layout Section
+Könyvtárak és fájlok kezelése
+\end_layout
+
+\begin_layout Standard
+Linux rendszereken alapvetően két féle entitásunk létezik: a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+directory
+\end_layout
+
+\end_inset
+
+
+\emph on
+directory
+\emph default
+-k és a 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file
+\end_layout
+
+\end_inset
+
+
+\emph on
+file
+\emph default
+-ok.
+ Ezeket magyarul könyvtáraknak és fájloknak (esetleg állományoknak) nevezzük.
+ Egy könyvtár alá további könyvtárak vagy fájlok tartozhatnak.
+ 
+\end_layout
+
+\begin_layout Subsection
+A Unix könyvtárszerkezete
+\end_layout
+
+\begin_layout Standard
+A könyvtárak egymásba ágyazottsága hierarchikus módon történik.
+ Ebből következik, hogy létezik egy speciális könyvtár, amiből minden másik
+ könyvtár elérhető.
+ Ezt nevezzük 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+root directory
+\end_layout
+
+\end_inset
+
+
+\emph on
+root directory
+\emph default
+-nak, vagy 
+\emph on
+gyökérkönyvtár
+\emph default
+nak.
+ Ezt a 
+\begin_inset Quotes pld
+\end_inset
+
+
+\begin_inset Formula $/$
+\end_inset
+
+
+\begin_inset Quotes prd
+\end_inset
+
+ karakter fogja jelezni.
+ Unix rendszerek esetében minden további könyvtár a 
+\emph on
+root
+\emph default
+-ból érhető el, nem meghajtóként tekintünk a különböző meghajtókon levő
+ fájlokra, ezek is egy megfelelő könyvtárba kerülnek.
+ Erről egy későbbi fejezetben lesz szó.
+\end_layout
+
+\begin_layout Standard
+A leggyakoribb könyvtárak, amikkel találkozunk, a 
+\emph on
+/bin
+\emph default
+, 
+\emph on
+/etc
+\emph default
+, 
+\emph on
+/home
+\emph default
+, /tmp.
+ Az elsőben a futtatható fájlok (parancsok, programok) találhatók.
+ Az /etc könyvtár a rendszer beállításait tartalmazza.
+ A 
+\emph on
+/home
+\emph default
+ könyvtárban a felhasználók saját fájljai találhatók, a 
+\emph on
+/tmp
+\emph default
+ pedig az átmeneti fájlok tárolására használható.
+\end_layout
+
+\begin_layout Standard
+Unix alapú fájlrendszereknél megkülönböztetjük a kis- és nagybetűket! Tehát
+ létrehozhatunk egy 
+\begin_inset Formula $alma$
+\end_inset
+
+ könyvtárat, és egy teljesen különböző, 
+\begin_inset Formula $Alma$
+\end_inset
+
+ könyvtárat is!
+\end_layout
+
+\begin_layout Subsubsection
+Relatív és abszolút elérés
+\end_layout
+
+\begin_layout Standard
+A könyvtárak neveit a 
+\begin_inset Quotes pld
+\end_inset
+
+
+\begin_inset Formula $/$
+\end_inset
+
+
+\begin_inset Quotes prd
+\end_inset
+
+ jellel választjuk el.
+ A Unix rendszerek mindig az aktuális munkakönyvtárból dolgoznak (lásd:
+ 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+PWD
+\end_layout
+
+\end_inset
+
+
+\emph on
+PWD
+\emph default
+).
+ Ha a jelenlegi könyvtáram a 
+\begin_inset Formula $/home/tanulo$
+\end_inset
+
+, és el akarom érni az itt található 
+\begin_inset Formula $tananyag$
+\end_inset
+
+ könyvtárat, akkor egyszerűen használhatom a 
+\begin_inset Formula $tananyag$
+\end_inset
+
+ nevet.
+ Ha a munkakönyvtáram a 
+\begin_inset Formula $/home$
+\end_inset
+
+, akkor a 
+\begin_inset Formula $tanulo/tananyag$
+\end_inset
+
+ névvel fogom ugyanezt elérni.
+\end_layout
+
+\begin_layout Standard
+Van két speciális könyvtárnevünk.
+ Az egyik a 
+\begin_inset Quotes pld
+\end_inset
+
+
+\begin_inset Formula $.$
+\end_inset
+
+
+\begin_inset Quotes prd
+\end_inset
+
+, amely az aktuális könyvtár nevét fogja jelenteni.
+ A másik a 
+\begin_inset Quotes pld
+\end_inset
+
+
+\begin_inset Formula $..$
+\end_inset
+
+
+\begin_inset Quotes prd
+\end_inset
+
+, ami a szülő könyvtárat jelenti, vagyis azt a könyvtárat, amelyikben megtalálha
+tó az aktuális könyvtár.
+ Így az aktuális könyvtárban található 
+\begin_inset Formula $tananyag$
+\end_inset
+
+ könyvtárat elérhetem a 
+\begin_inset Formula $./tananyag$
+\end_inset
+
+ névvel is.
+ Ha a 
+\begin_inset Formula $/home/tanulo$
+\end_inset
+
+ könyvtárból el akarom érni a 
+\begin_inset Formula $/etc$
+\end_inset
+
+ könyvtárat, ahhoz meg kell találnunk először is, hogy a két könyvtárnak
+ melyik a közös szülője.
+ Látszik, hogy ez a 
+\begin_inset Formula $/$
+\end_inset
+
+, vagyis a root lesz.
+ Ehhez a 
+\begin_inset Formula $/home/tanulo$
+\end_inset
+
+-ból két szintet kell felfelé lépnem.
+ Vagyis az elérés így fog kinézni: 
+\begin_inset Formula $../../etc$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A fenti példákban úgynevezett 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+relatív elérés
+\end_layout
+
+\end_inset
+
+
+\emph on
+relatív elérés
+\emph default
+t használtunk, mivel az aktuális munkakönyvtárhoz képest adtuk meg a könyvtár
+ helyét.
+\end_layout
+
+\begin_layout Standard
+Bármikor használhatunk 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+abszolút elérés
+\end_layout
+
+\end_inset
+
+
+\emph on
+abszolút elérés
+\emph default
+t, ami attól lesz abszolút, hogy akárhol vagyunk a fájlrendszerünkben, mindig
+ ugyanazt a helyet fogjuk megtalálni.
+ Mivel mindennel közös a 
+\emph on
+root
+\emph default
+ könyvtár, ezért minden könyvtárat, amit a 
+\emph on
+root
+\emph default
+-tól határozunk meg, abszolút útvonalnak hívunk.
+ Tehát minden olyan útvonal, ami 
+\begin_inset Quotes pld
+\end_inset
+
+
+\begin_inset Formula $/$
+\end_inset
+
+
+\begin_inset Quotes prd
+\end_inset
+
+ jellel kezdődik, abszolút elérés lesz.
+ A fenti példában a 
+\begin_inset Formula $tananyag$
+\end_inset
+
+ könyvtár abszolút elérésű megadása a 
+\begin_inset Formula $/home/tanulo/tananyag$
+\end_inset
+
+ lesz.
+\end_layout
+
+\begin_layout Subsection
+Könyvtárak műveletei
+\end_layout
+
+\begin_layout Standard
+Az első parancsot már láttuk korábban.
+ A munkakönyvtár változtatása a 
+\begin_inset Formula $\$\text{␣}cd$
+\end_inset
+
+ paranccsal történik.
+ Paraméternek megadjuk, hogy hova szeretnénk lépni.
+ Ahol elérési utat, vagy fájlnevet kell megadni, használhatunk relatív vagy
+ abszolút elérési útvonalakat.
+ Ha úgy van beállítva a 
+\emph on
+prompt
+\emph default
+, a munkakönyvtár változásáról visszajelzést kapunk, de ezt a 
+\begin_inset Formula $\$\text{␣}pwd$
+\end_inset
+
+ paranccsal is ellenőrizhetjük.
+\end_layout
+
+\begin_layout Standard
+Könyvtárakat létre tudunk hozni az 
+\begin_inset Formula $\$\text{␣}mkdir$
+\end_inset
+
+ paranccsal (make directory).
+ Ahány paramétert kap, annyi könyvtárat hoz létre.
+ Figyelnünk kell rá, hogy az a könyvtár, ahova létre akarjuk hozni az új
+ könyvtárat, már létezzen.
+ Ellenkező esetben hibát kapunk.
+ Ha egész könyvtárszerkezetet akarunk létrehozni, a 
+\begin_inset Formula $\$\text{␣}mkdir\text{␣}\text{‐}p\text{␣}<könyvtárak>$
+\end_inset
+
+ paranccsal tehetjük meg.
+ Ilyenkor a nem létező könyvtárakat megpróbálja létrehozni a rendszer.
+\end_layout
+
+\begin_layout Standard
+Ha törölni akarunk üres könyvtárat, az 
+\begin_inset Formula $\$\text{␣}rmdir$
+\end_inset
+
+ parancsot használjuk.
+ Fontos, hogy ha a könyvtár nem üres, akkor ez a parancs nem fogja törölni
+ azt.
+\end_layout
+
+\begin_layout Subsection
+Fájlok műveletei
+\end_layout
+
+\begin_layout Standard
+A fájlokkal kicsit másképp bánunk, mint a könyvtárakkal.
+ Csak úgy üres fájlt létrehozni a 
+\begin_inset Formula $\$\text{␣}touch$
+\end_inset
+
+ paranccsal tudunk, ám ez a parancs nem egészen erre lett kitalálva.
+ Ezzel a paranccsal a fájl információit tudjuk frissíteni, és ha nem létezettt
+ eddig, akkor létrehozzuk, üres tartalommal.
+\end_layout
+
+\begin_layout Standard
+Unix fájlok esetén a fájlok tartalma fogja jelenteni a fájl típusát.
+ Vagyis nem feltétlenül van kiterjesztésünk egy fájl nevének végén.
+ Azt, hogy egy adott fájl milyen típusú, a 
+\begin_inset Formula $\$\text{␣}file$
+\end_inset
+
+ paranccsal tehetjük meg.
+ Ez közli velünk a fájl típusát, esetlegesen a kódolását és sorvégződését.
+\end_layout
+
+\begin_layout Standard
+Lesznek olyan fájlműveleteink, amik megegyeznek a könyvtárakéval.
+ Nézzük először a mozgatás parancsot! 
+\begin_inset Formula $\$\text{␣}mv$
+\end_inset
+
+ (move).
+ Először meg kell adni, hogy mit szeretnénk mozgatni, és hogy hova szeretnénk
+ áthelyezni.
+ A mozgatás ezen kívül fájlok és könyvtárak átnevezését is megoldja, hiszen
+ az átnevezés valójában egy olyan mozgatás, ami más nevet ad egy fájlnak
+ vagy könyvtárnak.
+\end_layout
+
+\begin_layout Standard
+A mozgatás parancshoz nagyon hasonló lesz a 
+\begin_inset Formula $\$\text{␣}cp$
+\end_inset
+
+ (copy) parancsunk, amely másolni fog fájlokat.
+ Egy különbség, hogy egész könyvtárak másolásához a 
+\begin_inset Formula $\$\text{␣}cp\text{␣}\text{‐}r$
+\end_inset
+
+ kapcsolót kell használnunk.
+\end_layout
+
+\begin_layout Standard
+Fájlok, könyvtárstruktúrák törléséhez az 
+\begin_inset Formula $\$\text{␣}rm$
+\end_inset
+
+ (remove) parancsot használjuk.
+ Ha könyvtárat akarunk törölni, minden esetben meg kell adni a 
+\begin_inset Formula $\$\text{␣}rm\text{␣}\text{‐}r$
+\end_inset
+
+ kapcsolót is.
+\end_layout
+
+\begin_layout Paragraph
+Feladat: 
+\end_layout
+
+\begin_layout Standard
+hozz létre 20 szöveges fájlt, amelyeknek a neve legyen egy-egy állatfaj
+ neve! Hozd létre az 
+\begin_inset Quotes pld
+\end_inset
+
+allatok
+\begin_inset Quotes prd
+\end_inset
+
+ könyvtárat, amelybe létrehozod a rendszertani besorolásuk szerinti könyvtárszer
+kezetet! Mozgasd a megfelelő helyekre az állatokat!
+\end_layout
+
 \begin_layout Chapter
 \begin_inset CommandInset label
 LatexCommand label
