@@ -3517,6 +3517,967 @@ name "chap:Reguláris-kifejezések"
 Reguláris kifejezések
 \end_layout
 
+\begin_layout Section
+Egyszerű helyettesítések
+\end_layout
+
+\begin_layout Standard
+Gyakran több fájlon szeretnénk dolgozni.
+ Gyakran ezek a fájlok rendelkeznek valamilyen azonos tulajdonságokkal a
+ nevükben.
+ Éppen ezért lehetőségünk van Bash helyettesítéseket alkalmazni.
+ Ezek ismerősek lehetnek, szokták másként joker karaktereknek is nevezni
+ őket.
+ Csupán néhány egyszerű szabállyal rengeteg lehetőségünk nyílik.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+helyettesítő
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+jelentés
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+példa
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $?$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Egy tetszőleges karakter
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+a?ma 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ alma
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $*$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Akármennyi tetszőleges karakter
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+*ma 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ alma, pálma
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left[halmaz\right]$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Halmaz elemeinek megfelelő karakter
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+al[mf]a 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ alma, alfa 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left[!halmaz\right]$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A halmaz elemeitől különböző karakter
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+al[!f]a 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ alma
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Vegyünk néhány példát helyettesítésre:
+\end_layout
+
+\begin_layout Itemize
+A pontosan három karakter hosszú, 
+\begin_inset Quotes pld
+\end_inset
+
+a
+\begin_inset Quotes prd
+\end_inset
+
+ betűvel kezdődő fájlok kilistázása: 
+\begin_inset Formula $\$\text{␣}ls\text{␣}a??$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+A pontosan négy karakter hosszú, 
+\begin_inset Quotes pld
+\end_inset
+
+a
+\begin_inset Quotes prd
+\end_inset
+
+ betűre végződő fájlok képernyőre íratása: 
+\begin_inset Formula $\text{\$␣}cat\text{␣}???a$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+A legalább négy karakter hosszú fájlok kilistázása: 
+\begin_inset Formula $\$\text{␣}ls\text{␣}????*$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Az ábécé betűível kezdődő fájlok kilistázása: 
+\begin_inset Formula $\$\text{␣}ls\text{␣}[a-z]*$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+A nem számmal kezdődő fájlok kilistázása: 
+\begin_inset Formula $\$␣ls\text{␣}[!0-9]*$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+A k, l, m betűkkel kezdődő, és magánhangzóra végződő fájlok kilistázása:
+ 
+\begin_inset Formula $\$\text{␣}ls\text{␣}[klm]*[aeiou]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Láthatjuk, hogy rengeteg lehetőségünk van fájlok nevére illeszkedő kifejezéseket
+ adni.
+ Azonban ez kevés ahhoz, hogy például szövegekre keressünk fájlok tartalmában.
+\end_layout
+
+\begin_layout Section
+Mik azok a reguláris kifejezések?
+\end_layout
+
+\begin_layout Standard
+A reguláris kifejezések egy nyelvcsaládot írnak le.
+ Egy olyan szövegről van szó, amely szövegek illeszkedési szabályait írja
+ le.
+ Úgy kell elképzelni, mint a helyettesítési karakter
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+helyettesítési karakter
+\end_layout
+
+\end_inset
+
+eket, csak más szabályokkal.
+ Fontos tudni, hogy nem minden írható le reguláris kifejezésekkel, de a
+ legtöbb szöveg keresési probléma praktikusan megoldható velük.
+ A regluáris kifejezések a következő szabályok alapján értékelődnek ki:
+\end_layout
+
+\begin_layout Itemize
+a nem speciális karakterek (vagyis, amik nem részei a listának), azok saját
+ magukra értékelődnek ki.
+\end_layout
+
+\begin_layout Itemize
+a speciális karakterek előtti 
+\begin_inset Quotes pld
+\end_inset
+
+
+\backslash
+
+\begin_inset Quotes prd
+\end_inset
+
+ karakter a speciális karakter képének felel meg.
+ Vagyis a 
+\begin_inset Quotes pld
+\end_inset
+
+
+\backslash
+
+\backslash
+
+\begin_inset Quotes prd
+\end_inset
+
+ egy darab 
+\begin_inset Quotes pld
+\end_inset
+
+
+\backslash
+
+\begin_inset Quotes prd
+\end_inset
+
+ jelnek felel meg, a 
+\begin_inset Quotes pld
+\end_inset
+
+
+\backslash
+.
+\begin_inset Quotes prd
+\end_inset
+
+ egy pont karakternek, stb.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="10" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+speciális karakter
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+jelentés
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Egy tetszőleges karakter
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left[halmaz\right]$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Halmaz elemeinek megfelelő karakter
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left[\mathcircumflex halmaz\right]$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A halmaz elemeitől különböző karakter
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $*$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Az őt megelőző kifejezésből tetszőleges (akár nulla) darab vétele
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left(\,\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A zárójelen belüli kifejezés kiértékelése (például a 
+\begin_inset Formula $*$
+\end_inset
+
+-gal kombinálva)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $|$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Vagy kifejezés (elválasztás a jobb és bal oldali rész alapján)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathcircumflex$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sor eleje
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\$$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sor vége
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $?$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Az őt megelőző kifejezésből egy, vagy nulla darab vétele
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Kiterjesztett reguláris kifejezésel
+\end_layout
+
+\begin_layout Standard
+A kiterjesztett reguláris kifejezések pár új szabályt hoznak be.
+ Egy kicsit másképp kell őket kezelni, mint az egyszerű társaikat, és ezért
+ kicsit lassabbak, mint társaik, viszont sokkal többet tudnak.
+ A kifejezések leírása válik egyszerűbbé a kiterjesztéseknek köszönhetően,
+ ugyanis itt lehetőségünk van konkrét számosságok megadására.
+ 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+speciális karakter
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+jelentés
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $+$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Az őt megelőző kifejezésből legalább egy darab vétele
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left\{ n,m\right\} $
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Az őt megelőző kifejezésből legalább 
+\begin_inset Formula $n$
+\end_inset
+
+, de legfeljebb 
+\begin_inset Formula $m$
+\end_inset
+
+ darab vétele.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nézzük meg, hogy hogyan tudjuk ezeket a kifejezéseket használni!
+\end_layout
+
+\begin_layout Subsection
+grep
+\end_layout
+
+\begin_layout Standard
+Először is a 
+\begin_inset Formula $grep$
+\end_inset
+
+ parancs lesz a szűrőnk, ami segítségével szövegfájlok tartalmát fogjuk
+ szűrni.
+ Egy reguláris kifejezés segítségével csak azokat a sorokat listázzuk ki,
+ amelyek illeszkednek az adott reguláris kifejezésre.
+\end_layout
+
+\begin_layout Standard
+Egy fájlban a következő szintaxissal tudjuk megkeresni az 
+\begin_inset Quotes pld
+\end_inset
+
+alma
+\begin_inset Quotes prd
+\end_inset
+
+ kifejezést az adat.txt-ben:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\$\text{␣}grep\text{␣}'alma'\text{␣}adat.txt
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Láthatjuk, hogy a kifejezést szimpla idézőjelek közé tettük.
+ Ezt célszerű megszokni, mivel ezek elhagyásával a bash könnyen megtréfálhat
+ minket, és a 
+\begin_inset Quotes pld
+\end_inset
+
+*
+\begin_inset Quotes prd
+\end_inset
+
+ karakter helyére behelyettesítheti az aktuális könyvtár fájljainak neveit.
+\end_layout
+
+\begin_layout Standard
+A kiterjesztett reguláris kifejezéseket az 
+\begin_inset Formula $\$\text{␣}egrep$
+\end_inset
+
+ paranccsal tudjuk használni, hasonló szintaxissal.
+ Ha nem adunk meg fájlnevet, akkor a 
+\begin_inset Formula $grep$
+\end_inset
+
+ és 
+\begin_inset Formula $egrep$
+\end_inset
+
+ parancsok a standard inputot fogják használni a szűrés adataiként.
+\end_layout
+
+\begin_layout Subsection
+sed
+\end_layout
+
+\begin_layout Standard
+A 
+\begin_inset Formula $sed$
+\end_inset
+
+ parancs segítségével meg tudunk változtatni szövegeket.
+ A 
+\begin_inset Formula $sed$
+\end_inset
+
+ rendelkezik jónéhány opcióval, amelyekből mi az 
+\begin_inset Quotes pld
+\end_inset
+
+s
+\begin_inset Quotes prd
+\end_inset
+
+ opciót fogjuk használni (substitute, helyettesítés).
+ A 
+\begin_inset Formula $sed$
+\end_inset
+
+ parancs paramétének megadjuk az 
+\begin_inset Quotes pld
+\end_inset
+
+s
+\begin_inset Quotes prd
+\end_inset
+
+ argumentumot, és ezt paraméterezzük fel.
+ Először is egy elválasztó karaktert kér tőlünk, ami elválasztja a helyettesítés
+ parancs paramétereit.
+ Általánosan ez így néz ki: 
+\begin_inset Formula $\$\,sed\,"s/\left\langle cserélendő\right\rangle /\left\langle mire\right\rangle /\left\langle módosítók\right\rangle $
+\end_inset
+
+.
+ A 
+\begin_inset Formula $\left\langle cserélendő\right\rangle $
+\end_inset
+
+ rész egy reguláris kifejezés, ami a rá illeszkedő szövegeket a 
+\begin_inset Formula $\left\langle mire\right\rangle $
+\end_inset
+
+ szövegre helyettesíti.
+ Több módosítót is tehetünk a parancs végére.
+ Alapértelmezésben soronként az első találatot fogja csak helyettesíteni
+ a 
+\begin_inset Formula $sed$
+\end_inset
+
+, ám ha a 
+\begin_inset Quotes pld
+\end_inset
+
+g
+\begin_inset Quotes prd
+\end_inset
+
+ módosítót megadjuk neki, akkor a sorokon belül az összes találatot helyettesíte
+ni fogja.
+ A leggyakrabban a 
+\begin_inset Quotes pld
+\end_inset
+
+/
+\begin_inset Quotes prd
+\end_inset
+
+ karaktert használjuk a mezők elválasztására, viszont a 
+\begin_inset Formula $sed$
+\end_inset
+
+ bármilyen karaktert enged nekünk erre.
+ Ha például elérési útvonalakkal dolgozunk, célszerű valamilyen más karaktert
+ választani erre a célra (például 
+\begin_inset Quotes pld
+\end_inset
+
+%
+\begin_inset Quotes prd
+\end_inset
+
+-t).
+\end_layout
+
+\begin_layout Subsubsection
+Csoportok
+\end_layout
+
+\begin_layout Standard
+Lehetőség van a reguláris kifejezésben csoportok megadására, amelyekre hivatkozh
+atunk a 
+\begin_inset Formula $\left\langle mire\right\rangle $
+\end_inset
+
+ résznél.
+ A csoport kijelölése hasonló, mint a zárójeleké, ám ezeket 
+\begin_inset Formula $\backslash($
+\end_inset
+
+ és 
+\begin_inset Formula $\backslash)$
+\end_inset
+
+ közé tesszük.
+ Ezekre hivatkozni a 
+\begin_inset Formula $\backslash1$
+\end_inset
+
+, 
+\begin_inset Formula $\backslash2$
+\end_inset
+
+, … szövegekkel tudunk.
+ Például próbáljuk meg az input első két oszlopát megcserélni! 
+\begin_inset Formula 
+\[
+\$\text{␣}sed\text{␣}"s/\mathcircumflex\backslash([\mathcircumflex\text{␣}]*\backslash)\text{␣\textbackslash(}[\mathcircumflex\text{␣}]*\backslash)/\backslash2␣\backslash1/"
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Láthatjuk, hogy a két, kerek zárójel közötti rész között található a szóköz,
+ ami elválasztja az első két csoportot.
+ Mindkét csoportban keressük a leghosszabb, sorozatokat, amelyek nem tartalmazna
+k szóközöket.
+ Ezen kívül előírjuk, hogy a keresés a szöveg elejétől kezdődjön.
+\end_layout
+
+\begin_layout Chapter
+Linux rendszerek
+\end_layout
+
+\begin_layout Section
+Posix jogok
+\end_layout
+
+\begin_layout Subsection
+chmod
+\end_layout
+
+\begin_layout Section
+Fájlrendszerek
+\end_layout
+
+\begin_layout Section
+Folyamok
+\end_layout
+
+\begin_layout Subsection
+Átirányítás
+\end_layout
+
+\begin_layout Subsection
+Csővezetékek
+\end_layout
+
+\begin_layout Section
+Csomagkezelés
+\end_layout
+
+\begin_layout Section
+Linux kernel modulok
+\end_layout
+
+\begin_layout Section
+Hálózatkezelés
+\end_layout
+
+\begin_layout Subsection
+Interfészek
+\end_layout
+
+\begin_layout Subsection
+Útvonalak
+\end_layout
+
 \begin_layout Chapter
 Scriptek
 \end_layout
