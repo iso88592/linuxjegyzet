@@ -2549,7 +2549,7 @@ Környezeti változók
 
 \begin_layout Standard
 Minden operációs rendszerben vannak eltérő dolgok.
- És most nem arra gondolok, hogy a Linux különbözik a WIndowstól.
+ És most nem arra gondolok, hogy a Linux különbözik a Windowstól.
  Ha két Windows rendszert összehasonlítunk — legyenek azok azonos verziójúak
  akár — eltérések lesznek a rendszerek között.
  Például az egyik rendszerre feltelepítettünk egy adott programot, a másikra
@@ -2578,7 +2578,7 @@ ban fogjuk tárolni.
  használunk.
  Ezekből vannak szabványosak, és természetesen sajátok is, amelyek a rendszer
  könnyű bővítését teszik lehetővé.
- Linux rendszerek esetén a környezeti változókat tipiukusan csupa nagybetűvel
+ Linux rendszerek esetén a környezeti változókat tipikusan csupa nagybetűvel
  szoktuk jelölni.
 \end_layout
 
@@ -2591,7 +2591,7 @@ A Bash változóit az
 \begin_inset Formula $\$\text{␣}env$
 \end_inset
 
- paranccsal tudjuk kiírantni.
+ paranccsal tudjuk kiíratni.
  Számos szabványos változó létezik, a legfontosabbakat felsoroljuk.
 \end_layout
 
@@ -2771,7 +2771,7 @@ home
 \lang english
 home
 \lang magyar
--ként van feltűntetve a felhasználó számára.
+-ként van feltüntetve a felhasználó számára.
 \end_layout
 
 \begin_layout Subsubsection
@@ -2957,8 +2957,8 @@ prompt
 \end_inset
 
  az EV környezeti változóba fogja olvasni a következő sor tartalmát.
- Szabványos módon tudnk jelszót bekérni a -s kapcsolóval, amely így az inputról
- érkező karaktereket nem jeleníti meg.
+ Szabványos módon tudunk jelszót bekérni a -s kapcsolóval, amely így az
+ inputról érkező karaktereket nem jeleníti meg.
 \end_layout
 
 \begin_layout Subsubsection
@@ -3434,7 +3434,7 @@ A fájlokkal kicsit másképp bánunk, mint a könyvtárakkal.
 \end_inset
 
  paranccsal tudunk, ám ez a parancs nem egészen erre lett kitalálva.
- Ezzel a paranccsal a fájl információit tudjuk frissíteni, és ha nem létezettt
+ Ezzel a paranccsal a fájl információit tudjuk frissíteni, és ha nem létezett
  eddig, akkor létrehozzuk, üres tartalommal.
 \end_layout
 
@@ -3815,7 +3815,10 @@ helyettesítési karakter
 eket, csak más szabályokkal.
  Fontos tudni, hogy nem minden írható le reguláris kifejezésekkel, de a
  legtöbb szöveg keresési probléma praktikusan megoldható velük.
- A regluáris kifejezések a következő szabályok alapján értékelődnek ki:
+ Ezek a kifejezések nem csak Linux rendszereken lesznek hasznosak a számunkra,
+ ugyanis ezek elsajátításával tetszőleges programozási nyelvben egyszerűbbé,
+ hatékonyabbá válik a szövegek keresése és átalakítása.
+ A reguláris kifejezések a következő szabályok alapján értékelődnek ki:
 \end_layout
 
 \begin_layout Itemize
@@ -4116,7 +4119,7 @@ Az őt megelőző kifejezésből egy, vagy nulla darab vétele
 \end_layout
 
 \begin_layout Subsection
-Kiterjesztett reguláris kifejezésel
+Kiterjesztett reguláris kifejezéssel
 \end_layout
 
 \begin_layout Standard
@@ -4303,7 +4306,7 @@ A
 \begin_inset Formula $sed$
 \end_inset
 
- rendelkezik jónéhány opcióval, amelyekből mi az 
+ rendelkezik jó néhány opcióval, amelyekből mi az 
 \begin_inset Quotes pld
 \end_inset
 
@@ -4316,7 +4319,7 @@ s
 \begin_inset Formula $sed$
 \end_inset
 
- parancs paramétének megadjuk az 
+ parancs paraméterének megadjuk az 
 \begin_inset Quotes pld
 \end_inset
 
@@ -4435,11 +4438,15 @@ Linux rendszerek
 \end_layout
 
 \begin_layout Section
-Posix jogok
+POSIX jogok
 \end_layout
 
 \begin_layout Subsection
 chmod
+\end_layout
+
+\begin_layout Subsection
+ACL
 \end_layout
 
 \begin_layout Section
@@ -4500,7 +4507,7 @@ A standard output (amit 1-es számmal jelölünk), a
 
 \begin_layout Standard
 Próbáljuk ki, mi történik ilyenkor! Az aktuális fájlok listáját megkapjuk
- a lista.txt fájlban! Ha mégegyszer kiadjuk ezt a parancsot, akkor felülírjuk
+ a lista.txt fájlban! Ha még egyszer kiadjuk ezt a parancsot, akkor felülírjuk
  az előző fájlt.
 \end_layout
 
@@ -4681,7 +4688,7 @@ A technika lényege, hogy a programokat felfűzzük egy csővezetékre oly módo
 
 \begin_layout Standard
 Technikailag minden folyamat elindul párhuzamosan, és amikor az egyik olvasni
- tud a másik kiemenetéről, a kiolvasott adatot feldolgozza, és rögtön adja
+ tud a másik kimenetéről, a kiolvasott adatot feldolgozza, és rögtön adja
  is tovább a következő részére.
  Így egy nagyon hatékony, és processzor barát megoldást alkalmaznak a UNIX
  rendszerek.
