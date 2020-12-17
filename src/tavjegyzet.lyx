@@ -4450,12 +4450,335 @@ Fájlrendszerek
 Folyamok
 \end_layout
 
+\begin_layout Standard
+Ahogy már korábban beszéltünk róla, a POSIX folyamatok rendelkeznek egy
+ standard input, standard output és standard error hármassal, amik bemeneti
+ és kimeneti célokat látnak el.
+ Sok programról beszéltünk már, ami ilyen módon működik: a standard inputról
+ veszi az adatait, és a standard outputra írja ki a műveletének eredményét.
+ Ha valami problémába ütközik, akkor azt a standard errorra kapjuk meg.
+ Ezek egy folyamat indításakor a billentyűzetről kerülnek beolvasásra, és
+ a képernyőre kerülnek ki.
+\end_layout
+
 \begin_layout Subsection
 Átirányítás
 \end_layout
 
+\begin_layout Standard
+Egy program kimenetét és bemenetét átirányíthatjuk.
+ Ez azt jelenti, hogy tetszőleges szövegfájlt tudunk a parancsaink bemeneteként
+ használni, és a kimenetet lementhetjük szövegfájlokba.
+ A folyamokat balról jobbra irányba képzeljük el, lásd ábra !!TODO!!
+\end_layout
+
+\begin_layout Subsubsection
+Kimenet átirányítása
+\end_layout
+
+\begin_layout Standard
+A standard output (amit 1-es számmal jelölünk), a 
+\begin_inset Quotes pld
+\end_inset
+
+>
+\begin_inset Quotes prd
+\end_inset
+
+ jellel irányíthatjuk át.
+ Vagyis a program kimenetét egy új fájlba tudjuk lementeni.
+ Példa:
+\begin_inset Formula 
+\[
+\$\text{␣}ls\text{␣}>\text{␣}lista.txt
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Próbáljuk ki, mi történik ilyenkor! Az aktuális fájlok listáját megkapjuk
+ a lista.txt fájlban! Ha mégegyszer kiadjuk ezt a parancsot, akkor felülírjuk
+ az előző fájlt.
+\end_layout
+
+\begin_layout Standard
+Lehetőségünk van arra is, hogy felülírás helyett a fájlunk végéhez adjuk
+ a parancs kimenetet, mindezt a dupla 
+\begin_inset Quotes pld
+\end_inset
+
+>
+\begin_inset Quotes prd
+\end_inset
+
+ karakterrel.
+ Például:
+\begin_inset Formula 
+\[
+\$\text{␣}echo\text{␣}"új\text{␣}sor"\text{␣}>>\text{␣}szoveg.txt
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nem csak a standard outputot, de a standard errort is át tudjuk irányítani.
+ Ehhez meg kell adnunk, hogy melyik leírót akarjuk használni.
+ Igazából akármelyik számot tudjuk használni.
+ Ezek lehetnek megnyitott fájlok, hálózati kommunikációs socketek, FIFO-k,
+ vagy bármilyen más eszköz, amelyik számos leíróval (deszkriptorral) rendelkezik.
+ A megfelelő számot a 
+\begin_inset Quotes pld
+\end_inset
+
+>
+\begin_inset Quotes prd
+\end_inset
+
+ jel mögé tesszük.
+ Ha az 
+\begin_inset Formula $ls$
+\end_inset
+
+ parancs hiba kimenetét akarjuk átirányítani, azt a következő képpen tehetjük:
+\begin_inset Formula 
+\[
+\$\text{␣}ls\text{␣}nincsilyen.txt\text{␣}2>\text{␣}hiba.txt
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A különböző folyamok összeolvasztására is lehetőséget ad nekünk a rendszer.
+ Vagyis például a standard errort a standard outputra átirányíthatjuk, ehhez
+ azonban egy speciális jelre van szükség:
+\begin_inset Formula 
+\[
+\$\text{␣}ls\text{␣}nincsilyen.txt\text{␣}2>\&1
+\]
+
+\end_inset
+
+ennek hiányában az 
+\begin_inset Quotes pld
+\end_inset
+
+1
+\begin_inset Quotes prd
+\end_inset
+
+ nevű fájlba fogja írni a hibát.
+\end_layout
+
+\begin_layout Subsubsection
+Bemenet átirányítása
+\end_layout
+
+\begin_layout Standard
+A standard inputot (amit 0 számmal jelölünk), a 
+\begin_inset Quotes pld
+\end_inset
+
+<
+\begin_inset Quotes prd
+\end_inset
+
+ jellel tudjuk átirányítani.
+ Például:
+\begin_inset Formula 
+\[
+\$\text{␣}cat\text{␣}<\text{␣}alma.txt
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Jelen esetben a < karakter utáni rész nem paramétere a parancsnak, hanem
+ egy módosító, amivel az átirányítást adtuk meg.
+\end_layout
+
+\begin_layout Standard
+Létezik egy harmadik (és negyedik) féle átirányítás is, ami az 
+\begin_inset Quotes pld
+\end_inset
+
+itt-dokumentum
+\begin_inset Quotes prd
+\end_inset
+
+ és 
+\begin_inset Quotes pld
+\end_inset
+
+itt-szöveg
+\begin_inset Quotes prd
+\end_inset
+
+ átirányítás (here-document és here-string).
+ Ennek a lényege az, hogy az inputot nem fájlból, hanem közvetlenül a parancssor
+ból adjuk meg.
+ Ezeket rendre kettő és három darab 
+\begin_inset Quotes pld
+\end_inset
+
+<
+\begin_inset Quotes prd
+\end_inset
+
+ jellel adjuk meg.
+ Így például használhatjuk a 
+\begin_inset Formula $cat$
+\end_inset
+
+ parancsot 
+\begin_inset Formula $echo$
+\end_inset
+
+ helyett:
+\begin_inset Formula 
+\[
+\$\text{␣}cat\text{␣}<<<\text{␣}"alma\text{␣}körte\text{␣}barack"
+\]
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Csővezetékek
+\end_layout
+
+\begin_layout Standard
+Az átirányítás segítségével egy nagyon hasznos vetületét fedezhetjük fel
+ a UNIX parancsoknak.
+ Ez pedig a csővezetékek (vagy pipe-ok) használata.
+ Ennek a technikának köszönhetően az egyszerű parancsok egymás után fűzhetőek,
+ amely segítségével néhány egyszerű parancsból komplex szerkezeteket hozhatunk
+ létre, amelyek felérnek kész programok funkcióival.
+\end_layout
+
+\begin_layout Standard
+A technika lényege, hogy a programokat felfűzzük egy csővezetékre oly módon,
+ hogy az első folyamat kimenetét átirányítjuk a második folyamat bemenetére,
+ a második folyamat bemenetét a harmadik bemenetére, és így tovább.
+ Elméletileg akármennyi folyamat egymás után fűzhető, azonban a bash fizikai
+ korlátokat szab ezekkel kapcsolatban.
+ Azonban ez ne keserítsen el minket, mert ritkán van szükség ilyen sok parancs
+ egymás után fűzésére.
+\end_layout
+
+\begin_layout Standard
+Technikailag minden folyamat elindul párhuzamosan, és amikor az egyik olvasni
+ tud a másik kiemenetéről, a kiolvasott adatot feldolgozza, és rögtön adja
+ is tovább a következő részére.
+ Így egy nagyon hatékony, és processzor barát megoldást alkalmaznak a UNIX
+ rendszerek.
+ A csővezeték elemeit a 
+\begin_inset Quotes pld
+\end_inset
+
+|
+\begin_inset Quotes prd
+\end_inset
+
+ karakterrel tudjuk egymás után fűzni.
+ Ezek az elemek balról jobbra értelmezendők, és a sorrend fontos.
+ Nézzünk egy példát:
+\end_layout
+
+\begin_layout Itemize
+Szeretném a fájljaimat kilistázni (
+\begin_inset Formula $\$\text{␣}ls\text{␣}$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Ezek közül szűrjük ki az 
+\begin_inset Quotes pld
+\end_inset
+
+a
+\begin_inset Quotes prd
+\end_inset
+
+ betűvel kezdődőeket (
+\begin_inset Formula $\$\text{␣}grep\text{␣}"\mathcircumflex a"$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Cseréljük le a fájlok nevét úgy, hogy a kiterjesztések eltűnjenek (
+\begin_inset Formula $\$\text{␣}sed\text{␣}'s/\backslash.[\mathcircumflex.]*\$//'$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Rendezzük fordított sorrendbe ezeket a neveket! (
+\begin_inset Formula $\$\text{␣}sort\text{␣}-r$
+\end_inset
+
+)
+\begin_inset Formula 
+\[
+\$\text{␣}ls\text{␣}|\text{␣}grep\text{␣}"\mathcircumflex a"\text{␣}|\text{␣}sed\text{␣}'s/\backslash.[\mathcircumflex.]*\$//'\text{␣|␣}sort\text{␣}-r
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+xargs
+\end_layout
+
+\begin_layout Standard
+A csővezetékek használatához egy nagyon hasznos parancs az 
+\begin_inset Formula $xargs$
+\end_inset
+
+, amely a standard inputjára kapott szöveget egy parancs részletébe helyettesíti
+ azt be.
+ Például, ha ki akarjuk íratni az összes fájlt, azt a következő képpen tehetjük
+ meg:
+\begin_inset Formula 
+\[
+\$\text{␣}ls\text{␣}|\text{␣}xargs\text{␣}cat
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figyeljük meg, hogy az 
+\begin_inset Formula $|\text{␣}xargs\text{␣}echo$
+\end_inset
+
+ gyakorlatilag egy üres művelet, ugyanúgy, ahogy a 
+\begin_inset Formula $|\text{␣}cat$
+\end_inset
+
+ parancs is!
 \end_layout
 
 \begin_layout Section
