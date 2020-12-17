@@ -246,7 +246,7 @@ chnikát.
 Ez az elv mutatja, hogy milyen a Linuxok belső szerkezete: alapvetően egyszerű
  felhasználói programjaink vannak, amikkel gyorsan, és hatékonyan végezhetjük
  el az egyszerű feladatokat.
- Azonban ennél sokkal többre képes - ahogy majd látni fogjuk -, ezen egyszerű,
+ Azonban ennél sokkal többre képes — ahogy majd látni fogjuk —, ezen egyszerű,
  hatékony programocskák összetételéből komplex szoftvereket készítünk, amelyek
  egyszerűbbé teszik a mindennapjainkat.
  Ezeket bővebben foguk tanulmányozni a 
@@ -308,6 +308,10 @@ sát és felszabadítását, még a hálózatkezelés jelentős része is itt va
 \begin_layout Standard
 Azokat az operációs rendszerek, amelyek mindent ebbe a programba akarnak
  sűríteni, 
+\emph on
+monolitikus
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -317,10 +321,6 @@ monolitikus architektúra
 
 \end_inset
 
-
-\emph on
-monolitikus
-\emph default
 nak nevezzük.
  
 \end_layout
@@ -352,7 +352,7 @@ júnak nevezzük.
 A Linux melyik csoportba tartozik? A válasz koránt sem egyértelmű, mivel
  a Linux kernel nem egy előre összeszerkesztett program.
  A felhasználóra van bízva, hogy mi kerül be a kernelbe, és mi nem.
- Linuxban úgynevezett 
+ Linuxban úgynevezett kernel modul
 \begin_inset Index idx
 status open
 
@@ -362,7 +362,7 @@ kernel modul
 
 \end_inset
 
-kernel modulokat készítünk, amivel kiegészítjük a Kernel feladatait.
+okat készítünk, amivel kiegészítjük a Kernel feladatait.
  Tipikusan ide kerülnek vezérlőszoftverek (driverek), és olyan alapfeladatot
  ellátó programok, mint például a rendszerszintű védelmet nyújtó 
 \emph on
@@ -379,7 +379,7 @@ A kernelre és az őt körülvevő modulokra épül egy alkalmazás futtató ré
 
 \begin_layout Standard
 A POSIX réteget használhatjuk akármilyen felhasználói programból, vagy akár
- egy megfelelő 
+ egy megfelelő parancsértelmező
 \begin_inset Index idx
 status open
 
@@ -389,7 +389,7 @@ parancsértelmező
 
 \end_inset
 
-parancsértelmezőből is.
+ből is.
 \end_layout
 
 \begin_layout Subsection
@@ -559,7 +559,7 @@ Egyéb, nem Linux alapú Unix rendszerek
 A Linux nem az egyetlen fajtája a Unixoknak.
  Vannak, akik a Linux kernel nézeteivel (vagy implementációjával) nem értenek
  egyet.
- Ilyenek például a különböző 
+ Ilyenek például a különböző BSD
 \begin_inset Index idx
 status open
 
@@ -569,7 +569,7 @@ BSD
 
 \end_inset
 
-BSD disztribúciók, vagy egyéb, BSD-re épülő operációs rendszerek (pl.
+ disztribúciók, vagy egyéb, BSD-re épülő operációs rendszerek (pl.
  OSX).
  Ezek shell szinten nagyon hasonlítanak egy Linuxhoz, és a legtöbb Linux
  program (mivel POSIX szabványúak), lefordíthatók ezekre a rendszerekre
@@ -726,8 +726,8 @@ Karakteres felületek
 A Linux a Unix érából örökölte a karakteres felületét.
  Akinek még ismerős a DOS, az sok hasonló fogalommal találkozhat, mint amiket
  itt fogunk tárgyalni.
- A Unix alapvetően karakteres vezérlésre lett kitalálva, viszont - mivel
- többfelhasználós és többfolyamatos rendszer - valahogy szét kell választani
+ A Unix alapvetően karakteres vezérlésre lett kitalálva, viszont — mivel
+ többfelhasználós és többfolyamatos rendszer — valahogy szét kell választani
  a vezérlési feladatokat.
  Annak idején, még a nagygépes időkben, az az elképzelés járta, hogy nem
  fog senki az otthonában drága számítógépeket tartani, helyette nagy mainframe-e
@@ -751,7 +751,7 @@ okon keresztül kapcsolódhattunk.
 t, vagyis a bemenetet és a kimenetet.
  Ez a hétköznapokban monitorok (és/vagy nyomtatók) és billentyűzetek formájában
  valósul meg.
- A Unix - és így a Linux is - rendelkezik ilyen terminál csatlakozási pontokkal.
+ A Unix — és így a Linux is — rendelkezik ilyen terminál csatlakozási pontokkal.
  Ezeket a terminál pontokat 
 \emph on
 TTY
@@ -772,7 +772,19 @@ TTY
  akármennyit.
  Az alapvető Linuxos terminálok elérhetők egy általános Desktop Linux esetében
  a CTRL+ALT+F1, CTRL+ALT+F2, stb.
- billentyűkombinációkkal.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+billentyűkombinációkkal.
  Ezek közül a grafikus felületet általában a CTRL+ALT+F7 helyen fogjuk megtaláln
 i, azonban ez testre szabható.
  Egy valódi vagy virtuális terminált karakteres felületnek fogunk nevezni.
@@ -851,7 +863,7 @@ X Window System
 
 \end_inset
 
-, másképp 
+, másképp Xorg
 \begin_inset Index idx
 status open
 
@@ -861,7 +873,7 @@ Xorg
 
 \end_inset
 
-Xorg, vagy X11
+, vagy X11
 \begin_inset Index idx
 status open
 
@@ -945,7 +957,11 @@ Egy ilyen grafikus felület tulajdonképpen nem csinál semmi mást, mint a
 \emph on
 szignál
 \emph default
-ok segítségével történnek, amikről a 
+ok segítségével történnek, amikről a
+\begin_inset space ~
+\end_inset
+
+
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "subsec:Szignálok"
@@ -990,6 +1006,10 @@ t (X, mindenféle csicsa nélkül), az tudhatja, hogy mennyire borzasztóan
  Szerencsére az X szabvány lehetőséget ad arra, hogy kis mértékben megváltoztass
 uk a képernyőn megjelenő ablakok kinézetét.
  Ezeket fogjuk 
+\emph on
+ablakkezelő
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -999,10 +1019,6 @@ ablakkezelő
 
 \end_inset
 
-
-\emph on
-ablakkezelő
-\emph default
 knek nevezni.
  Sokféle ablakkezelő létezik, köztük olyanok, amik megpróbálják más operációs
  rendszerek kinézetét utánozni (különféle Windows és Mac verziókét), és
@@ -1019,10 +1035,22 @@ knek nevezni.
 Néhány fontos, és néhány extremális ablakkezelőt felsorolnék, a teljesség
  igénye nélkül.
  Egy modern Linux rendszer tipikusan valami régóta fejlesztett, jól kiforrott
- ablakkezelőt fog ajánlani (kezdőknek amúgy sem árt), ezek a KDE, GNOME.
- Könnyen érezhetjük otthon magunkat ezekben az ablakozókban, elvégre hasonlítana
-k a megszokott (bár egy-két generációval korábbi) Windows ablakozókra, letisztul
-tak, és rengeteg témát és stílust alkalmazhatunk ezekre.
+ ablakkezelőt fog ajánlani (kezdőknek amúgy sem árt); ezek a KDE, GNOME.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+@
+\end_layout
+
+\end_inset
+
+Könnyen érezhetjük otthon magunkat ezekben az ablakozókban, elvégre hasonlítanak
+ a megszokott (bár egy-két generációval korábbi) Windows ablakozókra, letisztult
+ak, és rengeteg témát és stílust alkalmazhatunk ezekre.
  Ha valaki úgy érzi, hogy a számítógépe GPU-ját az ablakok 3D megjelenítésére
  szeretné használni, esetleg speciális effektusokat szeretne az asztalára
  tenni (3D kocka nézet, ablakok rugalmas mozgatása, stb.) a Compiz-Fusion
@@ -1048,7 +1076,7 @@ Shellek
 \end_layout
 
 \begin_layout Standard
-Az előző fejezetekben láthattuk, hogy mik azok a 
+Az előző fejezetekben láthattuk, hogy mik azok a terminál
 \begin_inset Index idx
 status open
 
@@ -1058,7 +1086,7 @@ terminál
 
 \end_inset
 
-terminálok, amik a számítógép végpontjait jelzik.
+ok, amik a számítógép végpontjait jelzik.
  Attól még, hogy van egy végpontunk, nem ad az operációs rendszer a kezünkbe
  egy olyan eszközt, amin keresztül parancsokat tudnánk bevinni.
  Épp ezért, ha egy terminált indítunk, meg kell mondanunk, hogy milyen programma
@@ -1069,6 +1097,10 @@ l akarjuk összekötni a terminált.
  programok, amelyek a standard inputról utasításokat várnak, azok kimenetét
  pedig a képernyőn jelenítik meg.
  Ezeket a speciális programokat 
+\emph on
+shell
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -1078,11 +1110,11 @@ shell
 
 \end_inset
 
-
-\emph on
-shell
-\emph default
 eknek, vagy magyar szóval élve 
+\emph on
+parancsértelmező
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -1092,10 +1124,6 @@ parancsértelmező
 
 \end_inset
 
-
-\emph on
-parancsértelmező
-\emph default
 knek hívjuk.
  Ez a kifejezés jól tükrözi, hogy mire való ez a program: a megadott parancsokat
  értelmezi, és végrehajtja.
@@ -1156,6 +1184,10 @@ bash
  Különféle rendszerek különböző parancsértelmezőket részesítenek előnyben.
  A teljesség igénye nélkül felsorolunk néhány Unix alapú rendszeren gyakran
  használt shellt: 
+\emph on
+bash
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -1165,10 +1197,6 @@ bash
 
 \end_inset
 
-
-\emph on
-bash
-\emph default
 , 
 \emph on
 tcsh
@@ -1244,6 +1272,10 @@ csh
 
 \begin_layout Standard
 Az egyik legkorábbi Unix shell a 
+\emph on
+sh
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -1253,12 +1285,12 @@ sh
 
 \end_inset
 
-
-\emph on
-sh
-\emph default
 , amely lényegesen kevesebbet tud, mint társai.
  Sok rendszeren a /bin/sh egy 
+\emph on
+szimbolikus link
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -1268,10 +1300,6 @@ szimbolikus link
 
 \end_inset
 
-
-\emph on
-szimbolikus link
-\emph default
  az alapértelmezett shellre, és valójában nem a 
 \begin_inset Quotes pld
 \end_inset
@@ -1298,6 +1326,10 @@ A shell célja, hogy kapcsolatot teremtsen az operációs rendszer és a felhasz
  verziójú és típusú shellt használunk, mi az aktuális dátum, mi a hosztnevünk,
  mi a felhasználónevünk, stb.
  Ezeket tipikusan a 
+\emph on
+prompt
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -1307,10 +1339,6 @@ prompt
 
 \end_inset
 
-
-\emph on
-prompt
-\emph default
 ban fogjuk látni.
  A 
 \emph on
@@ -1325,6 +1353,10 @@ Alapvető shell tulajdonság, hogy szeretnénk a parancselőzményeket használn
  (A Unix szemlélet alapján, ha kiadtam egy parancsot, valószínű, hogy azt
  a parancsot többször is ki fogom adni a jövőben).
  Ezt a funkciót fogjuk 
+\emph on
+history
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -1334,10 +1366,6 @@ history
 
 \end_inset
 
-
-\emph on
-history
-\emph default
 nak hívni.
  Tudni kell, hogy a legtöbb shellben alapértelmezetten csak adott számú
  bejegyzést tárol a history, így ha valami túl régen lett kiadva, akkor
@@ -1370,23 +1398,88 @@ a
 \end_layout
 
 \begin_layout Itemize
-^C: adott folyamat megszakítása (szignál küldése)
+^C:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+@
+\end_layout
+
+\end_inset
+
+adott folyamat megszakítása (szignál küldése)
 \end_layout
 
 \begin_layout Itemize
-^D: fájl vége jel küldése (lezárja az inputot)
+^D:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+@
+\end_layout
+
+\end_inset
+
+fájl vége jel küldése (lezárja az inputot)
 \end_layout
 
 \begin_layout Itemize
-^Z: megállítás, háttérbe küldés
+^Z:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+@
+\end_layout
+
+\end_inset
+
+megállítás, háttérbe küldés
 \end_layout
 
 \begin_layout Itemize
-^S: megállítás, 
+^S:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+@
+\end_layout
+
+\end_inset
+
+megállítás, 
 \end_layout
 
 \begin_layout Itemize
-^H: egy karakter visszatörlése (backspace)
+^H:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+@
+\end_layout
+
+\end_inset
+
+egy karakter visszatörlése (backspace)
 \end_layout
 
 \begin_layout Standard
@@ -1478,6 +1571,10 @@ A Bash tulajdonságai
 A Bash (Bourne-Again Shell) egy modern parancsértelmező, amely képes több
  folyamatot is egyszerre kezelni, ezek között váltani (előtérben, háttérben),
  és futtatás közben megváltoztatni azok tulajdonságait (például 
+\emph on
+szignál
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -1487,17 +1584,30 @@ szignál
 
 \end_inset
 
-
-\emph on
-szignál
-\emph default
 ok küldésével).
  Mindezt automatikus előzmény-kezeléssel, azok közötti könnyű navigációval.
  A navigációra a kurzormozgató billentyűk használhatók: 
 \end_layout
 
 \begin_layout Itemize
-fel-le gombok: az előző/következő végrehajtott parancs a 
+fel-le gombok:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+@
+\end_layout
+
+\end_inset
+
+az előző/következő végrehajtott parancs a 
+\emph on
+history
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -1507,7 +1617,59 @@ history
 
 \end_inset
 
+ban
+\end_layout
 
+\begin_layout Itemize
+jobbra-balra gombok:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+@
+\end_layout
+
+\end_inset
+
+a kurzor előre/hátra mozgatása az aktuális parancsban, hogy átírjuk a korábbi
+ parancsot
+\end_layout
+
+\begin_layout Itemize
+home-end (^A, ^E):
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+@
+\end_layout
+
+\end_inset
+
+a kurzor sor elejére/végére mozgatása
+\end_layout
+
+\begin_layout Itemize
+^R:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+@
+\end_layout
+
+\end_inset
+
+keresés a 
 \emph on
 history
 \emph default
@@ -1515,25 +1677,20 @@ ban
 \end_layout
 
 \begin_layout Itemize
-jobbra-balra gombok: a kurzor előre/hátra mozgatása az aktuális parancsban,
- hogy átírjuk a korábbi parancsot
+Tab:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+@
 \end_layout
 
-\begin_layout Itemize
-home-end (^A, ^E): a kurzor sor elejére/végére mozgatása
-\end_layout
+\end_inset
 
-\begin_layout Itemize
-^R: keresés a 
-\emph on
-history
-\emph default
-ban
-\end_layout
-
-\begin_layout Itemize
-Tab: szöveg kiegészítése (bizonyos parancsoknál kapcsolók, legtöbbször fájlnevek
-)
+szöveg kiegészítése (bizonyos parancsoknál kapcsolók, legtöbbször fájlnevek)
 \end_layout
 
 \begin_layout Subsubsection
@@ -1620,6 +1777,10 @@ disk usage
 
 \begin_layout Standard
 Ezt követően 
+\emph on
+paraméterek
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -1629,10 +1790,6 @@ paraméterek
 
 \end_inset
 
-
-\emph on
-paraméterek
-\emph default
 et láthatunk.
  Ezek befolyásolják a parancs működését.
  Jelen esetben a 
@@ -1645,6 +1802,10 @@ human readable format
 \lang magyar
 ) szeretnénk látni a helyfoglalást.
  Ezek nem általános érvényű kapcsolók, minden parancs a saját 
+\emph on
+kapcsoló
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -1654,10 +1815,6 @@ kapcsoló
 
 \end_inset
 
-
-\emph on
-kapcsoló
-\emph default
 it fogja használni! Kétféle paramétert szoktunk megkülönböztetni: a 
 \emph on
 kapcsoló
@@ -1719,7 +1876,7 @@ bash
  Mit tehetünk akkor, ha van egy olyan könyvtárunk vagy fájlunk, aminek a
  nevében szóköz van? Természetesen van erre megoldásunk! A dupla idézőjel
  (
-\begin_inset Formula $"$
+\begin_inset Formula $\text{”}$
 \end_inset
 
 ) közé tett szövegeket a 
@@ -1760,21 +1917,21 @@ bash
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\$\text{␣}du\text{␣}\text{‐}h\text{␣}/alma\text{␣}"/egy\text{␣}ketto"$
+\begin_inset Formula $\$\text{␣}du\text{␣}\text{‐}h\text{␣}/alma\text{␣}\text{”}egy\text{␣}ketto\text{”}$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\$\text{␣}du\text{␣}\text{‐}h\text{␣}/alma\text{␣}/egy"\text{␣}"ketto$
+\begin_inset Formula $\$\text{␣}du\text{␣}\text{‐}h\text{␣}/alma\text{␣}/egy\text{”}\text{␣}\text{”}ketto$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\$\text{␣}du\text{␣}\text{‐}h\text{␣}"/alma"\text{␣}"/egy\text{␣}ketto"$
+\begin_inset Formula $\$\text{␣}du\text{␣}\text{‐}h\text{␣}\text{”}/alma\text{”}\text{␣}\text{”}/egy\text{␣}ketto\text{”}$
 \end_inset
 
 
@@ -1802,7 +1959,7 @@ belső parancs
 \end_inset
 
 ) parancsaink, és lesznek apró programok, amelyek az összes shell között
- megosztva vannak: a 
+ megosztva vannak: a külső parancsok
 \begin_inset Index idx
 status open
 
@@ -1812,7 +1969,7 @@ külső parancs
 
 \end_inset
 
-külső parancsok.
+.
  A 
 \begin_inset Formula $du$
 \end_inset
@@ -1938,6 +2095,10 @@ nem történik semmi
 
 .
  Azonban nagyon is sok minden történik ilyenkor! Az, hogy nem kapunk 
+\emph on
+prompt
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -1947,10 +2108,6 @@ prompt
 
 \end_inset
 
-
-\emph on
-prompt
-\emph default
 ot, azt jelenti, hogy a programunk valamire vár.
  Valójában könnyen rájöhetünk, hogy a felhasználó inputjára vár, vagyis
  arra, hogy sorokat írjunk be! Ahogy korábban említettük, a 
@@ -2144,7 +2301,8 @@ lásd még
 \series default
 .
  Az előzőekből egyik bekezdés sem kötelező, de tipikusan mindegyik manuál
- oldalhoz tartozik legalább 3-4 bekezdés.
+ oldalhoz tartozik legalább 3\SpecialChar softhyphen
+4 bekezdés.
 \end_layout
 
 \begin_layout Standard
@@ -2300,6 +2458,10 @@ next
  kombinációval tudjuk előhozni.
  Ez a módszer kiválóan alkalmas egyszerű szabad szavas keresésekre, azonban
  meg kell jegyeznünk, hogy ez a keresési módszer 
+\emph on
+reguláris kifejezés
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -2309,11 +2471,11 @@ reguláris kifejezés
 
 \end_inset
 
+eket használ, amikről bővebben a
+\begin_inset space ~
+\end_inset
 
-\emph on
-reguláris kifejezés
-\emph default
-eket használ, amikről bővebben a 
+
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "chap:Reguláris-kifejezések"
@@ -2388,14 +2550,14 @@ Környezeti változók
 \begin_layout Standard
 Minden operációs rendszerben vannak eltérő dolgok.
  És most nem arra gondolok, hogy a Linux különbözik a WIndowstól.
- Ha két Windows rendszert összehasonlítunk - legyenek azok azonos verziójúak
- akár - eltérések lesznek a rendszerek között.
+ Ha két Windows rendszert összehasonlítunk — legyenek azok azonos verziójúak
+ akár — eltérések lesznek a rendszerek között.
  Például az egyik rendszerre feltelepítettünk egy adott programot, a másikra
  nem.
  Nincs két azonos rendszer.
  Az operációs rendszer környezetét ismernünk kell ahhoz, hogy elérjünk bizonyos
  programokat, illetve a programok helyesen működjenek.
- Ezeket az információkat 
+ Ezeket az információkat környezeti változók
 \begin_inset Index idx
 status open
 
@@ -2405,7 +2567,7 @@ környezeti változók
 
 \end_inset
 
-környezeti változókban fogjuk tárolni.
+ban fogjuk tárolni.
  A környezeti változók nem mások, mint szöveges kulcsokhoz rendelt szöveges
  értékek.
  Ha úgy tetszik, kulcs-érték párokat tartalmazó halmaz, amely a kulcsok
@@ -2448,8 +2610,17 @@ Prompt
 \begin_layout Standard
 A prompt, ahogy korábban beszéltünk róla, valójában több környezeti változóból
  áll.
- Linuxoknál ez a PS0, PS1, PS2, ...
- stb.
+ Linuxoknál ez a PS0,
+\begin_inset space ~
+\end_inset
+
+PS1,
+\begin_inset space ~
+\end_inset
+
+PS2,\SpecialChar softhyphen
+…,\SpecialChar softhyphen
+stb.
  névre hallgat, ebből tipikusan a PS1
 \begin_inset Index idx
 status open
@@ -2544,7 +2715,7 @@ HOME
 \end_layout
 
 \begin_layout Standard
-Amikor a 
+Amikor a ~
 \begin_inset Index idx
 status open
 
@@ -2554,13 +2725,13 @@ status open
 
 \end_inset
 
-~ (hullám, 
+ (hullám, 
 \lang english
 tilde
 \lang magyar
 ) karakteret használjuk, a Bash le fogja cserélni nekünk a HOME környezeti
  változó értékére.
- Amikor belépünk a rendszerbe, ez a környezeti változó kiértékelődik a 
+ Amikor belépünk a rendszerbe, ez a környezeti változó kiértékelődik a passwd
 \begin_inset Index idx
 status open
 
@@ -2570,7 +2741,7 @@ passwd
 
 \end_inset
 
-passwd fájl alapján, ahol számon tartjuk, hogy a felhasználónak mi a 
+ fájl alapján, ahol számon tartjuk, hogy a felhasználónak mi a 
 \lang english
 home
 \begin_inset Index idx
@@ -2626,6 +2797,10 @@ A változókat alapvetően két féle képpen használhatjuk: írhatjuk az ért�
  Fontos megjegyezni, hogy a Bash vegyesen használja a környezeti változókat
  és a változókat.
  Egy egyszerű Bash változót környezeti változóvá léptethetünk elő, ha 
+\emph on
+export
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -2635,10 +2810,6 @@ export
 
 \end_inset
 
-
-\emph on
-export
-\emph default
 áljuk.
  Az exportált változók értéke megöröklődik a shellből indított parancsok
  számára.
@@ -2749,7 +2920,7 @@ Változóba beolvasás
 \end_layout
 
 \begin_layout Standard
-A 
+A standard input
 \begin_inset Index idx
 status open
 
@@ -2759,8 +2930,12 @@ standard input
 
 \end_inset
 
-standard input hasznos eszköz arra, hogy adatot vigyünk be a rendszer számára.
+ hasznos eszköz arra, hogy adatot vigyünk be a rendszer számára.
  Ezt a 
+\emph on
+read
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -2770,10 +2945,6 @@ read
 
 \end_inset
 
-
-\emph on
-read
-\emph default
  parancs teszi lehetővé számunkra.
  Ne feledjük el, hogy a POSIX szabvány erősen ajánlja, hogy minden beolvasáshoz
  tartozzon egy 
@@ -2782,7 +2953,7 @@ prompt
 \emph default
 , amit a -p kapcsolóval fogunk tudni beállítani.
  Példa: 
-\begin_inset Formula $\$\text{␣}read\text{␣}\text{‐}p\text{␣}"Hány\text{␣}éves\text{␣}vagy?\text{␣}"\text{␣}EV$
+\begin_inset Formula $\$\text{␣}read\text{␣}\text{‐}p\text{␣}\text{”}Hány\text{␣}éves\text{␣}vagy?\text{␣}\text{”}\text{␣}EV$
 \end_inset
 
  az EV környezeti változóba fogja olvasni a következő sor tartalmát.
@@ -2801,6 +2972,10 @@ Alias
 \begin_layout Standard
 Megkönnyíthetjük a saját életünket, ha a gyakran kiadott, és hosszú parancsok
  helyett úgynevezett 
+\emph on
+alias
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -2812,14 +2987,14 @@ alias
 
 
 \emph on
-aliasz
+z
 \emph default
 okat hozunk létre.
  Hasonló képpen működnek, mint a környezeti változók, viszont kifejezetten
  parancsok rövidítésére szoktunk használni őket.
  Egy ilyen rövidítést megadhatnánk környezeti változóval a következő képpen:
  
-\begin_inset Formula $\$\text{␣}LISTA="ls\text{␣‐}l\text{␣‐}a\text{␣‐}h$
+\begin_inset Formula $\$\text{␣}LISTA=\text{”}ls\text{␣‐}l\text{␣‐}a\text{␣‐}h\text{”}$
 \end_inset
 
 , ilyenkor a 
@@ -2838,7 +3013,7 @@ $
 
  jelet használni.
  Példa: 
-\begin_inset Formula $\$\text{␣}alias\text{␣}lista="ls\text{␣‐}l\text{␣‐}a\text{␣‐}h"$
+\begin_inset Formula $\$\text{␣}alias\text{␣}lista=\text{”}ls\text{␣‐}l\text{␣‐}a\text{␣‐}h\text{”}$
 \end_inset
 
 , ebben az esetben a 
@@ -2881,6 +3056,10 @@ Könyvtárak és fájlok kezelése
 
 \begin_layout Standard
 Linux rendszereken alapvetően két féle entitásunk létezik: a 
+\emph on
+directory
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -2890,11 +3069,11 @@ directory
 
 \end_inset
 
-
-\emph on
-directory
-\emph default
 -k és a 
+\emph on
+file
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -2904,10 +3083,6 @@ file
 
 \end_inset
 
-
-\emph on
-file
-\emph default
 -ok.
  Ezeket magyarul könyvtáraknak és fájloknak (esetleg állományoknak) nevezzük.
  Egy könyvtár alá további könyvtárak vagy fájlok tartozhatnak.
@@ -2923,6 +3098,10 @@ A könyvtárak egymásba ágyazottsága hierarchikus módon történik.
  Ebből következik, hogy létezik egy speciális könyvtár, amiből minden másik
  könyvtár elérhető.
  Ezt nevezzük 
+\emph on
+root directory
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -2932,10 +3111,6 @@ root directory
 
 \end_inset
 
-
-\emph on
-root directory
-\emph default
 -nak, vagy 
 \emph on
 gyökérkönyvtár
@@ -3023,6 +3198,10 @@ A könyvtárak neveit a
  jellel választjuk el.
  A Unix rendszerek mindig az aktuális munkakönyvtárból dolgoznak (lásd:
  
+\emph on
+PWD
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -3032,10 +3211,6 @@ PWD
 
 \end_inset
 
-
-\emph on
-PWD
-\emph default
 ).
  Ha a jelenlegi könyvtáram a 
 \begin_inset Formula $/home/tanulo$
@@ -3128,6 +3303,10 @@ tó az aktuális könyvtár.
 
 \begin_layout Standard
 A fenti példákban úgynevezett 
+\emph on
+relatív elérés
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -3137,16 +3316,16 @@ relatív elérés
 
 \end_inset
 
-
-\emph on
-relatív elérés
-\emph default
 t használtunk, mivel az aktuális munkakönyvtárhoz képest adtuk meg a könyvtár
  helyét.
 \end_layout
 
 \begin_layout Standard
 Bármikor használhatunk 
+\emph on
+abszolút elérés
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -3156,10 +3335,6 @@ abszolút elérés
 
 \end_inset
 
-
-\emph on
-abszolút elérés
-\emph default
 t, ami attól lesz abszolút, hogy akárhol vagyunk a fájlrendszerünkben, mindig
  ugyanazt a helyet fogjuk megtalálni.
  Mivel mindennel közös a 
@@ -3451,7 +3626,7 @@ Ahogy már szó volt róla, a parancsértelmező fogja futtatni a scriptet.
  Egy scriptben meg kell adnunk, hogy melyik parancsértelmezőt szeretnénk
  használni.
  Ezt néhány speciális karakterrel fogjuk megoldani.
- Ehhez először is ismernünk kell, hogy hogyan készítünk egy scriptbe 
+ Ehhez először is ismernünk kell, hogy hogyan készítünk egy scriptbe komment
 \begin_inset Index idx
 status open
 
@@ -3461,7 +3636,7 @@ komment
 
 \end_inset
 
-kommentet.
+et.
  A kommentek a parancsértelmező által figyelmen kívül hagyott területek,
  alapvetően dokumentációs célt szolgálnak egy scriptben.
  Ezt a 
@@ -3583,7 +3758,7 @@ Visszatérési értékek, hibakódok
 \end_layout
 
 \begin_layout Standard
-Minden egyes programsor futásának van egy numerikus kódja, a 
+Minden egyes programsor futásának van egy numerikus kódja, a hibakód
 \begin_inset Index idx
 status open
 
@@ -3593,7 +3768,7 @@ hibakód
 
 \end_inset
 
-hibakód.
+.
  Ez jelezhet hibát és sikeres végrehajtást.
  A sikeres végrehajtást tipikusan a 
 \begin_inset Formula $0$
@@ -3603,6 +3778,10 @@ hibakód.
  Ez minden program esetében eltérő, és ezt az értéket legtöbbször megnézhetjük
  a manuálban.
  Egy futás visszatérési értékét a 
+\begin_inset Formula $\$?$
+\end_inset
+
+
 \begin_inset Index idx
 status open
 
@@ -3615,15 +3794,11 @@ status open
 
 \end_inset
 
-
-\begin_inset Formula $\$?$
-\end_inset
-
  változóban fogjuk megtalálni.
 \end_layout
 
 \begin_layout Standard
-Amikor egy programot futtatunk, annak 
+Amikor egy programot futtatunk, annak standard output
 \begin_inset Index idx
 status open
 
@@ -3633,9 +3808,9 @@ standard output
 
 \end_inset
 
-standard outputját tekintjük a program kimenetének, elvégre ez jelenik meg
- elsődlegesen a kijelzőn, illetve nem véletlenül ezt adjuk tovább a többi
- programnak, amikor 
+ját tekintjük a program kimenetének, elvégre ez jelenik meg elsődlegesen
+ a kijelzőn, illetve nem véletlenül ezt adjuk tovább a többi programnak,
+ amikor átirányít
 \begin_inset Index idx
 status open
 
@@ -3645,8 +3820,12 @@ status open
 
 \end_inset
 
-átirányítunk.
+unk.
  Egy program kimenetét elkérhetjük a bashtől, ha azt a 
+\begin_inset Formula $\$()$
+\end_inset
+
+
 \begin_inset Index idx
 status open
 
@@ -3657,10 +3836,6 @@ status open
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset Formula $\$()$
 \end_inset
 
  közé írjuk, ilyenkor a program kimenete behelyettesítődik arra a helyre,
@@ -3678,7 +3853,7 @@ ak, illetve néha a felhasználótól várunk bemenetet.
 \end_layout
 
 \begin_layout Standard
-Kiíratni a 
+Kiíratni a standard output
 \begin_inset Index idx
 status open
 
@@ -3688,7 +3863,11 @@ standard output
 
 \end_inset
 
-standard outputra az 
+ra az 
+\begin_inset Formula $echo$
+\end_inset
+
+
 \begin_inset Index idx
 status open
 
@@ -3699,10 +3878,6 @@ status open
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset Formula $echo$
 \end_inset
 
  paranccsal tudunk.
@@ -3716,6 +3891,10 @@ status open
 
 \begin_layout Standard
 A 
+\begin_inset Formula $read$
+\end_inset
+
+
 \begin_inset Index idx
 status open
 
@@ -3726,14 +3905,14 @@ status open
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset Formula $read$
 \end_inset
 
  parancs egy változóba fogja elmenteni azt a sort, amit a felhasználó a
  
+\emph on
+standard input
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -3743,10 +3922,6 @@ standard input
 
 \end_inset
 
-
-\emph on
-standard input
-\emph default
 ra ad.
  Készítsünk egy olyan scriptet, ami megkérdezi a nevünket, és a megfelelő
  néven köszönti a felhasználót!
@@ -3815,6 +3990,10 @@ Az előző példában láthattuk, hogy a
 
 \begin_layout Standard
 Bash a 
+\emph on
+változó
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -3824,11 +4003,11 @@ változó
 
 \end_inset
 
-
-\emph on
-változó
-\emph default
 kat együtt kezeli a 
+\emph on
+környezeti változó
+\emph default
+
 \begin_inset Index idx
 status open
 
@@ -3840,7 +4019,7 @@ környezeti változó
 
 
 \emph on
-környezeti változók
+k
 \emph default
 kal.
  A környezeti változókat tipikusan nagybetűsen írjuk, a változókat pedig
@@ -3849,6 +4028,10 @@ kal.
 
 \begin_layout Standard
 Változó értékadás az 
+\begin_inset Formula $=$
+\end_inset
+
+
 \begin_inset Index idx
 status open
 
@@ -3859,10 +4042,6 @@ status open
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset Formula $=$
 \end_inset
 
  karakterrel történik.
@@ -3871,6 +4050,10 @@ status open
 
 \begin_layout Standard
 Változókhoz speciális típusokat adhatunk a 
+\begin_inset Formula $declare$
+\end_inset
+
+
 \begin_inset Index idx
 status open
 
@@ -3881,10 +4064,6 @@ status open
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset Formula $declare$
 \end_inset
 
  parancs segítségével.
@@ -4062,7 +4241,7 @@ Speciális változók
 \end_layout
 
 \begin_layout Standard
-Felfoghatjuk változókként a scriptünk 
+Felfoghatjuk változókként a scriptünk paraméter
 \begin_inset Index idx
 status open
 
@@ -4072,7 +4251,7 @@ paraméter
 
 \end_inset
 
-paramétereit.
+eit.
  Az első paraméter a 
 \begin_inset Formula $\$1$
 \end_inset
@@ -4088,6 +4267,10 @@ paramétereit.
 
 \begin_layout Standard
 A paraméterek számát a 
+\begin_inset Formula $\$\#$
+\end_inset
+
+
 \begin_inset Index idx
 status open
 
@@ -4098,10 +4281,6 @@ status open
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset Formula $\$\#$
 \end_inset
 
  változóval tudjuk lekérni, a 
@@ -4127,6 +4306,10 @@ status open
 
 \begin_layout Standard
 A paraméterek feldolgozásához hasznos parancs lesz a 
+\begin_inset Formula $shift$
+\end_inset
+
+
 \begin_inset Index idx
 status open
 
@@ -4137,10 +4320,6 @@ status open
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset Formula $shift$
 \end_inset
 
  parancs, ami eggyel lépteti a paraméterlistát.
@@ -4648,6 +4827,10 @@ A bash lehetőséget ad a változóiban egész értékekkel műveletek elvégzé
  írjuk.
  Lebegőpontos műveleteket így nem tudok végezni bashben, erre egy későbbi
  fejezetben lesz lehetőség az 
+\begin_inset Formula $awk$
+\end_inset
+
+
 \begin_inset Index idx
 status open
 
@@ -4658,13 +4841,13 @@ status open
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset Formula $awk$
 \end_inset
 
  nevű programmal, illetve a 
+\begin_inset Formula $bc$
+\end_inset
+
+
 \begin_inset Index idx
 status open
 
@@ -4675,10 +4858,6 @@ status open
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset Formula $bc$
 \end_inset
 
  nevű programmal.
@@ -4841,6 +5020,14 @@ if
 
 \begin_layout Standard
 Bashben az egyszerű elágazás az 
+\lang english
+
+\begin_inset Formula $if$
+\end_inset
+
+
+\lang magyar
+
 \begin_inset Index idx
 status open
 
@@ -4853,14 +5040,6 @@ status open
 
 \end_inset
 
-
-\lang english
-
-\begin_inset Formula $if$
-\end_inset
-
-
-\lang magyar
  paranccsal működik.
  Az 
 \lang english
@@ -4908,6 +5087,10 @@ test parancs
 
 \begin_layout Standard
 A 
+\begin_inset Formula $test$
+\end_inset
+
+
 \begin_inset Index idx
 status open
 
@@ -4918,10 +5101,6 @@ status open
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset Formula $test$
 \end_inset
 
  parancs segítségével ki tudunk értékelni feltételeket.
@@ -5042,6 +5221,10 @@ case
 Abban az esetben, amikor egy adott változó bash helyettesítésekkel elkülöníthető
  ágakra bontható, azt esetszétválasztással oldjuk meg.
  Az esetszétválasztás kulcsszava a 
+\begin_inset Formula $case$
+\end_inset
+
+
 \begin_inset Index idx
 status open
 
@@ -5052,10 +5235,6 @@ status open
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset Formula $case$
 \end_inset
 
 , amit az 
@@ -5130,6 +5309,10 @@ Ciklusok
 \begin_layout Standard
 A ciklusok script részletek többszöri végrehajtására jók.
  A ciklusmagot egységesen a 
+\begin_inset Formula $do$
+\end_inset
+
+
 \begin_inset Index idx
 status open
 
@@ -5140,10 +5323,6 @@ status open
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset Formula $do$
 \end_inset
 
  kulcsszóval nyitjuk meg, és a 
@@ -5173,6 +5352,14 @@ For
 
 \begin_layout Standard
 A 
+\lang english
+
+\begin_inset Formula $for$
+\end_inset
+
+
+\lang magyar
+
 \begin_inset Index idx
 status open
 
@@ -5185,14 +5372,6 @@ status open
 
 \end_inset
 
-
-\lang english
-
-\begin_inset Formula $for$
-\end_inset
-
-
-\lang magyar
  ciklust alapvetően arra használjuk, hogy tagolt adatok sorozatát soroljuk
  fel.
  Ezek lehetnek számok, változóban levő elemek, program kimenetének sorai,
@@ -5203,6 +5382,10 @@ status open
 Gyakran használjuk a ciklus számlálós megadását, ami azt jelenti, hogy a
  változónk felveszi az összes egész értéket egy adott intervallumon.
  Ezt a 
+\begin_inset Formula $\{\}$
+\end_inset
+
+
 \begin_inset Index idx
 status open
 
@@ -5213,10 +5396,6 @@ status open
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset Formula $\{\}$
 \end_inset
 
  közé írt, két ponttal elválasztott számokkal jelezhetjük.
@@ -5226,6 +5405,10 @@ status open
 
 \begin_layout Standard
 Használhatjuk a 
+\begin_inset Formula $seq$
+\end_inset
+
+
 \begin_inset Index idx
 status open
 
@@ -5236,10 +5419,6 @@ status open
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset Formula $seq$
 \end_inset
 
  parancsot is, ami hasonlóképp működik.
@@ -5288,6 +5467,14 @@ While
 
 \begin_layout Standard
 A 
+\lang english
+
+\begin_inset Formula $while$
+\end_inset
+
+
+\lang magyar
+
 \begin_inset Index idx
 status open
 
@@ -5300,15 +5487,7 @@ status open
 
 \end_inset
 
-
-\lang english
-
-\begin_inset Formula $while$
-\end_inset
-
-
-\lang magyar
- ciklus elöltesztelős ciklus, aminek 
+ ciklus elöltesztelős ciklus, aminek belépési feltétel
 \begin_inset Index idx
 status open
 
@@ -5318,7 +5497,7 @@ belépési feltétel
 
 \end_inset
 
-belépési feltételt adunk.
+t adunk.
  Ez azt jelenti, hogy a ciklusmagot csak akkor hajtjuk végre, ha a feltétel
  igaz volt.
  Ehhez ugyanúgy a 
@@ -5409,6 +5588,10 @@ reguláris kifejezés
 
 reguláris kifejezéssel ellenőrizd), ne lépjen ki a ciklusból! Egészítsd
  ki a scriptet, hogy ha a 
+\begin_inset Formula $read$
+\end_inset
+
+
 \begin_inset Index idx
 status open
 
@@ -5421,11 +5604,7 @@ status open
 
 \end_inset
 
-
-\begin_inset Formula $read$
-\end_inset
-
- parancs hibát adott, akkor legyen a script 
+ parancs hibát adott, akkor legyen a script hibakód
 \begin_inset Index idx
 status open
 
@@ -5435,7 +5614,7 @@ hibakód
 
 \end_inset
 
-hibakódja 
+ja 
 \begin_inset Formula $1$
 \end_inset
 
@@ -5452,6 +5631,10 @@ Until
 
 \begin_layout Standard
 Az 
+\begin_inset Formula $until$
+\end_inset
+
+
 \begin_inset Index idx
 status open
 
@@ -5462,10 +5645,6 @@ status open
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset Formula $until$
 \end_inset
 
  ciklus szintén elöltesztelős, viszont ennek kilépési feltétel
